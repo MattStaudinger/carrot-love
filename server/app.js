@@ -10,7 +10,6 @@ const path = require('path')
 const nocache = require('nocache')
 const session = require("express-session")
 const MongoStore = require('connect-mongo')(session)
-
 require('./configs/database')
 
 const app_name = require('./package.json').name
