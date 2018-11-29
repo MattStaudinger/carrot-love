@@ -18,6 +18,25 @@ router.get('/collection', (req, res, next) => {
     .catch(err => next(err))
 });
 
+// Route to get a specific plant of the user
+router.get('/:id', (req, res, next) => {
+  Plant.findById(req.params.id)
+  .then(plant => {
+    res.json(plant);
+  })
+  .catch(err => next(err))
+})
+
+// Route to delete a specific plant of the user
+
+router.delete('/:id', (req, res, next) => {
+  Plant.findByIdAndDelete(req.params.id)
+  .then(plant => {
+    res.json(plant);
+  })
+  .catch(err => next(err))
+})
+
 // Route to add a Plant
 router.post('/', (req, res, next) => {
   let user = req.user._id
