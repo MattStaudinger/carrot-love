@@ -1,7 +1,12 @@
 // --------------------
 // Definition of variables
 $primary: #32c3ff;
-
+/* RGB */
+$grey: rgba(187, 203, 203, 1);
+$green: rgba(120, 188, 97, 1);
+$white: rgba(241, 247, 237, 1);
+$blue: rgba(126, 196, 211, 1);
+$black: rgba(66, 75, 84, 1);
 
 // ----------------------------------------
 // To install Boostrap:
@@ -43,9 +48,11 @@ body {
   }
 
   .App-header {
-    background-color: $primary;
-    padding: 20px;
+    background-color: $green;
+    padding: 20px 0;
     color: white;
+    width: 100%;
+
 
     a {
       color: white;
@@ -80,9 +87,41 @@ body {
 // --------------------
 // Style for Home component
 .Home {
+  background-color: $green;
+  height: 95vh;
+  width: 100vw;
+  color:$white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   p {
     font-size: 1.2em;
   }
+  input {
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    color: $black;
+  }
+
+  .radio-buttons{
+    width: 400px;
+  }
+
+  .btn-submit {
+    width: 150px;
+    height: 30px;
+    margin-top: 20px;
+    background-color: $white;
+    border-radius: 20px;
+  }
+
+
+}
+
+#root {
+  height: 98vh;
 }
 
 // --------------------

@@ -1,3 +1,4 @@
+/* RGB */
 body {
   margin: 0;
   padding: 0;
@@ -20,9 +21,10 @@ body {
     animation: App-logo-spin infinite 20s linear;
     height: 80px; }
   .App .App-header {
-    background-color: #32c3ff;
-    padding: 20px;
-    color: white; }
+    background-color: #78bc61;
+    padding: 20px 0;
+    color: white;
+    width: 100%; }
     .App .App-header a {
       color: white;
       padding: 0 5px;
@@ -40,8 +42,33 @@ body {
   to {
     transform: rotate(360deg); } }
 
-.Home p {
-  font-size: 1.2em; }
+.Home {
+  background-color: #78bc61;
+  height: 95vh;
+  width: 100vw;
+  color: #f1f7ed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; }
+  .Home p {
+    font-size: 1.2em; }
+  .Home input {
+    width: 300px;
+    height: 50px;
+    font-size: 20px;
+    color: #424b54; }
+  .Home .radio-buttons {
+    width: 400px; }
+  .Home .btn-submit {
+    width: 150px;
+    height: 30px;
+    margin-top: 20px;
+    background-color: #f1f7ed;
+    border-radius: 20px; }
+
+#root {
+  height: 98vh; }
 
 .Secret .result {
   font-size: 1.2em;

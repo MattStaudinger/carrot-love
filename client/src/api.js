@@ -87,4 +87,14 @@ export default {
       .then(res => res.data)
       .catch(errHandler)
   },
+
+  addPlant(plantData) {
+    console.log("Api", plantData.plantData)
+    return service
+    .post("/plant", plantData.plantData)
+    .then (res => res.data) 
+  }
+
 }
+
+

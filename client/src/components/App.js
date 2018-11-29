@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Route, Link, NavLink, Switch } from 'react-router-dom';
 import AddPlant from './pages/AddPlant';
-import Countries from './pages/Countries';
-import AddCountry from './pages/AddCountry';
 import Secret from './pages/Secret';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -27,6 +25,7 @@ class App extends Component {
       <div className="App">
           <Navbar />
         <Switch>
+          <Route path="/" exact component={AddPlant} />
           <Route path="/" exact component={AddPlant} />
           {/* <Route path="/collection" component={Collection} />
           <Route path="/calender" component={Calender} /> */}
