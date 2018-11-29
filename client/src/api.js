@@ -52,27 +52,28 @@ export default {
       .get('/logout')
   },
 
-  getCountries() {
+  getPlants() {
     return service
-      .get('/countries')
+      .get('/collection')
       .then(res => res.data)
       .catch(errHandler)
   },
 
-  postCountries(data) {
+  postPlants(data) {
     return service
       .post('/countries', data)
       .then(res => res.data)
       .catch(errHandler)
   },
 
-  getSecret() {
+  // can be deleted?:
+/*   getSecret() {
     return service
       .get('/secret')
       .then(res => res.data)
       .catch(errHandler)
   },
-
+ */
 
 
   addPicture(file) {
