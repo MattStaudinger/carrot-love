@@ -7,21 +7,30 @@ const bcrypt = require("bcryptjs")
 const bcryptSalt = 10;
 
 router.post("/signup", (req, res, next) => {
-  const { username, password, name } = req.body
-  if (!username || !password) {
-    res.status(400).json({ message: "Indicate username and password" })
+  const { username, password, email } = req.body
+  if (!username || !password || !email) {
+    res.status(400).json({ message: "Indicate username, email and password" })
     return
   }
+
   User.findOne({ username })
     .then(userDoc => {
       if (userDoc !== null) {
         res.status(409).json({ message: "The username already exists" })
         return
       }
-      const salt = bcrypt.genSaltSync(bcryptSalt)
-      const hashPass = bcrypt.hashSync(password, salt)
-      const newUser = new User({ username, password: hashPass, name })
-      return newUser.save()
+    })
+    .then(() => {
+    User.findOne({ email })
+    .then(userDoc => {
+      if (userDoc !== null) {
+        res.status(409).json({ message: "The email already exists" })
+        return
+      } 
+        const salt = bcrypt.genSaltSync(bcryptSalt)
+        const hashPass = bcrypt.hashSync(password, salt)
+        const newUser = new User({ username, password: hashPass, email })
+        return newUser.save()
     })
     .then(userSaved => {
       // LOG IN THIS USER
@@ -33,19 +42,21 @@ router.post("/signup", (req, res, next) => {
         res.json( userSaved );
       });
     })
+    })
     .catch(err => next(err))
 })
 
+
 router.post("/login", (req, res, next) => {
-  const { username, password } = req.body
+  const { email, password } = req.body
 
   // first check to see if there's a document with that username
-  User.findOne({ username })
+  User.findOne({ email })
     .then(userDoc => {
-      // "userDoc" will be empty if the username is wrong (no document in database)
+      // "userDoc" will be empty if the email is wrong (no document in database)
       if (!userDoc) {
         // create an error object to send to our error handler with "next()"
-        next(new Error("Incorrect username "))
+        next(new Error("Incorrect email "))
         return
       }
 
