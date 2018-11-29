@@ -27,7 +27,7 @@ router.post("/signup", (req, res, next) => {
       if (userDoc !== null) {
         res.status(409).json({ message: "The email already exists" })
         return
-      } else if ()
+      }
         const salt = bcrypt.genSaltSync(bcryptSalt)
         const hashPass = bcrypt.hashSync(password, salt)
         const newUser = new User({ username, password: hashPass, email })

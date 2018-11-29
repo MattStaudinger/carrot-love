@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import api from '../../api';
+import { Route, Link, Switch } from 'react-router-dom';
+import PlantDetail from './PlantDetail'
+
 
 class Collection extends Component {
   constructor(props) {
@@ -12,12 +15,15 @@ class Collection extends Component {
     return (
       <div className="Collection">
         <h2>Your collection of plants:</h2>
-        {this.state.plants.map(c =>
-        <div key={c._id}>
-          <img src={c.picture_url} />
-          <h3>{c.name}</h3>
+        {this.state.plants.map(p =>
+        <div key={p._id}>
+          <Link to={`/plant/${p._id}`}><img src={p.picture_url} /></Link>
+          <Link to={`/plant/${p._id}`}><h3>{p.name}</h3></Link>
           <p>next water appointment: WIP</p>
         </div>)}
+        <Switch>
+          <Route path="/plant/:id" component={PlantDetail} />
+        </Switch>
       </div>
     );
   }

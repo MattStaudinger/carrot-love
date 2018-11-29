@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { Route, Link, NavLink, Switch } from 'react-router-dom';
 import AddPlant from './pages/AddPlant';
-import Countries from './pages/Countries';
-import AddCountry from './pages/AddCountry';
+import Collection from './pages/Collection';
+import PlantDetail from './pages/PlantDetail';
+import EditPlant from './pages/EditPlant';
 import Secret from './pages/Secret';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
@@ -28,11 +29,13 @@ class App extends Component {
           <Navbar />
         <Switch>
           <Route path="/" exact component={AddPlant} />
-          {/* <Route path="/collection" component={Collection} />
-          <Route path="/calender" component={Calender} /> */}
+          <Route path="/collection" component={Collection} />
+          {/* <Route path="/calender" component={Calender} /> */}
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
           <Route path="/secret" component={Secret} />
+          <Route exact path="/plant/:name" component={PlantDetail} />
+          <Route path="/plant/:name/edit" component={EditPlant} />
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>

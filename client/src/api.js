@@ -54,9 +54,16 @@ export default {
 
   getPlants() {
     return service
-      .get('/collection')
+      .get('/plant/collection')
       .then(res => res.data)
       .catch(errHandler)
+  },
+
+  getPlantDetail(id) {
+    return service
+    .get(`/plant/${id}`)
+    .then(res => res.data)
+    .catch(errHandler)
   },
 
   postPlants(data) {
@@ -66,17 +73,16 @@ export default {
       .catch(errHandler)
   },
 
-  // can be deleted?:
-/*   getSecret() {
+  deletePlant(id) {
     return service
-      .get('/secret')
-      .then(res => res.data)
-      .catch(errHandler)
+    .delete(`/plant/${id}`)
+    .then(res => res.data)
+    .catch(errHandler)
   },
- */
 
+//should be deleted
 
-  addPicture(file) {
+/*   addPicture(file) {
     const formData = new FormData()
     formData.append("picture", file)
     return service
@@ -87,5 +93,5 @@ export default {
       })
       .then(res => res.data)
       .catch(errHandler)
-  },
-}
+  },*/
+} 
