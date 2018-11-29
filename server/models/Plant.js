@@ -8,11 +8,11 @@ const plantSchema = new mongoose.Schema({
   },
   watering_interval: {
     type: Number,
-    required: [true, 'The watering interval is required'],
+    //required: [true, 'The watering interval is required'],
   },
   starting_day: {
     type: Date,
-    required: [true, 'The starting-day is required'],
+    //required: [true, 'The starting-day is required'],
   },
   description: {
     type: String,
