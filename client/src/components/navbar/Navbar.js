@@ -7,6 +7,10 @@ class Navigation extends Component {
     super(props)
    
   }
+
+  handleLogoutClick(e) {
+    api.logout()
+  }
   
   render() {
     return (
