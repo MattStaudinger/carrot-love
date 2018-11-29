@@ -6,9 +6,11 @@ const User = require("../models/User")
 const bcrypt = require("bcryptjs")
 const bcryptSalt = 10;
 
-
 router.post("/signup", (req, res, next) => {
   const { username, password, email } = req.body
+
+
+
   if (!username || !password || !email) {
     res.status(400).json({ message: "Indicate username, email and password" })
     return
@@ -16,9 +18,12 @@ router.post("/signup", (req, res, next) => {
 
   User.findOne({ username })
     .then(userDoc => {
+      
       if (userDoc !== null) {
         res.status(409).json({ message: "The username already exists" })
         return
+      } else {
+        
       }
     })
     .then(() => {
@@ -27,13 +32,14 @@ router.post("/signup", (req, res, next) => {
       if (userDoc !== null) {
         res.status(409).json({ message: "The email already exists" })
         return
-      } else if ()
+      } 
         const salt = bcrypt.genSaltSync(bcryptSalt)
         const hashPass = bcrypt.hashSync(password, salt)
         const newUser = new User({ username, password: hashPass, email })
         return newUser.save()
     })
     .then(userSaved => {
+       
       // LOG IN THIS USER
       // "req.logIn()" is a Passport method that calls "serializeUser()"
       // (that saves the USER ID in the session)
