@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
+import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 
 class Home extends Component {
-  // constructor(props) {
-  //   super(props)
-  //   this.state = {
-  //   }
-  // }
+  constructor(props) {
+    super(props)
+    this.state = {
+    }
+  }
   render() {                
     return (
       <div className="Home">

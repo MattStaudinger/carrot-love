@@ -6,6 +6,7 @@ import AddCountry from './pages/AddCountry';
 import Secret from './pages/Secret';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Navbar from './navbar/Navbar';
 import api from '../api';
 
 class App extends Component {
@@ -24,14 +25,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <NavLink to="/" exact>Home</NavLink>
-          {api.isLoggedIn() && <NavLink to="/collection">Collection</NavLink>}
-          {api.isLoggedIn() && <NavLink to="/calender">Calender</NavLink>}
-          {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
-          {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
-          {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
-        </header>
+          <Navbar />
         <Switch>
           <Route path="/" exact component={AddPlant} />
           {/* <Route path="/collection" component={Collection} />
