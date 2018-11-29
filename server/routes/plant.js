@@ -1,6 +1,5 @@
 const express = require('express');
 const Plant = require('../models/Plant')
-
 const router = express.Router();
 
 
@@ -8,6 +7,9 @@ router.use((req, res, next) => {
   console.log('DEBUG routes/countries');
   next()
 })
+
+
+
 
 // Route to get all plants of the user
 router.get('/collection', (req, res, next) => {
@@ -45,6 +47,16 @@ router.get('/:id', (req, res, next) => {
   Plant.findById(req.params.id)
   .then(plant => {
     res.json(plant);
+  })
+  .catch(err => next(err))
+})
+
+
+// Route to delete a specific plant of the user
+router.delete('/:id', (req, res, next) => {
+  Plant.findByIdAndDelete(req.params.id)
+  .then(plant => {
+    res.json({ message: 'Deleted!', plant });
   })
   .catch(err => next(err))
 })

@@ -49,7 +49,11 @@ require('./passport')(app)
 
 app.use('/api', require('./routes/index'))
 app.use('/api', require('./routes/auth'))
-app.use('/api/plant', require('./routes/plant'))
+const { isLoggedIn } = require('./middlewares')
+
+
+
+app.use('/api/plant', isLoggedIn, require('./routes/plant'))
 
 // For any routes that starts with "/api", catch 404 and forward to error handler
 app.use('/api/*', (req, res, next) => {

@@ -6,6 +6,7 @@ const User = require("../models/User")
 const bcrypt = require("bcryptjs")
 const bcryptSalt = 10;
 
+
 router.post("/signup", (req, res, next) => {
   const { username, password, email } = req.body
   if (!username || !password || !email) {
@@ -49,8 +50,7 @@ router.post("/signup", (req, res, next) => {
 
 router.post("/login", (req, res, next) => {
   const { email, password } = req.body
-
-  // first check to see if there's a document with that username
+  // first check to see if there's a document with that email
   User.findOne({ email })
     .then(userDoc => {
       // "userDoc" will be empty if the email is wrong (no document in database)
@@ -59,7 +59,6 @@ router.post("/login", (req, res, next) => {
         next(new Error("Incorrect email "))
         return
       }
-
       // second check the password
       // "compareSync()" will return false if the "password" is wrong
       if (!bcrypt.compareSync(password, userDoc.password)) {

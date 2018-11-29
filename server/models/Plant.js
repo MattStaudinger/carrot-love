@@ -12,7 +12,7 @@ const plantSchema = new mongoose.Schema({
   },
   starting_day: {
     type: Date,
-    required: [true, 'The starting-day is required'],
+  //  required: [true, 'The starting-day is required'],
   },
   description: {
     type: String,
