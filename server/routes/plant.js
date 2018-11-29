@@ -39,4 +39,14 @@ router.post('/', (req, res, next) => {
     .catch(err => next(err))
 });
 
+
+// Route to get a specific plant of the user
+router.get('/:id', (req, res, next) => {
+  Plant.findById(req.params.id)
+  .then(plant => {
+    res.json(plant);
+  })
+  .catch(err => next(err))
+})
+
 module.exports = router;
