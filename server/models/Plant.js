@@ -1,23 +1,33 @@
 const mongoose = require('mongoose');
 
-const countrySchema = new mongoose.Schema({
+const plantSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, 'The country name is required'],
+    required: [true, 'The plant name is required'],
     minlength: 1
   },
-  capitals: {
-    type: [String],
-    default: []
-  },
-  area: {
+  watering_interval: {
     type: Number,
+    required: [true, 'The watering interval is required'],
+  },
+  starting_day: {
+    type: Date,
+    required: [true, 'The starting-day is required'],
   },
   description: {
     type: String,
   },
+  note: {
+    type: String,
+  },
+  picture_url: {
+    type: String,
+  },
+  _owner: {
+    type: mongoose.Schema.Types.ObjectId,
+  },
 });
 
-const Country = mongoose.model('Country', countrySchema);
+const Plant = mongoose.model('Plant', plantSchema);
 
-module.exports = Country;
+module.exports = Plant;
