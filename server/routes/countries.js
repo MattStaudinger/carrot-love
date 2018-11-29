@@ -1,5 +1,5 @@
 const express = require('express');
-const Country = require('../models/Country')
+const Plant = require('../models/Plant')
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.use((req, res, next) => {
 
 // Route to get all countries
 router.get('/', (req, res, next) => {
-  Country.find()
+  Plant.find()
     .then(countries => {
       res.json(countries);
     })
@@ -21,11 +21,11 @@ router.get('/', (req, res, next) => {
 // Route to add a country
 router.post('/', (req, res, next) => {
   let { name, capitals, area, description } = req.body
-  Country.create({ name, capitals, area, description })
-    .then(country => {
+  Plant.create({ name, capitals, area, description })
+    .then(plant => {
       res.json({
         success: true,
-        country
+        plant
       });
     })
     .catch(err => next(err))
