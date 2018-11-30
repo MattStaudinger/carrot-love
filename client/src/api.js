@@ -47,6 +47,11 @@ export default {
       .catch(errHandler)
   },
 
+  loginGoogle() {
+    return service
+    .get('/auth/google')
+  },
+
   logout() {
     localStorage.removeItem('user')
     return service

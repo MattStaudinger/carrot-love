@@ -6,6 +6,7 @@ const User = require("../models/User")
 const bcrypt = require("bcryptjs")
 const bcryptSalt = 10;
 
+
 router.post("/signup", (req, res, next) => {
   const { username, password, email } = req.body
 
@@ -108,6 +109,29 @@ router.post('/login-with-passport-local-strategy', (req, res, next) => {
     })
   })(req, res, next)
 })
+
+
+router.get('/auth/google',
+passport.authenticate('google', {  scope: ["https://www.googleapis.com/auth/plus.login",
+"https://www.googleapis.com/auth/plus.profile.emails.read"]
+}));
+
+// router.get("/auth/google/callback", passport.authenticate("google", {
+//   failureRedirect: "/",
+//   successRedirect: "/private-page"
+// }));
+
+router.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+  router.get("/test", (req, res) => {
+  res.json({ message: 'You are in!' })
+  }
+
+  )
 
 router.get("/logout", (req, res) => {
   req.logout()

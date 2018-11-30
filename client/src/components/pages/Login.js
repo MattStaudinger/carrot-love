@@ -27,6 +27,10 @@ class Login extends Component {
       .catch(err => this.setState({ message: err.toString() }))
   }
 
+  handleClickGoogle(e) {
+    api.loginGoogle()
+  }
+
   render() {
     return (
       <div className="Login">
@@ -39,6 +43,7 @@ class Login extends Component {
         {this.state.message && <div className="info info-danger">
           {this.state.message}
         </div>}
+        <button onClick={this.handleClickGoogle}>GMAIL-LOGIN</button>
       </div>
     );
   }
