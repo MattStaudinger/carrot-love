@@ -33,7 +33,6 @@ class App extends Component {
           {/* <Route path="/calender" component={Calender} /> */}
           <Route path="/signup" component={Signup} />
           <Route path="/login" component={Login} />
-          <Route path="/secret" component={Secret} />
           <Route exact path="/plant/:name" component={PlantDetail} />
           <Route path="/plant/:name/edit" component={EditPlant} />
           {/* <Route path="/plant/:name/add" component={EditPlant} /> */}
