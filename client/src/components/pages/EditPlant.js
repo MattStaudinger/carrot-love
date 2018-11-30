@@ -73,10 +73,19 @@ class EditPlant extends Component {
           Watering Interval:
           <input
             name="watering_interval"
-            type="date"
+            type="number"
             placeholder={this.state.watering_interval}
             value={this.state.watering_interval}
             onChange={(e)=> this.handleChange(e, "watering_interval")} />
+            </label>
+        <label>
+          Starting:
+          <input
+            name="starting_date"
+            type="date"
+            placeholder={this.state.watering_interval}
+            value={this.state.starting_date}
+            onChange={(e)=> this.handleChange(e, "plant.starting_date")} />
         </label>
         <br />
         <label>

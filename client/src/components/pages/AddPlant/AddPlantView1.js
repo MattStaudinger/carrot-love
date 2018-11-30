@@ -38,48 +38,6 @@ const myCustomTheme = deepMerge(grommet, {
 });
 
 
-// const plants = this.props.plantsFromAPI
-const folks = 
-[
-  {
-    name: "Alan Souza",
-    imageUrl:
-      "https://s.gravatar.com/avatar/b226da5c619b18b44eb95c30be393953?s=80"
-  },
-  {
-    name: "Bryan Jacquot",
-    imageUrl:
-      "https://s.gravatar.com/avatar/10d15019166606cfed23846a7f902660?s=80"
-  },
-  {
-    name: "Chris Carlozzi",
-    imageUrl:
-      "https://s.gravatar.com/avatar/56ea1e2ecd0d3cc85479b2d09e31d071?s=80"
-  },
-  {
-    name: "Eric Soderberg",
-    imageUrl:
-      "https://s.gravatar.com/avatar/99020cae7ff399a4fbea19c0634f77c3?s=80"
-  },
-  {
-    name: "Marlon Parizzotto",
-    imageUrl:
-      "https://s.gravatar.com/avatar/e6684969375a4dcc0aa99f0bfae544c3?s=80"
-  },
-  {
-    name: "Tales Chaves",
-    imageUrl:
-      "https://s.gravatar.com/avatar/1f80adca55d9f5d97932ff97f631a4e8?s=80"
-  },
-  {
-    name: "Tracy Barmore",
-    imageUrl:
-      "https://s.gravatar.com/avatar/4ec9c3a91da89f278e4482811caad7f3?s=80"
-  }
-];
-
-
-
 class AddPlantView1 extends Component {
   constructor(props) {
     super(props);
@@ -98,43 +56,28 @@ class AddPlantView1 extends Component {
   }
 
 
-  handleChange(e) {
-      let inputUser = e.target.value
-        this.setState({ name: inputUser });
-        axios.get("https://openfarm.cc/api/v1/crops?filter=rose")
-        .then(plants => {
-          let plantNames = plants.data.data.map (
-            plant => (plant.attributes.name)
-          )
-          let plantNamesUpdated = plantNames.filter(plant => {
-            return plant.includes(inputUser);
-          })          
-        })
-  }
-
   onChange = event => {
 
   let inputUser = event.target.value
-  let inputUserLowerCaps = event.target.value.toLowerCase()
+  let inputUserLowerCaps = inputUser.toLowerCase()
   let plantNamesUpdated
   let url = `https://openfarm.cc/api/v1/crops?filter=${inputUserLowerCaps}`
-  console.log(url)
+  console.log("API", url)
   this.setState({ name: inputUser });
 
   axios.get(url)
   .then(plants => {
+    console.log(plants);
     let plantNames = plants.data.data.map(
       plant => (plant.attributes.name.toLowerCase())
     )
     console.log("Plannames: ",plantNames)
     plantNamesUpdated = plantNames.filter((plant, i) => {
-      console.log("i", i)
-      return (plant.includes(inputUser) && i < 7);
+      console.log("i")
+      return (plant.includes(inputUserLowerCaps) && i < 7);
     })
   
   // console.log(plantNamesUpdated)
-
-  
   // this.setState({ value: inputUser })
   // const { value } = this.state;
   
@@ -226,7 +169,6 @@ class AddPlantView1 extends Component {
               onChange={this.onChange}
               onSelect={this.onSelect}
               suggestions={this.renderSuggestions()}
-              placeholder="Enter your name..."
               onSuggestionsOpen={() => this.setState({ suggestionOpen: true })}
               onSuggestionsClose={() =>
                 this.setState({ suggestionOpen: false })
