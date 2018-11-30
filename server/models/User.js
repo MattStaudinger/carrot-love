@@ -9,6 +9,7 @@ const userSchema = new Schema({
     unique: true,
     match: /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i,
   },
+  googleID: String,
 }, {
     timestamps: {
       createdAt: 'created_at',
