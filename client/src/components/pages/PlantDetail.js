@@ -5,6 +5,7 @@ import EditPlant from './EditPlant'
 
 
 
+
 class PlantDetail extends Component {
   constructor(props) {
     super(props)
