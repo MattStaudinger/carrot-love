@@ -1,4 +1,5 @@
 import axios from 'axios'
+import EditPlant from './components/pages/EditPlant';
 
 const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api',
@@ -85,7 +86,14 @@ export default {
     return service
     .post("/plant", plantData.plantData)
     .then (res => res.data) 
-  }
+  },
+
+  editPlant(plantData, id) {
+    return service
+    .put(`/plant/${id}`, plantData)
+    .then (res => res.data)
+    .catch(errHandler)
+  },
 
 }
 

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import api from '../../api';
 import { Route, Link, Switch, Redirect } from 'react-router-dom';
-import EditPlant from './EditPlant'
 
 
 
@@ -17,6 +16,11 @@ class PlantDetail extends Component {
     handleClick(e) {
     e.preventDefault();
     console.log("deleted!")
+    api.deletePlant(this.state.plantdetails._id)
+    .then(res => {
+      this.props.history.push('/collection')
+    })
+    .catch(err => console.log(err)) 
     }
     
   
