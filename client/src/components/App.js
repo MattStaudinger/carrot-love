@@ -35,6 +35,7 @@ class App extends Component {
           <Route path="/login" component={Login} />
           <Route exact path="/plant/:name" component={PlantDetail} />
           <Route path="/plant/:name/edit" component={EditPlant} />
+          {/* <Route path="/plant/:name/add" component={EditPlant} /> */}
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>

@@ -87,9 +87,9 @@ export default {
   },
 
   addPlant(plantData) {
-    console.log("Api", plantData.plantData)
+    console.log("Api", plantData)
     return service
-    .post("/plant", plantData.plantData)
+    .post("/plant", plantData)
     .then (res => res.data) 
   },
 
@@ -100,6 +100,11 @@ export default {
     .catch(errHandler)
   },
 
-}
+  getFarmboxPlants(searchWord){
+    console.log("API")
+    axios.get(`https://openfarm.cc/api/v1/crops?filter=${searchWord}`)
+    .then(plant => plant.data)
+  },
 
+}
 
