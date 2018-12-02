@@ -137,8 +137,8 @@ class AddPlantView1 extends Component {
 
 
 
- <Grommet theme={myCustomTheme} full>
-        <Box fill align="center" pad={{ top: "medium" }}>
+ <Grommet theme={myCustomTheme} auto>
+        <Box fill align="center" pad={{ top: "medium" }} flex-shrink="true">
           <Box
             ref={this.boxRef}
             width="large"
