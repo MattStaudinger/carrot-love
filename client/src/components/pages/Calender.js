@@ -1,73 +1,162 @@
-import React, { Component } from 'react';
-import api from '../../api';
-import { Route, Link, Switch } from 'react-router-dom';
-import PlantDetail from './PlantDetail'
-
+import React, { Component } from "react";
+import api from "../../api";
+import { Route, Link, Switch } from "react-router-dom";
+import PlantDetail from "./PlantDetail";
+import Waypoint from "react-waypoint";
 
 class Calender extends Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      plants: []
+      plants: [],
+      isLoading: false
+    };
+    this.allPlants = [];
+    this.today = new Date();
+    this.amountOfIntervals = 1;
+    this.dayInMs = 86400000;
+    this.today.setHours(0);
+    this.today.setMinutes(0);
+    this.today.setSeconds(0);
+    this.today.setMilliseconds(0);
+    this._loadMoreItems = this._loadMoreItems.bind(this);
+    this._handleWaypointLeave = this._handleWaypointLeave.bind(this);
+  }
+
+  _loadMoreItems() {
+    console.log("load more items..");
+
+    let plantSorted = []
+          this.allPlants.forEach(plant => {
+
+            let newRepetion = plant.repetions + 3
+          console.log(newRepetion);
+
+            for (let i = plant.repetions; i < newRepetion; i++) {
+              let date = plant.wateringTimeNumber + plant.interval * i
+              let plantTimeSortedString =  new Date(date).toLocaleString()
+              plantSorted.push({
+                name: plant.name,
+                wateringTimeNumber: date,
+                wateringTimeString: plantTimeSortedString,
+                repetions: newRepetion,
+                interval: plant.interval
+              })
+            }
+          })
+          plantSorted.sort((a,b) => (
+            a.wateringTimeNumber - b.wateringTimeNumber
+          ))
+          console.log(plantSorted);
+            this.allPlants = [...this.state.plants, ...plantSorted]
+
+    // let plantDates = this.allPlants.map(plant => {
+    //   let startingDay = plant.starting_day;
+    //   let interval = plant.watering_interval * this.dayInMs;
+    //   while (startingDay + this.amountOfIntervals * interval < this.today) {
+    //     this.amountOfIntervals++;
+    //   }
+    //   let date = startingDay + this.amountOfIntervals * interval;
+    //   let upcomingWateringDate = new Date(date).toLocaleString();
+    //   this.amountOfIntervals = 1; // reset
+    //   return { name: plant.name, wateringTimeString: upcomingWateringDate };
+    // });
+
+    // console.log("New", plantDates);
+    this.setState({ plants: this.allPlants });
+    // this.setState({ isLoading: false });
+  }
+
+  _handleWaypointLeave() {
+    console.log("LEAVE");
+  }
+
+  _renderWaypoint() {
+    if (!this.state.isLoading) {
+      return (
+        <div>
+          {console.log("Waypoint")}
+          <Waypoint
+            onEnter={this._loadMoreItems}
+            threshold={0.5}
+            onLeave={this._handleWaypointLeave}
+          />
+        </div>
+      );
     }
   }
+
   render() {
     return (
-
       <div className="calender">
-        <h2>Your collection of plants:</h2>
-        {this.state.plants.map(plant => (
-        <div className="calender-card">
-        <span>{plant.wateringTime}</span>
-        <span>{plant.name}</span>
-        </div>
+        <h2>Upcoming watering:</h2>
+        {this.state.plants.map((plant, i) => (
+          <div className="calender-card" key={i}>
+            <span>{plant.wateringTimeString}</span>
+            <span>{plant.name}</span>
+          </div>
         ))}
-
-        {/* {this.state.plants.map(p =>
-        <div key={p._id}>
-          <Link to={`/plant/${p._id}`}><img src={p.picture_url} /></Link>
-          <Link to={`/plant/${p._id}`}><h3>{p.name}</h3></Link>
-          <p>next water appointment: WIP</p>
-        </div>)} */}
-        {/* <Switch>
-          <Route path="/plant/:id" component={PlantDetail} />
-        </Switch> */}
+        {this._renderWaypoint()}
       </div>
-        )
+    );
   }
   componentDidMount() {
-    let today = new Date()
-    today.setHours(0);
-    today.setMinutes(0);
-    today.setSeconds(0);
-    today.setMilliseconds(0)
-    const dayInMs = 86400000
-    let amountOfIntervals = 1;
-
-    api.getPlants()
+    console.log("DIDMOUNT");
+    api
+      .getPlants()
       .then(plants => {
-        console.log(plants)
-        let plantDates = plants.map(plant=> {
-          let startingDay = plant.starting_day;
-          let interval = plant.watering_interval*dayInMs;
-          while ((startingDay + (amountOfIntervals*interval)) < today) {
-            amountOfIntervals++;
-          }
-          let  date = startingDay + (amountOfIntervals * interval)
-          let upcomingWateringDate = new Date(date).toLocaleString();
-          amountOfIntervals = 1; // reset
-          console.log("Dates: ", upcomingWateringDate)
-          return ({name: plant.name,
-          wateringTime : upcomingWateringDate})
-        })
+        
+        let plantDates = plants
+          .map(plant => {
+            let startingDay = plant.starting_day;
+            let interval = plant.watering_interval * this.dayInMs;
 
-console.log(plantDates)
-        this.setState({plants:plantDates})
+            //A loop to asses how many intervals are needed to "jump" to the present day
+            while (
+              startingDay + this.amountOfIntervals * interval < 
+              this.today
+            ) {
+              this.amountOfIntervals++;
+            }
+
+              let date = startingDay + ((this.amountOfIntervals) * interval);
+             let upcomingWateringDate = new Date(date).toLocaleString();
+            let repetions = Math.floor(4 * this.dayInMs / interval )
+
+            this.amountOfIntervals = 1; // reset
+            return {
+              name: plant.name,
+              wateringTimeNumber: date,
+               wateringTimeString: upcomingWateringDate,
+               repetions: repetions,
+               interval: plant.watering_interval * this.dayInMs
+            };
+          })
+          this.allPlants = plantDates;
+
+          let plantSorted = []
+          plantDates.forEach(plant => {
+            for (let i = 0; i < plant.repetions; i++) {
+              let date = plant.wateringTimeNumber + plant.interval*i
+              let plantTimeSortedString =  new Date(date).toLocaleString()
+              plantSorted.push({
+                name: plant.name,
+                wateringTimeNumber: date,
+                wateringTimeString: plantTimeSortedString,
+                repetions: plant.repetions,
+                interval: plant.interval
+              })
+            }
+          })
+          plantSorted.sort((a,b) => (
+            a.wateringTimeNumber - b.wateringTimeNumber
+          ))
 
 
-     
+        console.log("Sorted? ", plantSorted);
+        this.setState({ plants: plantSorted });
       })
-      .catch(err => console.log(err))
+      .catch(err => console.log(err));
   }
 }
 

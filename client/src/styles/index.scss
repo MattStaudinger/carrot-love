@@ -135,12 +135,15 @@ body {
 
 .calender {
 display: flex;
-justify-content: center;
 flex-direction: column;
+align-items: center;
 width: 98vw;
-height: 90vh;
+height: 98vh;
 background-color:  $green;
 overflow: scroll;
+display: block;
+
+
 }
 
 .calender-card {
