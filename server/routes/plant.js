@@ -42,6 +42,8 @@ router.delete('/:id', (req, res, next) => {
 router.post('/', (req, res, next) => {
   let user = req.user._id
   let { name, watering_interval, starting_day, description, note, picture_url } = req.body
+  console.log("Type Server: ", typeof(starting_day));
+
   Plant.create({ 
     name: name, 
     watering_interval: watering_interval, 
@@ -51,6 +53,7 @@ router.post('/', (req, res, next) => {
     picture_url: picture_url, 
     _owner: user  })
     .then(plant => {
+
       res.json({
         success: true,
         plant

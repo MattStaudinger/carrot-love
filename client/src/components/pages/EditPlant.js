@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import api from '../../api';
-import { Route, Link, Switch } from 'react-router-dom';
 
 
 class EditPlant extends Component {

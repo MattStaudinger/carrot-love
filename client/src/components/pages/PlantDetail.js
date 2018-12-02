@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import api from '../../api';
-import { Route, Link, Switch, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 
 
@@ -22,13 +22,12 @@ class PlantDetail extends Component {
     })
     .catch(err => console.log(err)) 
     }
-    
   
   render() {
     return (
       <div className="PlantDetail">
        <h1>{this.state.plantdetails.name}</h1>
-       <img src={this.state.plantdetails.picture_url} alt="picture of the plant"/>
+       <img src={this.state.plantdetails.picture_url} alt={this.state.plantdetails.name}/>
        <p>next water appointment: WIP</p>
        <p>Watering interval: {this.state.plantdetails.watering_interval}</p>
        <p>Description: {this.state.plantdetails.description}</p>

@@ -3,7 +3,6 @@ import AddPlantView1 from "./AddPlant/AddPlantView1";
 import AddPlantView2 from "./AddPlant/AddPlantView2";
 import AddPlantView3 from "./AddPlant/AddPlantView3";
 import api from "../../api";
-import axios from 'axios'
 
 
 class AddPlant extends Component {
@@ -30,6 +29,11 @@ class AddPlant extends Component {
 
 
   handleGoBack(viewNo) {
+    if (!api.isLoggedIn()) {
+      this.props.history.push('/login')
+      return
+     }
+
     switch(viewNo) {
       case "view2":
       this.setState({view1Clicked: false,
@@ -39,11 +43,18 @@ class AddPlant extends Component {
       this.setState({view2Clicked: true,
         view3Clicked: false})
       break;
+
+      default:
+      console.log("Error: Incorrect view was set as a parameter")
+      break;
     }
   }
 
   handleNameSubmit(plantData) {
-
+ if (!api.isLoggedIn()) {
+  this.props.history.push('/login')
+  return
+ }
       this.setState({
         name: plantData.name,
         description: plantData.description,
@@ -56,6 +67,11 @@ class AddPlant extends Component {
 
 
 handleWateringSubmit(checkBoxValue, inputValue, isCheckbox) {
+  if (!api.isLoggedIn()) {
+    this.props.history.push('/login')
+    return
+   }
+
   if (isCheckbox) {
     this.setState({
       watering_interval: checkBoxValue,
@@ -72,15 +88,29 @@ handleWateringSubmit(checkBoxValue, inputValue, isCheckbox) {
 }
 
 handleStartingDaySubmit(startingDay) {
-        let plantData = {
-          name: this.state.name,
-          watering_interval: this.state.watering_interval,
-          starting_day: startingDay,
-          note: "",
-          picture_url: this.state.picture_url,
-          description: this.state.description
-        };
+  if (!api.isLoggedIn()) {
+    this.props.history.push('/login')
+    return
+   }
+   //Adjusts the starting day to midnight, so it will always be the same day when later calculated in the
+   let startingDayAdjusted = startingDay.setHours(0);
+   startingDayAdjusted = startingDay.setMinutes(0);
+   startingDayAdjusted = startingDay.setSeconds(0);
+   startingDayAdjusted = startingDay.setMilliseconds(0);
 
+   console.log(startingDayAdjusted)
+
+   let plantData = {
+     name: this.state.name,
+     watering_interval: this.state.watering_interval,
+     starting_day: startingDayAdjusted,
+     note: "",
+     picture_url: this.state.picture_url,
+     description: this.state.description
+    };
+  console.log("Type: ", typeof(plantData.starting_day));
+  console.log("Data: ", plantData);
+    
         api.addPlant(plantData)
         .then(res => this.props.history.push("/collection"))
       }

@@ -132,3 +132,22 @@ body {
     color: $primary;
   }
 }
+
+.calender {
+display: flex;
+justify-content: center;
+flex-direction: column;
+width: 98vw;
+height: 90vh;
+background-color:  $green;
+overflow: scroll;
+}
+
+.calender-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+  padding: 20px;
+  margin: 5px;
+}

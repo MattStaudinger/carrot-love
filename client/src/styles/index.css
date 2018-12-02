@@ -73,3 +73,20 @@ body {
 .Secret .result {
   font-size: 1.2em;
   color: #32c3ff; }
+
+.calender {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 98vw;
+  height: 90vh;
+  background-color: #78bc61;
+  overflow: scroll; }
+
+.calender-card {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  background-color: white;
+  padding: 20px;
+  margin: 5px; }

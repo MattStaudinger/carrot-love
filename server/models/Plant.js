@@ -11,7 +11,7 @@ const plantSchema = new mongoose.Schema({
     //required: [true, 'The watering interval is required'],
   },
   starting_day: {
-    type: Date,
+    type: Number,
   //  required: [true, 'The starting-day is required'],
   },
   description: {

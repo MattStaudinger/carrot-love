@@ -1,7 +1,7 @@
 import Button from "../../button/Button";
 import axios from "axios";
 import { Search } from "grommet-icons";
-import { Box, Image, Grommet, Text, TextInput } from "grommet";
+import { Box, Grommet, Text, TextInput } from "grommet";
 import React, { createRef, Component } from "react";
 import { grommet } from "grommet/themes";
 import { deepMerge } from "grommet/utils";
@@ -126,7 +126,7 @@ class AddPlantView1 extends Component {
   };
 
   render() {
-    const { suggestionOpen, plant } = this.state;
+    const { suggestionOpen } = this.state;
 
     return (
       <div className="AddPlantView1 Home">

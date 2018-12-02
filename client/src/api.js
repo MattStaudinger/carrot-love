@@ -1,5 +1,4 @@
 import axios from 'axios'
-import EditPlant from './components/pages/EditPlant';
 
 const service = axios.create({
   baseURL: process.env.NODE_ENV === 'production' ? '/api' : 'http://localhost:5000/api',
@@ -28,7 +27,6 @@ export default {
       .then(res => {
         // If we have localStorage.getItem('user') saved, the application will consider we are loggedin
         localStorage.setItem('user', JSON.stringify(res.data))
-        res.data
       })
       .catch(errHandler)
   },

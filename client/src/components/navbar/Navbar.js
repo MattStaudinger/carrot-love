@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import { Route, Link, NavLink, Switch } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import api from '../../api';
 
 class Navigation extends Component {
-  constructor(props) {
-    super(props)
-   
-  }
 
   handleLogoutClick(e) {
     api.logout()
