@@ -19,10 +19,15 @@ class Home extends Component {
     };
   }
 
-  handleSubmit(checkBoxValue, InputValue, isCheckbox) {
-    this.props.onClick(checkBoxValue, InputValue, isCheckbox)
+  handleSubmit(checkBoxValue, inputValue, isCheckbox) {
+    if (checkBoxValue === "" && inputValue==="") {
+      alert("ENTER SOMETHING")
+    } else this.props.onSubmit(checkBoxValue, inputValue, isCheckbox)
   }
 
+  handleGoBack() {
+    this.props.onBack("view2")
+  }
 
   handleChange(e) {
     let checkBox = [this.checkBox1, this.checkBox2, this.checkBox3, this.checkBox4]
@@ -115,6 +120,7 @@ class Home extends Component {
             <Button className="btn-submit" onClick={() => this.handleSubmit(this.state.watering_interval, this.state.watering_interval_input, this.state.isChecked)}>
               Next
             </Button>
+            <Button className="btn-submit" onClick={() => this.handleGoBack()}>Back</Button>
           </div>
         )}
 

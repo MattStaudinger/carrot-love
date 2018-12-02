@@ -11,7 +11,13 @@ class AddPlantView3 extends Component {
   }
 
   handleSubmit(startingDay) {
-    this.props.onClick(startingDay)
+    if (startingDay === "") {
+      alert("ENTER SOMETHING")
+    } else this.props.onSubmit(startingDay)
+  }
+
+  handleGoBack() {
+   this.props.onBack("view3")
   }
 
   handleChange(e) {
@@ -30,6 +36,8 @@ class AddPlantView3 extends Component {
             <Button className="btn-submit" onClick={() => this.handleSubmit(this.state.starting_day)}>
               Add
             </Button>
+            <Button className="btn-submit" onClick={() => this.handleGoBack()}>Back</Button>
+
       </div>
     );
   }
