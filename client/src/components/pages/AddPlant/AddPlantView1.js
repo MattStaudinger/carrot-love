@@ -134,10 +134,9 @@ class AddPlantView1 extends Component {
         <p>What plants do you want to water?</p>
 
         <Grommet theme={myCustomTheme} auto>
-          <Box fill align="center" pad={{ top: "medium" }} flex-shrink="true">
+          <Box fill align="center" pad='small' flex-shrink="true" background='#78bc61'>
             <Box
               ref={this.boxRef}
-              width="large"
               direction="row"
               align="center"
               pad={{ horizontal: "small", vertical: "xsmall" }}
@@ -155,8 +154,9 @@ class AddPlantView1 extends Component {
                     }
                   : undefined
               }
+              background='#f1f7ed'
             >
-              <Search color="brand" />
+              <Search color='#78bc61' />
               <TextInput
                 type="search"
                 dropTarget={this.boxRef.current}
