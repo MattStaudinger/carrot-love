@@ -25,42 +25,37 @@ class AddPlant extends Component {
     this.handleNameSubmit = this.handleNameSubmit.bind(this)
     this.handleWateringSubmit = this.handleWateringSubmit.bind(this)
     this.handleStartingDaySubmit = this.handleStartingDaySubmit.bind(this)
+    this.handleGoBack = this.handleGoBack.bind(this)
   }
 
-  handleNameSubmit(value) {
 
-  let url = `https://openfarm.cc/api/v1/crops?filter=${value}`
-  console.log("url", url);
-let plantUserLowerCase = value.toLowerCase();
-  axios.get(url)
-  .then(plants => {
-  console.log("plants", plants)
-
-    let plantName = plants.data.data.filter(plant => {
-      let plantApiLowerCase = plant.attributes.name.toLowerCase()
-      return(
-        plantApiLowerCase === plantUserLowerCase
-    )})
-  console.log("plantname", plantName.length)
-
-    if (plantName.length > 0) {
-      this.setState({
-        description: plantName[0].attributes.description,
-        picture_url : plantName[0].attributes.main_image_path})
-      console.log("Name", this.state)
+  handleGoBack(viewNo) {
+    switch(viewNo) {
+      case "view2":
+      this.setState({view1Clicked: false,
+        view2Clicked: false})
+      break;
+      case "view3":
+      this.setState({view2Clicked: true,
+        view3Clicked: false})
+      break;
     }
-        this.setState({
-          name: value,
-          view1Clicked: true,
+  }
+
+  handleNameSubmit(plantData) {
+
+      this.setState({
+        name: plantData.name,
+        description: plantData.description,
+        picture_url : plantData.pictureUrl,
+        view1Clicked: true,
           view2Clicked: true
-        });
-
-
-  })
+    })
+    console.log("Data", plantData)
 }
 
 
-handleWateringSubmit(checkBoxValue, InputValue, isCheckbox) {
+handleWateringSubmit(checkBoxValue, inputValue, isCheckbox) {
   if (isCheckbox) {
     this.setState({
       watering_interval: checkBoxValue,
@@ -69,7 +64,7 @@ handleWateringSubmit(checkBoxValue, InputValue, isCheckbox) {
     });
   } else {
     this.setState({
-      watering_interval: InputValue,
+      watering_interval: inputValue,
       view2Clicked: false,
       view3Clicked: true
     });
@@ -93,14 +88,15 @@ handleStartingDaySubmit(startingDay) {
   render() {
     return (
       <div className="AddPlantView">
+      
         {!this.state.view1Clicked && (
           <AddPlantView1 onClick={this.handleNameSubmit} />
         )}
         {this.state.view2Clicked && (
-          <AddPlantView2 onClick={this.handleWateringSubmit} />
+          <AddPlantView2 onBack={this.handleGoBack} onSubmit={this.handleWateringSubmit} />
         )}
         {this.state.view3Clicked && (
-          <AddPlantView3 onClick={this.handleStartingDaySubmit} />
+          <AddPlantView3 onBack={this.handleGoBack} onSubmit={this.handleStartingDaySubmit} />
         )}
       </div>
     );
