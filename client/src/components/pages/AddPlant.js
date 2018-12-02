@@ -98,8 +98,6 @@ handleStartingDaySubmit(startingDay) {
    startingDayAdjusted = startingDay.setSeconds(0);
    startingDayAdjusted = startingDay.setMilliseconds(0);
 
-   console.log(startingDayAdjusted)
-
    let plantData = {
      name: this.state.name,
      watering_interval: this.state.watering_interval,

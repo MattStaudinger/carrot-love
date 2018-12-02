@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import api from '../../api';
 import { Route, Link, Switch } from 'react-router-dom';
-import PlantDetail from './PlantDetail'
+import PlantDetail from './PlantDetail';
+import { Box, Grid, Heading, Paragraph, Image } from 'grommet';
 
 
 class Collection extends Component {
@@ -14,16 +15,22 @@ class Collection extends Component {
   render() {
     return (
       <div className="Collection">
-        <h2>Your collection of plants:</h2>
-        {this.state.plants.map(p =>
-        <div key={p._id}>
-          <Link to={`/plant/${p._id}`}><img src={p.picture_url} /></Link>
+      <Box align='center' margin='xsmall' pad='xsmall'>
+      <Heading level={2}>Your collection of plants:</Heading>
+      </Box>
+      <Box direction='row-responsive' wrap='true' flex='shrink'>
+      {this.state.plants.map(p =>
+        <Box key={p._id} basis='medium' margin='xsmall' height='medium' border={{side: "top", color: '#78bc61', size: 'medium'}}>
+            <Image fit='contain' src={p.picture_url} margin='xsmall'>
+              {/* <Link to={`/plant/${p._id}`}>1</Link> */}
+              </Image>
           <Link to={`/plant/${p._id}`}><h3>{p.name}</h3></Link>
-          <p>next water appointment: WIP</p>
-        </div>)}
+          <Paragraph alignSelf='center'>{`next water appointment: WIP`}</Paragraph>
+        </Box>)}
         <Switch>
           <Route path="/plant/:id" component={PlantDetail} />
         </Switch>
+      </Box>
       </div>
     );
   }
