@@ -3,7 +3,18 @@ import AddPlantView1 from "./AddPlant/AddPlantView1";
 import AddPlantView2 from "./AddPlant/AddPlantView2";
 import AddPlantView3 from "./AddPlant/AddPlantView3";
 import api from "../../api";
-import axios from 'axios'
+import axios from 'axios';
+
+
+const theme = {
+  global: {
+    font: {
+      family: 'Roboto',
+      size: '14px',
+      height: '20px',
+    },
+  },
+};
 
 
 class AddPlant extends Component {
