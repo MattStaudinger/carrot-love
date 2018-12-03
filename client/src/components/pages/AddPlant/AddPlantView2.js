@@ -9,8 +9,7 @@ class Home extends Component {
       this.checkBox1 = React.createRef();
       this.checkBox2 = React.createRef();
       this.checkBox3 = React.createRef();
-      this.checkBox4 = React.createRef();
-      this.checkBox = [this.checkBox1, this.checkBox2, this.checkBox3, this.checkBox4]
+      this.checkBox = [this.checkBox1, this.checkBox2, this.checkBox3]
   
     this.state = {
       watering_interval: "",
@@ -30,16 +29,17 @@ class Home extends Component {
   }
 
   handleChange(e) {
-    let checkBox = [this.checkBox1, this.checkBox2, this.checkBox3, this.checkBox4]
-      for (let i = 0; i < 4; i++) {
+    let checkBox = [this.checkBox1, this.checkBox2, this.checkBox3]
+      for (let i = 0; i < 3; i++) {
         checkBox[i] = this.checkBox[i].current;
       }
+      let inputUser = Math.round(e.target.value)
         this.setState({
           watering_interval_input: e.target.value,
           checkedBoxes: false,
           isChecked:false,
         })
-        for (let i = 0; i < 4; i++) {
+        for (let i = 0; i < 3; i++) {
           checkBox[i].checked = false
         } 
   }
@@ -50,12 +50,12 @@ class Home extends Component {
   }
    
     else if(this.state.isChecked){
-    let checkBox = [this.checkBox1, this.checkBox2, this.checkBox3, this.checkBox4]
-      for (let i = 0; i < 4; i++) {
+    let checkBox = [this.checkBox1, this.checkBox2, this.checkBox3]
+      for (let i = 0; i < 3; i++) {
         checkBox[i] = this.checkBox[i].current;
       }
 
-      for (let i=0; i < 4; i++) {
+      for (let i=0; i < 3; i++) {
         if (i === checkBoxNo) {
         continue}
         checkBox[i].checked = false
@@ -101,17 +101,10 @@ class Home extends Component {
                 value="7"
               />
               weekly
-              <input ref={this.checkBox4}
-                onChange={e => this.handleCheckbox(e,3)}
-                type="checkbox"
-                name="watering_interval"
-                value="30"
-              />
-              monthly
             </div>
             <Input 
               type="number"
-              onChange={e => this.handleChange(e, 2)}
+              onChange={e => this.handleChange(e)}
               value={this.state.watering_interval_input}
             />
             <p>

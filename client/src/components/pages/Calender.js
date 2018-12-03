@@ -3,6 +3,10 @@ import api from "../../api";
 import { Route, Link, Switch } from "react-router-dom";
 import PlantDetail from "./PlantDetail";
 import Waypoint from "react-waypoint";
+import { grommet } from "grommet/themes";
+import { Add, Close, FormClose, StatusGood, Trash, Mail} from "grommet-icons";
+import { Box, Button, FormField, Grommet, Heading, Layer, Select, Text, TextArea, TextInput, InfiniteScroll}
+from "grommet";
 
 class Calender extends Component {
   constructor(props) {
@@ -19,140 +23,151 @@ class Calender extends Component {
     this.today.setMinutes(0);
     this.today.setSeconds(0);
     this.today.setMilliseconds(0);
-    this._loadMoreItems = this._loadMoreItems.bind(this);
-    this._handleWaypointLeave = this._handleWaypointLeave.bind(this);
+    this.amountOfDaysInList=200;
   }
 
-  _loadMoreItems() {
-    console.log("load more items..");
+  onOpen = () => this.setState({ open: true });
 
-    let plantSorted = []
-          this.allPlants.forEach(plant => {
+  onClose = () => this.setState({ open: undefined });
 
-            let newRepetion = plant.repetions + 3
-          console.log(newRepetion);
+  onOpen2 = () => this.setState({ open2: true });
 
-            for (let i = plant.repetions; i < newRepetion; i++) {
-              let date = plant.wateringTimeNumber + plant.interval * i
-              let plantTimeSortedString =  new Date(date).toLocaleString()
-              plantSorted.push({
-                name: plant.name,
-                wateringTimeNumber: date,
-                wateringTimeString: plantTimeSortedString,
-                repetions: newRepetion,
-                interval: plant.interval
-              })
-            }
-          })
-          plantSorted.sort((a,b) => (
-            a.wateringTimeNumber - b.wateringTimeNumber
-          ))
-          console.log(plantSorted);
-            this.allPlants = [...this.state.plants, ...plantSorted]
+  onClose2 = () => this.setState({ open2: undefined });
 
-    // let plantDates = this.allPlants.map(plant => {
-    //   let startingDay = plant.starting_day;
-    //   let interval = plant.watering_interval * this.dayInMs;
-    //   while (startingDay + this.amountOfIntervals * interval < this.today) {
-    //     this.amountOfIntervals++;
-    //   }
-    //   let date = startingDay + this.amountOfIntervals * interval;
-    //   let upcomingWateringDate = new Date(date).toLocaleString();
-    //   this.amountOfIntervals = 1; // reset
-    //   return { name: plant.name, wateringTimeString: upcomingWateringDate };
-    // });
-
-    // console.log("New", plantDates);
-    this.setState({ plants: this.allPlants });
-    // this.setState({ isLoading: false });
-  }
-
-  _handleWaypointLeave() {
-    console.log("LEAVE");
-  }
-
-  _renderWaypoint() {
-    if (!this.state.isLoading) {
-      return (
-        <div>
-          {console.log("Waypoint")}
-          <Waypoint
-            onEnter={this._loadMoreItems}
-            threshold={0.5}
-            onLeave={this._handleWaypointLeave}
-          />
-        </div>
-      );
-    }
+  isToday(watering) {
+    let wateringTime = new Date(watering)
+    if (this.today.getFullYear() === wateringTime.getFullYear() && 
+        this.today.getMonth() === wateringTime.getMonth() &&
+          this.today.getDate() === wateringTime.getDate()) return true
+          else return false;
+    // console.log("wateringTime", wateringTime.getFullYear(), "today: ", this.today.getFullYear(), this.today.getMonth(),this.today.getDate())
+    // if (this.today === wateringTime
   }
 
   render() {
+    const { open, open2 } = this.state;
+
     return (
-      <div className="calender">
-        <h2>Upcoming watering:</h2>
-        {this.state.plants.map((plant, i) => (
-          <div className="calender-card" key={i}>
-            <span>{plant.wateringTimeString}</span>
-            <span>{plant.name}</span>
-          </div>
-        ))}
-        {this._renderWaypoint()}
-      </div>
+
+      <Grommet theme={grommet} full>
+    <Box>
+    <h2>Upcoming watering:</h2>
+    <Button
+            icon={<Mail />}
+            label={
+              <Text>
+                <strong>Get notification</strong>
+              </Text>
+            }
+            onClick={this.onOpen}
+            gap="medium"
+            fill="false"
+            align="center"
+          />
+        </Box>
+        {open && (
+          <Layer
+            position="center"
+            modal
+            onClickOutside={this.onClose}
+            onEsc={this.onClose}
+          >
+            <Box pad="medium" gap="small" width="medium" align="center">
+              <Heading level={3} margin="none">
+                Choose your notifcation
+              </Heading>
+              <Box
+                as="footer"
+                gap="small"
+                direction="row"
+                align="center"
+                justify="end"
+                pad={{ top: "medium", bottom: "small" }}
+              >
+                <Button label="Google Calender" onClick={this.onOpen2} color="dark-6" />
+                <Button
+                  label={
+                    <Text color="white">
+                      <strong>Mail</strong>
+                    </Text>
+                  }
+                  onClick={this.onClose}
+                  primary
+                  color="status-critical"
+                />
+              </Box>
+            </Box>
+          </Layer>
+        )}
+
+
+<Box>
+      <InfiniteScroll items={this.state.plants} step={10} onMore={()=> this.handleMore()} >
+        {(plant, index) => (
+           <Box
+            key={index}
+            pad="medium"
+            border={{ side: "bottom" }}
+            align="center"
+            background={this.isToday(plant.wateringTimeNumber) ? "green" : "white"}
+          >
+        
+           <Link  to={`/plant/${plant._id}`}><Text color='black'>{plant.name}</Text></Link>
+            <Text color='black'>{plant.wateringTimeString}</Text>
+          </Box>
+        )}
+      </InfiniteScroll>
+    </Box>
+  </Grommet>
     );
   }
+
   componentDidMount() {
     console.log("DIDMOUNT");
     api
       .getPlants()
       .then(plants => {
-        
-        let plantDates = plants
-          .map(plant => {
-            let startingDay = plant.starting_day;
-            let interval = plant.watering_interval * this.dayInMs;
+        let plantDates = plants.map(plant => {
+          let startingDay = plant.starting_day;
+          let interval = plant.watering_interval * this.dayInMs;
 
-            //A loop to asses how many intervals are needed to "jump" to the present day
-            while (
-              startingDay + this.amountOfIntervals * interval < 
-              this.today
-            ) {
-              this.amountOfIntervals++;
-            }
+          //A loop to asses how many intervals are needed to "jump" to the present day
+          while (startingDay + this.amountOfIntervals * interval < this.today) {
+            this.amountOfIntervals++;
+          }
 
-              let date = startingDay + ((this.amountOfIntervals) * interval);
-             let upcomingWateringDate = new Date(date).toLocaleString();
-            let repetions = Math.floor(4 * this.dayInMs / interval )
+          let date = startingDay + this.amountOfIntervals * interval;
+          let upcomingWateringDate = new Date(date).toLocaleString();
+          let repetions = Math.floor((this.amountOfDaysInList * this.dayInMs) / interval);
+          this.amountOfIntervals = 1; // reset
+          return {
+            _id: plant._id,
+            name: plant.name,
+            wateringTimeNumber: date,
+            wateringTimeString: upcomingWateringDate,
+            repetions: repetions,
+            interval: plant.watering_interval * this.dayInMs
+          };
+        });
+        this.allPlants = plantDates;
+        let plantSorted = [];
 
-            this.amountOfIntervals = 1; // reset
-            return {
+        plantDates.forEach(plant => {
+          for (let i = 0; i < plant.repetions; i++) {
+            let date = plant.wateringTimeNumber + plant.interval * i;
+            let plantTimeSortedString = new Date(date).toLocaleDateString();
+            plantSorted.push({
+              _id: plant._id,
               name: plant.name,
               wateringTimeNumber: date,
-               wateringTimeString: upcomingWateringDate,
-               repetions: repetions,
-               interval: plant.watering_interval * this.dayInMs
-            };
-          })
-          this.allPlants = plantDates;
+              wateringTimeString: plantTimeSortedString,
+              repetions: plant.repetions,
+              interval: plant.interval
+            });
+          }
+        });
 
-          let plantSorted = []
-          plantDates.forEach(plant => {
-            for (let i = 0; i < plant.repetions; i++) {
-              let date = plant.wateringTimeNumber + plant.interval*i
-              let plantTimeSortedString =  new Date(date).toLocaleString()
-              plantSorted.push({
-                name: plant.name,
-                wateringTimeNumber: date,
-                wateringTimeString: plantTimeSortedString,
-                repetions: plant.repetions,
-                interval: plant.interval
-              })
-            }
-          })
-          plantSorted.sort((a,b) => (
-            a.wateringTimeNumber - b.wateringTimeNumber
-          ))
-
-
+        plantSorted.sort((a, b) => a.wateringTimeNumber - b.wateringTimeNumber);
         console.log("Sorted? ", plantSorted);
         this.setState({ plants: plantSorted });
       })
