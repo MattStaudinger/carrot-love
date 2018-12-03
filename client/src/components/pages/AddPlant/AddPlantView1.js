@@ -9,7 +9,7 @@ import { deepMerge } from "grommet/utils";
 const myCustomTheme = deepMerge(grommet, {
   global: {
     drop: {
-      background: "#444444",
+      background: "white",
       shadowSize: "medium",
       extend: `
         border-bottom-left-radius: 12px;
