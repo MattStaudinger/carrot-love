@@ -35,7 +35,7 @@ class App extends Component {
           {api.isLoggedIn() && <Route path="/collection" component={Collection} />}
           {api.isLoggedIn() && <Route path="/calender" component={Calender} /> }
           <Route path="/signup" component={Signup} />
-          <Route path="/login/callback" component={LoginCallback} />
+          <Route path="/login/callback" exact component={LoginCallback} />
           <Route path="/login" exact component={Login} />
           {api.isLoggedIn() && <Route exact path="/plant/:name" component={PlantDetail} />}
           {api.isLoggedIn() &&  <Route path="/plant/:name/edit" component={EditPlant} />}
