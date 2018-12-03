@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import api from '../../api';
 import { Route, Link, Switch } from 'react-router-dom';
 import PlantDetail from './PlantDetail';
-import { Box, Grid, Heading, Paragraph, Image } from 'grommet';
+import { Box, Grid, Heading, Paragraph, Image, Button, Collapsible, Add } from 'grommet';
 
 
 class Collection extends Component {
@@ -18,6 +18,9 @@ class Collection extends Component {
       <Box align='center' margin='xsmall' pad='xsmall'>
       <Heading level={2}>Your collection of plants:</Heading>
       </Box>
+        <Box align="start" gap="small">
+          <Button color='#78bc61' label="+" href="http://localhost:3000/"/>
+        </Box> 
       <Box direction='row-responsive' wrap='true' flex='shrink'>
       {this.state.plants.map(p =>
         <Box key={p._id} basis='medium' margin='xsmall' height='medium' border={{side: "top", color: '#78bc61', size: 'medium'}}>
