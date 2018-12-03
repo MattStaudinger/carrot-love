@@ -46,7 +46,6 @@ app.use(session({
 }))
 require('./passport')(app)
 
-
 app.use('/api', require('./routes/index'))
 app.use('/api', require('./routes/auth'))
 const { isLoggedIn } = require('./middlewares')
