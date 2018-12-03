@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import api from '../../api';
+import { Box, Grid, Heading, Paragraph, Image, Button, Collapsible } from 'grommet';
+import {Google} from 'grommet-icons';
 
 class Login extends Component {
   constructor(props) {
@@ -27,14 +29,11 @@ class Login extends Component {
       .catch(err => this.setState({ message: err.toString() }))
   }
 
-  handleClickGoogle(e) {
-    api.loginGoogle()
-  }
-
   render() {
     return (
       <div className="Login">
         <h2>Login</h2>
+        <Box>
         <form>
           Email: <input type="text" value={this.state.email} onChange={(e) => this.handleInputChange("email", e)} /> <br />
           Password: <input type="password" value={this.state.password} onChange={(e) => this.handleInputChange("password", e)} /> <br />
@@ -43,7 +42,22 @@ class Login extends Component {
         {this.state.message && <div className="info info-danger">
           {this.state.message}
         </div>}
-        <button onClick={this.handleClickGoogle}>GMAIL-LOGIN</button>
+        </Box>
+        <Box border={{
+          "side": "all",
+          "color": "#78bc61",
+          "size": "small",
+          
+          }}
+          round='medium'
+          width='small'
+          >
+          <a href={api.service.defaults.baseURL+"/auth/google"}>
+            <Google color='#78bc61'/>
+            <br />
+            Login with Google
+          </a>
+        </Box>
       </div>
     );
   }

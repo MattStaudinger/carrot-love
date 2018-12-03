@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import api from '../../api';
 import { Route, Link, Switch } from 'react-router-dom';
 import PlantDetail from './PlantDetail';
-import { Box, Grid, Heading, Paragraph, Image, Button, Collapsible, Add } from 'grommet';
+import { Box, Grid, Heading, Paragraph, Image, Button, Collapsible } from 'grommet';
+import {AddCircle} from 'grommet-icons';
 
 
 class Collection extends Component {
@@ -19,7 +20,7 @@ class Collection extends Component {
       <Heading level={2}>Your collection of plants:</Heading>
       </Box>
         <Box align="start" gap="small">
-          <Button color='#78bc61' label="+" href="http://localhost:3000/"/>
+          <Link to='/'><AddCircle color='#78bc61' /></Link>
         </Box> 
       <Box direction='row-responsive' wrap='true' flex='shrink'>
       {this.state.plants.map(p =>

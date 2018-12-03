@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import api from '../../api';
+import { Box, Grid, Heading, Paragraph, Image, Button, Collapsible } from 'grommet';
+import {Google} from 'grommet-icons';
 
 class Signup extends Component {
   constructor(props) {
@@ -25,6 +27,7 @@ class Signup extends Component {
       email: this.state.email,
       password: this.state.password,
     }
+
     api.signup(data)
       .then(result => {
         console.log('SUCCESS!')
@@ -46,6 +49,21 @@ class Signup extends Component {
         {this.state.message && <div className="info info-danger">
           {this.state.message}
         </div>}
+        <Box border={{
+          "side": "all",
+          "color": "#78bc61",
+          "size": "small",
+          
+          }}
+          round='medium'
+          width='small'
+          >
+          <a href={api.service.defaults.baseURL+"/auth/google"}>
+            <Google color='#78bc61'/>
+            <br />
+            Signup with Google
+          </a>
+        </Box>
       </div>
     );
   }
