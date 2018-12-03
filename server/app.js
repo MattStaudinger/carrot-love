@@ -12,21 +12,21 @@ const session = require("express-session")
 const MongoStore = require('connect-mongo')(session)
 require('./configs/database')
 
+
 const app_name = require('./package.json').name
 const debug = require('debug')(`${app_name}:${path.basename(__filename).split('.')[0]}`)
 
 const app = express()
 
-app.use(nocache())
-
-// Set "Access-Control-Allow-Origin" header
 app.use(cors({
   origin: (origin, cb) => {
-    cb(null, origin && origin.startsWith('http://localhost:'))
+    // cb(null, true)
+    cb(null, origin && origin.startsWith('http://localhost'))
   },
   optionsSuccessStatus: 200,
   credentials: true
 }))
+
 app.use(logger('dev'))
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -48,8 +48,9 @@ require('./passport')(app)
 
 
 app.use('/api', require('./routes/index'))
-app.use('/api', require('./routes/auth'))
 const { isLoggedIn } = require('./middlewares')
+app.use('/api', require('./routes/auth'))
+app.use('/', require('./routes/google'))
 
 
 
