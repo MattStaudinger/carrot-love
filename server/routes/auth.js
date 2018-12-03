@@ -121,24 +121,17 @@ router.post('/login-with-passport-local-strategy', (req, res, next) => {
 router.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('/');
+    res.redirect('http://localhost:3000/login/callback');
   });
 
 router.get('/auth/google',
-passport.authenticate('google', {  scope: ["email"]
-}));
+passport.authenticate('google', {scope: ['https://www.googleapis.com/auth/plus.me','https://www.googleapis.com/auth/calendar']}));
 //https://www.googleapis.com/auth/plus.login
 // router.get("/auth/google/callback", passport.authenticate("google", {
 //   failureRedirect: "/",
 //   successRedirect: "/private-page"
 // }));
 
-
-  router.get("/test", (req, res) => {
-  res.json({ message: 'You are in!' })
-  }
-
-  )
 
 router.get("/logout", (req, res) => {
   req.logout()

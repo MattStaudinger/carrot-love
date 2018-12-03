@@ -7,6 +7,22 @@ import { grommet } from "grommet/themes";
 import { Add, Close, FormClose, StatusGood, Trash, Mail} from "grommet-icons";
 import { Box, Button, FormField, Grommet, Heading, Layer, Drop, Select, Text, TextArea, TextInput, InfiniteScroll}
 from "grommet";
+import AddToCalendar from 'react-add-to-calendar';
+
+
+
+
+let event = {
+  title: 'Sample Event',
+  description: 'This is the sample event provided as an example only',
+  location: 'Portland, OR',
+  startTime: '2016-09-16T20:15:00-04:00',
+  endTime: '2016-09-16T21:45:00-04:00'
+}
+
+let cals = [ { google: 'Google' }]
+
+
 
 class Calender extends Component {
   constructor(props) {
@@ -71,7 +87,12 @@ class Calender extends Component {
 
   onOpen = () => this.setState({ open: true });
 
-  onClose = () => this.setState({ open: undefined });
+
+
+  // The Google Calendar export should propably go in here:
+  onClose = () => this.setState({ open: undefined })
+  
+  
 
   onOpen2 = () => this.setState({ open2: true });
 
@@ -94,8 +115,13 @@ class Calender extends Component {
     return (
 
       <Grommet theme={grommet} full>
+<<<<<<< HEAD
     <Box
                 >
+=======
+    <AddToCalendar event={event} listItems={cals} />      
+    <Box>
+>>>>>>> c7928816e82efa44e811b55477952ac70c1a815c
     <h2>Upcoming watering:</h2>
     <Button
             icon={<Mail />}
@@ -131,7 +157,12 @@ class Calender extends Component {
                 justify="end"
                 pad={{ top: "medium", bottom: "small" }}
               >
+<<<<<<< HEAD
                 <Button label="Google Calender" onClick={() => (console.log("Click"))} color="dark-6" />
+=======
+                <AddToCalendar event={event} />
+                <Button label="Google Calender" onClick={this.onOpen2} color="dark-6" />
+>>>>>>> c7928816e82efa44e811b55477952ac70c1a815c
                 <Button
                   label={
                     <Text color="white">
