@@ -8,8 +8,9 @@ import Login from './pages/Login';
 import Calender from './pages/Calender';
 import Signup from './pages/Signup';
 import Navbar from './navbar/Navbar';
+import LoginCallback from './LoginCallback'
 import api from '../api';
-
+window.api = api
 
 class App extends Component {
   constructor(props) {
@@ -31,12 +32,12 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={AddPlant} />
           {api.isLoggedIn() && <Route path="/collection" component={Collection} />}
-        {api.isLoggedIn() && <Route path="/calender" component={Calender} /> }
+          {api.isLoggedIn() && <Route path="/calender" component={Calender} /> }
           <Route path="/signup" component={Signup} />
-          <Route path="/login" component={Login} />
+          <Route path="/login/callback" exact component={LoginCallback} />
+          <Route path="/login" exact component={Login} />
           {api.isLoggedIn() && <Route exact path="/plant/:name" component={PlantDetail} />}
           {api.isLoggedIn() &&  <Route path="/plant/:name/edit" component={EditPlant} />}
-          {/* <Route path="/plant/:name/add" component={EditPlant} /> */}
           <Route render={() => <h2>404</h2>} />
         </Switch>
       </div>

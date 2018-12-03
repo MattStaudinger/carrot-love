@@ -5,6 +5,7 @@ const service = axios.create({
   withCredentials: true
 })
 
+
 const errHandler = err => {
   console.error(err)
   if (err.response && err.response.data) {
@@ -48,6 +49,10 @@ export default {
   loginGoogle() {
     return service
     .get('/auth/google')
+  },
+
+  loginGoogleNow() {
+    localStorage.setItem('user', true)
   },
 
   logout() {
