@@ -115,13 +115,8 @@ class Calender extends Component {
     return (
 
       <Grommet theme={grommet} full>
-<<<<<<< HEAD
-    <Box
-                >
-=======
     <AddToCalendar event={event} listItems={cals} />      
     <Box>
->>>>>>> c7928816e82efa44e811b55477952ac70c1a815c
     <h2>Upcoming watering:</h2>
     <Button
             icon={<Mail />}
@@ -157,12 +152,8 @@ class Calender extends Component {
                 justify="end"
                 pad={{ top: "medium", bottom: "small" }}
               >
-<<<<<<< HEAD
-                <Button label="Google Calender" onClick={() => (console.log("Click"))} color="dark-6" />
-=======
                 <AddToCalendar event={event} />
                 <Button label="Google Calender" onClick={this.onOpen2} color="dark-6" />
->>>>>>> c7928816e82efa44e811b55477952ac70c1a815c
                 <Button
                   label={
                     <Text color="white">

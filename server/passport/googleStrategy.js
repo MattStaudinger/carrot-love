@@ -17,8 +17,8 @@ passport.use(new GoogleStrategy({
 
     const newUser = new User({
       googleID: profile.id,
-      username: profile.emails[0].value,
-      email: profile.emails[0].value,
+       username: "DefaultName",//profile.emails[0].value,
+       email: "default@default.com" //profile.emails[0].value,
     });
 
     newUser.save()
