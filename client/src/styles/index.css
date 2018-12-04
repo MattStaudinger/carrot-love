@@ -91,3 +91,6 @@ body {
   background-color: white;
   padding: 20px;
   margin: 5px; }
+
+.hidden {
+  display: none; }

@@ -72,12 +72,16 @@ class Home extends Component {
   }
 }
 
-
+handleImgError = () => {
+  console.log("ERROR IMG", this.props.img)
+  this.props.onError();
+}
 
 
   render() {
     return (
       <div className="AddPlantView2">
+      <img className="hidden" onError={this.handleImgError} src={this.props.img} />
             <h2>How often you want to water your love?</h2>
             <div className="radio-buttons">
               <input ref={this.checkBox1}

@@ -67,9 +67,9 @@ class Collection extends Component {
            date;
         
           let date = wateringTimeNumber + interval * -1;
-          let upcomingWatering = new Date(date).toLocaleDateString()
+          let lastWatering = new Date(date).toLocaleDateString()
           date = wateringTimeNumber
-          let lastWatering = new Date(date).toLocaleDateString();
+          let upcomingWatering = new Date(date).toLocaleDateString();
 
             // let daysAgo = this.today - date
           
