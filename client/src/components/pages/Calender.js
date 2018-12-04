@@ -12,6 +12,7 @@ import AddToCalendar from 'react-add-to-calendar';
 
 
 
+
 let event = {
   title: 'Sample Event',
   description: 'This is the sample event provided as an example only',
@@ -91,7 +92,6 @@ class Calender extends Component {
 
   // The Google Calendar export should propably go in here:
   onClose = () => this.setState({ open: undefined })
-  
   
 
   onOpen2 = () => this.setState({ open2: true });

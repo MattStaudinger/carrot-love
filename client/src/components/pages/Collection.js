@@ -24,17 +24,15 @@ class Collection extends Component {
     return (
       <div className="Collection">
       <Box align='center' margin='xsmall' pad='xsmall'>
-      <Heading level={2}>Your collection of plants:</Heading>
       </Box>
         <Box align="start" gap="small">
           <Link to='/'><AddCircle color='#78bc61' /></Link>
         </Box> 
       <Box direction='row-responsive' wrap='true' flex='shrink'>
       {this.state.plants.map(p =>
-        <Box key={p._id} basis='medium' margin='xsmall' height='medium' border={{side: "top", color: '#78bc61', size: 'medium'}}>
-            <Image fit='contain' src={p.picture_url} margin='xsmall'>
+        <Box key={p._id} /* basis='1/4' */   margin='small' border={{side: "top", color: '#78bc61', size: 'medium'}}>
+            <Image fit='cover' src={p.picture_url} margin='xsmall' style={{ width:200, height:150 }}/>
               {/* <Link to={`/plant/${p._id}`}>1</Link> */}
-              </Image>
           <Link to={`/plant/${p._id}`}><h3>{p.name}</h3></Link>
           <Paragraph alignSelf='center'>{`upcoming appointment: ${p.upcomingWatering}`}</Paragraph>
           <Paragraph alignSelf='center'>{`Did you water him  ${p.lastWatering}`}</Paragraph>
