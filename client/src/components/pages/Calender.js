@@ -1,11 +1,11 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import api from "../../api";
 import { Route, Link, Switch } from "react-router-dom";
 import PlantDetail from "./PlantDetail";
 import Waypoint from "react-waypoint";
 import { grommet } from "grommet/themes";
 import { Add, Close, FormClose, StatusGood, Trash, Mail} from "grommet-icons";
-import { Box, Button, FormField, Grommet, Heading, Layer, Select, Text, TextArea, TextInput, InfiniteScroll}
+import { Box, Button, FormField, Grommet, Heading, Layer, Drop, Select, Text, TextArea, TextInput, InfiniteScroll}
 from "grommet";
 import AddToCalendar from 'react-add-to-calendar';
 
@@ -30,7 +30,9 @@ class Calender extends Component {
     super(props);
     this.state = {
       plants: [],
-      isLoading: false
+      isLoading: false,
+      openDrop: false,
+      openInnerDrop: false
     };
     this.allPlants = [];
     this.today = new Date();
@@ -41,7 +43,48 @@ class Calender extends Component {
     this.today.setSeconds(0);
     this.today.setMilliseconds(0);
     this.amountOfDaysInList=200;
+    this.boxRef = createRef();
+    this.plantsForMail = []
   }
+
+  onOpenNotification = () => {
+    let plantDates = this.plantsForMail.map(plant => {
+    let startingDay = plant.starting_day;
+      let interval = plant.watering_interval * this.dayInMs;
+
+      //A loop to asses how many intervals are needed to "jump" to the present day
+      while (startingDay + this.amountOfIntervals * interval < this.today) {
+        this.amountOfIntervals++;
+      }
+
+      let date = startingDay + this.amountOfIntervals * interval;
+      let upcomingWateringDate = new Date(date).toLocaleString();
+      let repetions = Math.floor((this.amountOfDaysInList * this.dayInMs) / interval);
+      this.amountOfIntervals = 1; // reset
+      return {
+        _id: plant._id,
+        name: plant.name,
+        wateringTimeNumber: date,
+        wateringTimeString: upcomingWateringDate,
+        repetions: repetions,
+        interval: plant.watering_interval * this.dayInMs
+      };
+    });
+
+
+
+  let email = JSON.parse(localStorage.getItem("user")).email
+  api.mailNotification(email)
+  this.setState({ open: undefined, openNotification: true })
+
+  }
+  
+
+  onCloseNotification = () => this.setState({ openNotification: undefined });
+
+  onCloseDrop = () => this.setState({ openDrop: false, openInnerDrop: false });
+
+  onOpenDrop = () => this.setState({ openDrop: true, openInnerDrop: false });
 
   onOpen = () => this.setState({ open: true });
 
@@ -66,7 +109,8 @@ class Calender extends Component {
   }
 
   render() {
-    const { open, open2 } = this.state;
+    const { openNotification,open, openDrop, openInnerDrop } = this.state;
+
 
     return (
 
@@ -94,11 +138,13 @@ class Calender extends Component {
             onClickOutside={this.onClose}
             onEsc={this.onClose}
           >
-            <Box pad="medium" gap="small" width="medium" align="center">
+            <Box 
+            pad="medium" gap="small" width="medium" align="center" >
               <Heading level={3} margin="none">
-                Choose your notifcation
+                Choose your notification
               </Heading>
               <Box
+                ref={this.boxRef}
                 as="footer"
                 gap="small"
                 direction="row"
@@ -114,14 +160,63 @@ class Calender extends Component {
                       <strong>Mail</strong>
                     </Text>
                   }
-                  onClick={this.onClose}
+                  onClick={this.onOpenNotification}
                   primary
                   color="status-critical"
                 />
+
+                
+
+                {/* {openDrop && (
+            <Drop
+              target={this.boxRef.current}
+              onClickOutside={this.onCloseDrop}
+              onEsc={this.onCloseDrop}
+            >
+              {!openInnerDrop && (
+                <Box 
+                pad="large"
+                background="rgba(120, 188, 97, 1)"
+                >
+                 <Text color="white" align="center">Your Mail was sent</Text>
+                </Box>
+              )}
+            </Drop>
+          )} */}
               </Box>
             </Box>
           </Layer>
         )}
+        {openNotification && (
+                  <Layer
+                    position="bottom"
+                    full="horizontal"
+                    modal={false}
+                    responsive={false}
+                    onEsc={this.onCloseNotification}
+                  >
+                    <Box
+                      align="start"
+                      pad={{ vertical: "medium", horizontal: "small" }}
+                    >
+                      <Box
+                        align="center"
+                        direction="row"
+                        gap="small"
+                        round="medium"
+                        elevation="medium"
+                        pad={{ vertical: "xsmall", horizontal: "small" }}
+                        background="status-ok"
+                      >
+                        <Box align="center" direction="row" gap="xsmall">
+                          <StatusGood />
+                          <Text>The notification is setup</Text>
+                        </Box>
+                        <Button icon={<FormClose />} onClick={this.onCloseNotification} plain />
+                      </Box>
+                    </Box>
+                  </Layer>
+                )}
 
 
 <Box>
@@ -150,6 +245,7 @@ class Calender extends Component {
     api
       .getPlants()
       .then(plants => {
+        this.plantsForMail = plants
         let plantDates = plants.map(plant => {
           let startingDay = plant.starting_day;
           let interval = plant.watering_interval * this.dayInMs;

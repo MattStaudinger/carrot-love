@@ -5,6 +5,14 @@ const User = require("../models/User")
 // Bcrypt to encrypt passwords
 const bcrypt = require("bcryptjs")
 const bcryptSalt = 10;
+const nodemailer = require('nodemailer');
+var cron = require('cron');
+const webpush = require("web-push")
+
+// new CronJob('* * * * * *', function() {
+//   console.log('You will see this message every second');
+// }, null, true, 'America/Los_Angeles');
+
 
 
 router.post("/signup", (req, res, next) => {
@@ -129,6 +137,40 @@ router.get("/logout", (req, res) => {
   req.logout()
   res.json({ message: 'You are out!' })
 })
+
+router.post('/mail-notification', (req, res, next) => {
+  let { email, dates } = req.body;
+  console.log(email)
+  let message="Hi"
+  let subject="Greeting"
+  let transporter = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+      user: process.env.GMAIL_MAIL,
+      pass: process.env.GMAIL_PW
+    }
+  });
+      
+
+     let x = new cron.CronJob("* * * * *", function() { 
+       console.log("Sent")
+  //   transporter.sendMail({
+  //   from: '"Carrot Love <carrotlove@gmail.com>',
+  //   to: email, 
+  //   subject: subject, 
+  //   text: message,
+  //   html: `<b>${message}</b>`
+  // })
+  // .catch(error => console.log(error))
+}, null, false, 'Europe/London')
+let time = new Date()
+//starting of Job at the time the user has entered
+new cron.CronJob(time, function() {
+  console.log("Test")
+x.start()}, null, true, 'Europe/London')
+
+})
+
 
 
 module.exports = router

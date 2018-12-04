@@ -109,5 +109,12 @@ export default {
     .then(plant => plant.data)
   },
 
+  mailNotification(email, dates) {
+    return service
+    .post(`/mail-notification/`, {email, dates})
+    .then (res => res)
+    .catch(errHandler)
+  },
+
 }
 
