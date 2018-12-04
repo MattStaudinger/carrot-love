@@ -12,7 +12,6 @@ import AddToCalendar from 'react-add-to-calendar';
 
 
 
-
 let event = {
   title: 'Sample Event',
   description: 'This is the sample event provided as an example only',
@@ -93,6 +92,7 @@ class Calender extends Component {
   // The Google Calendar export should propably go in here:
   onClose = () => this.setState({ open: undefined })
   
+  
 
   onOpen2 = () => this.setState({ open2: true });
 
@@ -104,8 +104,6 @@ class Calender extends Component {
         this.today.getMonth() === wateringTime.getMonth() &&
           this.today.getDate() === wateringTime.getDate()) return true
           else return false;
-    // console.log("wateringTime", wateringTime.getFullYear(), "today: ", this.today.getFullYear(), this.today.getMonth(),this.today.getDate())
-    // if (this.today === wateringTime
   }
 
   render() {
@@ -164,25 +162,6 @@ class Calender extends Component {
                   primary
                   color="status-critical"
                 />
-
-                
-
-                {/* {openDrop && (
-            <Drop
-              target={this.boxRef.current}
-              onClickOutside={this.onCloseDrop}
-              onEsc={this.onCloseDrop}
-            >
-              {!openInnerDrop && (
-                <Box 
-                pad="large"
-                background="rgba(120, 188, 97, 1)"
-                >
-                 <Text color="white" align="center">Your Mail was sent</Text>
-                </Box>
-              )}
-            </Drop>
-          )} */}
               </Box>
             </Box>
           </Layer>

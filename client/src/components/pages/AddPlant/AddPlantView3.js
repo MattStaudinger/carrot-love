@@ -11,8 +11,6 @@ class AddPlantView3 extends Component {
   }
 
   handleSubmit(startingDay) {
-
-    console.log(startingDay)
     if (startingDay === "") {
       alert("ENTER SOMETHING")
     } else this.props.onSubmit(startingDay)
