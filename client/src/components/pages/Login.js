@@ -1,15 +1,15 @@
 import React, { Component } from 'react';
 import api from '../../api';
-import {Google} from 'grommet-icons';
+import { Link } from 'react-router-dom';
+
 import {
   Grommet,
-  Box,
-  CheckBox,
   FormField,
-  Select,
-  TextArea,
   TextInput,
-  Button
+  Button,
+  Heading,
+  Box,
+  Image,
 } from "grommet";
 import { grommet } from "grommet/themes";
 
@@ -43,57 +43,52 @@ class Login extends Component {
   render() {
     return (
       <div className="form">
+      <h2>Login</h2>
+        <Box
+        margin="large">
         <FormField align="center" htmlFor="text-input" {...this.props}>
           <TextInput
-          flex
+           flex
             justify="center"
-            id="text-input"
             placeholder="email"
             value={this.state.email}
             onChange={(e) => this.handleInputChange("email", e)}
-            gap="medium"
+            gap="large"
+            size="large"
+            type="email"
+
           />
           </FormField>
+          <br />
 <         FormField align="center" htmlFor="text-input" {...this.props}>
           <TextInput
           flex
             justify="center"
-            id="text-input"
             placeholder="password"
             value={this.state.password}
             onChange={(e) => this.handleInputChange("password", e)}
+            size="large"
+            type="password"
           />
           </FormField>
-          <Button label="Login" onClick={() => {}} />
-
-          </div>
-
-
-        /* <Box>
-        <form>
-          Email: <input type="text" value={this.state.email} onChange={(e) => this.handleInputChange("email", e)} /> <br />
-          Password: <input type="password" value={this.state.password} onChange={(e) => this.handleInputChange("password", e)} /> <br />
-          <button onClick={(e) => this.handleClick(e)}>Login</button>
-        </form>
-        {this.state.message && <div className="info info-danger">
-          {this.state.message}
-        </div>}
-        </Box>
-        <Box border={{
-          "side": "all",
-          "color": "#78bc61",
-          "size": "small",
-          
-          }}
-          round='medium'
-          width='small'
-          >
-          <a href={api.service.defaults.baseURL+"/auth/google"}>
-            <Google color='#78bc61'/>
-            <br />
-            Login with Google
+          <Box
+          margin="medium">
+          <Button >
+          <a href={api.service.defaults.baseURL+"/auth/google"}> 
+          <img  style={{width:"240px"}} src="../../../btn_google_signin_light_normal_web@2x.png" />
           </a>
-        </Box> */
+          </Button>
+          </Box>
+          <p>Not signed up yet? <Link to="/signup">Signup</Link></p>
+          </Box>
+          <Box
+          margin={{"vertical": "medium"}}>
+          <Button color="rgba(120, 188, 97, 1)"  label="Login"  onClick={(e) => this.handleClick(e)} />
+        {this.state.message && <div className="info info-danger">
+        {this.state.message}
+        </div>}
+          </Box>
+          </div>
     );
   }
 }

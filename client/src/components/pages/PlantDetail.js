@@ -30,8 +30,8 @@ class PlantDetail extends Component {
        <img src={this.state.plantdetails.picture_url} alt={this.state.plantdetails.name}/>
        <p>next water appointment: WIP</p>
        <p>Watering interval: {this.state.plantdetails.watering_interval}</p>
-       <p>Description: {this.state.plantdetails.description}</p>
-       <p>Notes: {this.state.plantdetails.note}</p>
+      {this.state.plantdetails.description && <p>Description: {this.state.plantdetails.description}</p>}
+      {this.state.plantdetails.note && <p>Notes: {this.state.plantdetails.note}</p>}
        <Link to={`/plant/${this.state.plantdetails._id}/edit`}><button>Edit</button></Link>
        <button onClick={this.handleClick}>{this.state.plantdetails.name} Died</button>
       </div>

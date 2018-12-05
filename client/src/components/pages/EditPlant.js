@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { TextArea, TextInput} from 'grommet';
 import api from '../../api';
+import { Box, Calendar, Button, Grommet, Heading, Text } from "grommet";
 
 
 class EditPlant extends Component {
@@ -36,7 +37,6 @@ handleChangePicture (e, inputName) {
   this.setState({
     file: e.target.files[0],
   });
-  console.log(this.state)
 }
 
 fuckingloading(){
@@ -45,16 +45,28 @@ fuckingloading(){
 
   handleSubmit(event) {
     event.preventDefault();
-     
+    let startingDateInMs
+    let startingDay = this.state.starting_date    
+    if (startingDay === undefined) {
+      alert("ENTER SOMETHING")
+      return
+    } else {
+      startingDateInMs = new Date(startingDay).getTime()
+    }
+
+
+    console.log("STATE", startingDateInMs)
+
     let plantData = {
         _id: this.state._id,
         name: this.state.name,
         watering_interval: this.state.watering_interval,
-        starting_date: this.state.starting_date,
+        starting_date: startingDateInMs,
         _owner: this.state._owner,
         description: this.state.description,
         note: this.state.note,
         picture_url: this.state.picture_url,
+        lastWateringDate : this.state.lastWateringDate
       }
 
    api.editPlant(plantData, this.props.match.params.name)
@@ -75,9 +87,15 @@ fuckingloading(){
   
 }
 
+onSelect = nextDate => {
+  const { starting_date } = this.state;
+  this.setState({ starting_date: nextDate !== starting_date ? nextDate : undefined });
+};
+
   render() {
     return (
       <div>
+        {console.log(this.state.starting_date)}
       <form onSubmit={this.handleSubmit}>
       <img src={this.state.picture_url} style={{height: "200px"}}/>
       <br/>
@@ -102,15 +120,13 @@ fuckingloading(){
             onChange={(e)=> this.handleChange(e, "watering_interval")} />
         </label>
         <br />
-        <label>
-          Starting:
-          <input
-            name="starting_date"
-            type="date"
-            placeholder={this.state.watering_interval}
-            value={this.state.starting_date}
-            onChange={(e)=> this.handleChange(e, "plant.starting_date")} />
-        </label>
+        <Calendar
+          date={this.state.starting_date}
+          onSelect={this.onSelect}
+          size="medium"
+          alignSelf="center"
+          bounds={["2018-01-08", "2019-12-13"]}
+        />
         <br />
         <label>
           Note:
@@ -139,15 +155,18 @@ fuckingloading(){
     api.getPlantDetail(this.props.match.params.name)
       .then(plant => {
         console.log(plant)
+        let startingDayConverted = new Date(plant.starting_day).toISOString()
+        console.log("DIDMOUNT", startingDayConverted, plant)
         this.setState({
           _id: plant._id,
           name: plant.name,
           watering_interval: plant.watering_interval,
-          starting_date: plant.starting_date,
+          starting_date: startingDayConverted,
           _owner: plant._owner,
           description: plant.description,
           note: plant.note,
           picture_url: plant.picture_url,
+          lastWateringDate: plant.lastWateringDate
         })
       })
       .catch(err => console.log(err))

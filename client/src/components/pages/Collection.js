@@ -47,7 +47,6 @@ console.log("STATE HANDLE", this.state.newPlantText)
           isWatered: "Yes"}
       } 
     }
-
     let lastWateringDatesSaved = [...plant[0].lastWateringDate]
     console.log("CLONE", lastWateringDatesSaved)
   
