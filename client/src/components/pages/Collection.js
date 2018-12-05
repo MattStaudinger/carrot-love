@@ -13,7 +13,6 @@ import {
 } from "grommet";
 import { AddCircle } from "grommet-icons";
 import Axios from "axios";
-import Moment from 'react-moment';
 
 
 class Collection extends Component {
@@ -206,10 +205,8 @@ console.log("STATE HANDLE", this.state.newPlantText)
   
     
     return (
-      <div className="collection">
-        <Box align="center" margin="xsmall" pad="xsmall">
-          <Heading level={2}>Your collection of plants:</Heading>
-        </Box>
+      <div className="Collection">
+      <Box margin='xsmall' pad='xsmall' />
         <Box align="start" gap="small">
           <Link to="/">
             <AddCircle color="#78bc61" />

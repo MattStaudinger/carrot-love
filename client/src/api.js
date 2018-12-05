@@ -104,6 +104,20 @@ export default {
     .catch(errHandler)
   },
 
+  addPicture(file, id) {
+    const formData = new FormData();
+    formData.append("picture", file)
+    console.log('DEBUG formData', formData.get("picture"));
+    return service
+      .post(`/plant/picture/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(res => res.data)
+      .catch(errHandler);
+  },
+
   getFarmboxPlants(searchWord){
     console.log("API")
     axios.get(`https://openfarm.cc/api/v1/crops?filter=${searchWord}`)
