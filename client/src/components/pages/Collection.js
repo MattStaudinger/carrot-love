@@ -13,7 +13,6 @@ import {
 } from "grommet";
 import { AddCircle } from "grommet-icons";
 import Axios from "axios";
-import Moment from 'react-moment';
 
 
 class Collection extends Component {
