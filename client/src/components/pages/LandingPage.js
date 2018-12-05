@@ -11,9 +11,12 @@ handleSubmit = (component) => {
   render() {
     return (
       <div className="landing-page">
+      <div className="block-white">
         <h1>Carrot Love</h1>
-        <p>What plants do you want to water?</p>
-
+        <p>Take care of yours plants!</p>
+  </div>
+  <br />
+  <br />
         <Link  to="/login">Login</Link>
         <br/>
         <Link to="/signup">

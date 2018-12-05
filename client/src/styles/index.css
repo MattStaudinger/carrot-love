@@ -115,3 +115,7 @@ body {
     color: #78bc61;
     background: white;
     padding: 10px; }
+  .landing-page .block-white {
+    height: 10vh;
+    background-color: #f1f7ed;
+    width: 100vw; }
