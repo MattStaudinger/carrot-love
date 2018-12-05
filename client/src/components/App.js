@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import AddPlant from './pages/AddPlant';
+import LandingPage from './pages/LandingPage';
 import Collection from './pages/Collection';
 import Main from './pages/Main';
 import PlantDetail from './pages/PlantDetail';
@@ -31,7 +32,8 @@ class App extends Component {
       <div className="App">
           <Navbar />
         <Switch>
-          <Route path="/" exact component={AddPlant} />
+        <Route path="/" exact component={LandingPage} />}
+        {api.isLoggedIn() && <Route path="/add" exact component={AddPlant} />}
           {api.isLoggedIn() && <Route path="/collection" component={Collection} />}
           {api.isLoggedIn() && <Route path="/home" component={Main} />}
           {api.isLoggedIn() && <Route path="/calender" component={Calender} /> }

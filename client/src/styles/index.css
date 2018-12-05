@@ -102,3 +102,16 @@ body {
   .form a {
     text-decoration: underline;
     color: #78bc61; }
+
+.landing-page {
+  background-color: #78bc61;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 95vh; }
+  .landing-page a {
+    text-decoration: none;
+    color: #78bc61;
+    background: white;
+    padding: 10px; }

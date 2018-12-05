@@ -168,3 +168,21 @@ overflow: scroll;
   }
   
 }
+
+.landing-page{
+  background-color: $green;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height:95vh;
+
+  a{
+    text-decoration: none;
+    color: $green;
+    background: white;
+    padding:10px;
+    
+  }
+
+}

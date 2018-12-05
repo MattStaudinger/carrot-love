@@ -207,7 +207,7 @@ console.log("STATE HANDLE", this.state.newPlantText)
       <div className="Collection">
       <Box margin='xsmall' pad='xsmall' />
         <Box align="start" gap="small">
-          <Link to="/">
+          <Link to="/add">
             <AddCircle color="#78bc61" />
           </Link>
         </Box>
