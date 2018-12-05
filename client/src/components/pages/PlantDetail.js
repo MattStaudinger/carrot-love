@@ -10,8 +10,8 @@ import {
   Button,
   Collapsible
 } from "grommet";
-import {Edit, Trash } from "grommet-icons";
-
+import {Edit, Trash, CaretPrevious } from "grommet-icons";
+import EditPlant from './EditPlant';
 
 
 
@@ -19,9 +19,11 @@ class PlantDetail extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      plantdetails: []
+      plantdetails: [],
+      showLayer: false,
     }
     this.handleClick = this.handleClick.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
     handleClick(e) {
     e.preventDefault();
@@ -32,10 +34,16 @@ class PlantDetail extends Component {
     })
     .catch(err => console.log(err)) 
     }
+
+    handleClose(){
+      this.setState({showLayer:false,
+      newEdit : true})
+    }
   
   render() {
     return (
       <Box>
+        <Button onClick={() => {this.props.onClick()}} icon={<CaretPrevious color="green" />}></Button>
       <Box responsive='true' direction="row-responsive" justify='between' background='#78bc61'>
        <Box margin={{"top":"100px"}} height="medium" flex='true'>
          <Image fit='contain' src={this.state.plantdetails.picture_url} alt={this.state.plantdetails.name}/>
@@ -65,7 +73,8 @@ class PlantDetail extends Component {
     );
   }
   componentDidMount() {
-    api.getPlantDetail(this.props.match.params.name)
+    console.log("PROPS", this.props)
+    api.getPlantDetail(this.props.id)
       .then(plant => {
         console.log(plant)
         this.setState({
@@ -74,6 +83,20 @@ class PlantDetail extends Component {
       })
       .catch(err => console.log(err))
   }
+  componentDidUpdate() {
+
+    if(this.props.id !== this.state.plantdetails._id) {
+    console.log("PROPS", this.props)
+    api.getPlantDetail(this.props.id)
+      .then(plant => {
+        console.log(plant)
+        this.setState({
+          plantdetails: plant,
+          newEdit : false
+        })
+      })
+      .catch(err => console.log(err))
+  }}
 }
 
 export default PlantDetail;
