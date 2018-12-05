@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import AddPlant from './pages/AddPlant';
 import Collection from './pages/Collection';
+import Main from './pages/Main';
 import PlantDetail from './pages/PlantDetail';
 import EditPlant from './pages/EditPlant';
 import Login from './pages/Login';
@@ -32,6 +33,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact component={AddPlant} />
           {api.isLoggedIn() && <Route path="/collection" component={Collection} />}
+          {api.isLoggedIn() && <Route path="/home" component={Main} />}
           {api.isLoggedIn() && <Route path="/calender" component={Calender} /> }
           <Route path="/signup" component={Signup} />
           <Route path="/login/callback" exact component={LoginCallback} />

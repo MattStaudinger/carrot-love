@@ -75,14 +75,10 @@ body {
   color: #32c3ff; }
 
 .calender {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 98vw;
-  height: 98vh;
-  background-color: #78bc61;
-  overflow: scroll;
-  display: block; }
+  overflow: scroll; }
+
+.collection {
+  overflow: scroll; }
 
 .calender-card {
   display: flex;

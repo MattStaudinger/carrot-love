@@ -11,7 +11,6 @@ router.use((req, res, next) => {
 
 
 
-
 // Route to get all plants of the user
 router.get('/collection', (req, res, next) => {
   Plant.find({_owner: req.user._id})
@@ -43,7 +42,7 @@ router.delete('/:id', (req, res, next) => {
 // Route to add a Plant
 router.post('/', (req, res, next) => {
   let user = req.user._id
-  let { name, watering_interval, starting_day, description, note, picture_url } = req.body
+  let { name, watering_interval, starting_day, description, note, picture_url, lastWateringDate } = req.body
   console.log("Type Server: ", typeof(starting_day));
 
   Plant.create({ 
@@ -53,6 +52,7 @@ router.post('/', (req, res, next) => {
     description: description, 
     note: note, 
     picture_url: picture_url, 
+    lastWateringDate: lastWateringDate,
     _owner: user  })
     .then(plant => {
 
@@ -79,17 +79,16 @@ router.get('/:id', (req, res, next) => {
    
 
     let user = req.user._id
-    let { name, watering_interval, starting_day, description, note, picture_url} = req.body
-
-    console.log('server:', picture_url)
-
+    let { name, watering_interval, starting_day, description, note, picture_url, lastWateringDate } = req.body
+    console.log("Server",req.params.id )
     Plant.findByIdAndUpdate(req.params.id, { 
       name: name, 
       watering_interval: watering_interval, 
       starting_day: starting_day, 
       description: description, 
       note: note, 
-      picture_url: picture_url, 
+      picture_url: picture_url,
+      lastWateringDate: lastWateringDate,
       _owner: user  })
       .then(plant => {
         res.json({

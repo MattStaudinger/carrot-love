@@ -97,7 +97,7 @@ export default {
   },
 
   editPlant(plantData, id) {
-    console.log('api:', plantData)
+    console.log("Api",id )
     return service
     .put(`/plant/${id}`, plantData)
     .then (res => res.data)
@@ -130,6 +130,8 @@ export default {
     .then (res => res)
     .catch(errHandler)
   },
+
+
 
 }
 
