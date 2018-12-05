@@ -21,7 +21,9 @@ class Collection extends Component {
     this.state = {
       plants: [],
       pastWateringClick: false,
-      newPlantText: []
+      newPlantText: [],
+      openNotification: false,
+      plantId : ""
     };
     this.today = new Date();
     this.amountOfIntervals = 1;
@@ -47,7 +49,7 @@ console.log("STATE HANDLE", this.state.newPlantText)
           isWatered: "Yes"}
       } 
     }
-    let lastWateringDatesSaved = [...plant[0].lastWateringDate]
+    let lastWateringDatesSaved = [...plant.lastWateringDate]
     console.log("CLONE", lastWateringDatesSaved)
   
         for (let x=lastWateringDatesSaved.length-1; x>=0; x--){
@@ -77,18 +79,18 @@ console.log("STATE HANDLE", this.state.newPlantText)
 
         
     // let plantData = {
-    //   name: plant[0].name,
-    //   description: plant[0].description,
-    //   _owner: plant[0]._owner,
-    //   note: plant[0].note,
-    //   picture_url: plant[0].picture_url,
+    //   name: plant.name,
+    //   description: plant.description,
+    //   _owner: plant._owner,
+    //   note: plant.note,
+    //   picture_url: plant.picture_url,
     //   lastWateringDate: lastWateringDatesSaved,
-    //   watering_interval: plant[0].watering_interval,
-    //   starting_day: plant[0].startingDay
+    //   watering_interval: plant.watering_interval,
+    //   starting_day: plant.startingDay
     // };
     // console.log("PLantData", plantData);
 
-    // api.editPlant(plantData, plant[0]._id).then(res => console.log(res));
+    // api.editPlant(plantData, plant._id).then(res => console.log(res));
 
     let plantTimeArr = this.state.newPlantText[index];
     plantTimeArr.pop();
@@ -110,42 +112,44 @@ console.log("STATE HANDLE", this.state.newPlantText)
 
   handleNo(id, index) {
     console.log("No", id);
-    let plant = this.state.plants.filter(plant => plant._id === id);
+    let plant = this.state.plants.find(plant => plant._id === id);
 
     console.log("PLANT", plant)
-console.log("STATE HANDLE", this.state.newPlantText)
+    console.log("STATE HANDLE", this.state.newPlantText)
     let lastWateringDatesUpdate = [...this.state.newPlantText]
-    for (let i = 0; i<lastWateringDatesUpdate.length; i++ ) {
+    for (let i = 0; i < lastWateringDatesUpdate.length; i++) {
       if (i === index) {
         console.log("Length", lastWateringDatesUpdate[i])
-        lastWateringDatesUpdate[i][lastWateringDatesUpdate[i].length-1] = {
-          date: lastWateringDatesUpdate[i][lastWateringDatesUpdate[i].length-1].date, 
-          isWatered: "No"}
-      } 
+        lastWateringDatesUpdate[i][lastWateringDatesUpdate[i].length - 1] = {
+          date: lastWateringDatesUpdate[i][lastWateringDatesUpdate[i].length - 1].date,
+          isWatered: "No"
+        }
+      }
     }
 
-    let lastWateringDatesSaved = [...plant[0].lastWateringDate]
+    let lastWateringDatesSaved = [...plant.lastWateringDate]
     console.log("CLONE", lastWateringDatesSaved)
-  
-        for (let x=lastWateringDatesSaved.length-1; x>=0; x--){
-          if (lastWateringDatesSaved[x].isWatered === "") {
-            console.log("x",x,lastWateringDatesSaved[x].isWatered )
-          lastWateringDatesSaved[x] = {
-            date: lastWateringDatesSaved[x].date, 
-            isWatered: "No"}
-            }
-            break;
 
-          }
+    for (let x = lastWateringDatesSaved.length - 1; x >= 0; x--) {
+      if (lastWateringDatesSaved[x].isWatered === "") {
+        console.log("x", x, lastWateringDatesSaved[x].isWatered)
+        lastWateringDatesSaved[x] = {
+          date: lastWateringDatesSaved[x].date,
+          isWatered: "No"
+        }
+      }
+      break;
 
-        
+    }
 
-      
-      console.log("new", lastWateringDatesSaved)
 
-      
-      
-   
+
+
+    console.log("new", lastWateringDatesSaved)
+
+
+
+
 
 
     // // let wateringDateArray = [];
@@ -154,20 +158,20 @@ console.log("STATE HANDLE", this.state.newPlantText)
     // //       wateringDateArray.push(plant.lastWateringDates[last]);
     // //     });
 
-        
+
     // let plantData = {
-    //   name: plant[0].name,
-    //   description: plant[0].description,
-    //   _owner: plant[0]._owner,
-    //   note: plant[0].note,
-    //   picture_url: plant[0].picture_url,
+    //   name: plant.name,
+    //   description: plant.description,
+    //   _owner: plant._owner,
+    //   note: plant.note,
+    //   picture_url: plant.picture_url,
     //   lastWateringDate: lastWateringDatesSaved,
-    //   watering_interval: plant[0].watering_interval,
-    //   starting_day: plant[0].startingDay
+    //   watering_interval: plant.watering_interval,
+    //   starting_day: plant.startingDay
     // };
     // console.log("PLantData", plantData);
 
-    // api.editPlant(plantData, plant[0]._id).then(res => console.log(res));
+    // api.editPlant(plantData, plant._id).then(res => console.log(res));
 
     let plantTimeArr = this.state.newPlantText[index];
     plantTimeArr.pop();
@@ -179,7 +183,7 @@ console.log("STATE HANDLE", this.state.newPlantText)
     //   (i === index && plant ? plantTimeArr[plantTimeArr.length - 1] : item
     // );
 
-   
+
     this.setState({
       newPlantText: newPlantTextUpdated
     });
@@ -189,6 +193,13 @@ console.log("STATE HANDLE", this.state.newPlantText)
     console.log(date);
     return <div>{date}</div>;
   };
+
+  handleDetail(id){
+    this.setState({
+      openNotification:true,
+      plantId: id
+    })
+  }
 
   render() {
     console.log("State", this.state.newPlantText)
@@ -204,6 +215,9 @@ console.log("STATE HANDLE", this.state.newPlantText)
     return (
       <div className="collection">
       <Box margin='xsmall' pad='xsmall' />
+
+
+
         <Box align="start" gap="small">
           <Link to="/add">
             <AddCircle color="#78bc61" />
@@ -221,9 +235,9 @@ console.log("STATE HANDLE", this.state.newPlantText)
               <Image fit="contain" src={p.picture_url} margin="xsmall">
                 {/* <Link to={`/plant/${p._id}`}>1</Link> */}
               </Image>
-              <Link to={`/plant/${p._id}`}>
+              <Button onClick={() => {this.props.onClick(p._id)}}>
                 <h3>{p.name}</h3>
-              </Link>
+              </Button>
               <Paragraph alignSelf="center">{`upcoming appointment: ${
                 p.upcomingWatering
               }`}</Paragraph>
@@ -245,6 +259,8 @@ console.log("STATE HANDLE", this.state.newPlantText)
               {/* </Paragraph> */}
             </Box>
           ))}
+
+                
           <Switch>
             <Route path="/plant/:id" component={PlantDetail} />
           </Switch>

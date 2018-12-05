@@ -142,7 +142,7 @@ today.getMilliseconds(0);
      lastWateringDate: lastWateringDate
     };    
         api.addPlant(plantData)
-        .then(res => this.props.history.push("/collection"))
+        .then(res => this.props.history.push("/home"))
       }
 
       addDefaultSrc() {

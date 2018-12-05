@@ -76,11 +76,11 @@ fuckingloading(){
         api.addPicture(this.state.file, this.state._id)
         .then(res => {
           console.log('res is outside if!', res)
-          this.props.history.push('/collection')
+          this.props.history.push('/home')
         })
       }
       else {
-        this.props.history.push('/collection')
+        this.props.history.push('/home')
       }     
     })
     .catch(err => console.log(err))
@@ -94,7 +94,7 @@ onSelect = nextDate => {
 
   render() {
     return (
-      <div>
+      <div className="edit-plant">
         {console.log(this.state.starting_date)}
       <form onSubmit={this.handleSubmit}>
       <img src={this.state.picture_url} style={{height: "200px"}}/>

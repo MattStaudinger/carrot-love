@@ -23,6 +23,8 @@ body {
   padding: 0;
   font-family: 'Josefin Sans', sans-serif;
   color: $black;
+  // background-color: $green;
+
 }
 
 .info {
@@ -150,6 +152,11 @@ height: 98vh;
   background-color: white;
   padding: 20px;
   margin: 5px;
+}
+
+edit-plant{
+  overflow: scroll;
+  height: 98vh;
 }
 
 .hidden {

@@ -90,6 +90,10 @@ body {
   padding: 20px;
   margin: 5px; }
 
+edit-plant {
+  overflow: scroll;
+  height: 98vh; }
+
 .hidden {
   display: none; }
 
