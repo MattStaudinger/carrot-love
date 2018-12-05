@@ -1,6 +1,8 @@
 const express = require('express');
 const Plant = require('../models/Plant')
 const router = express.Router();
+const uploadCloud = require('../configs/cloudinary')
+
 
 router.use((req, res, next) => {
   console.log('DEBUG routes/plant');
@@ -74,6 +76,8 @@ router.get('/:id', (req, res, next) => {
 
 // Route to edit a specific plant of the user
   router.put('/:id', (req, res, next) => {
+   
+
     let user = req.user._id
     let { name, watering_interval, starting_day, description, note, picture_url, lastWateringDate } = req.body
     console.log("Server",req.params.id )
@@ -94,5 +98,22 @@ router.get('/:id', (req, res, next) => {
       })
       .catch(err => next(err))
   });
+
+// Route to upload a new picture
+router.post('/picture/:id', uploadCloud.single('picture'), (req, res, next) => {
+  let id = req.params.id
+  console.log('server-post:', req.file.url)
+
+  Plant.findByIdAndUpdate(id, { picture_url: req.file.url })
+    .then(() => {
+      res.json({
+        success: true,
+        picture_url: req.file.url
+      })
+    })
+    .catch (error => {
+    return  next(err)
+    }) 
+});
 
 module.exports = router;
