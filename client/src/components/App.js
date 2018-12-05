@@ -11,6 +11,7 @@ import Signup from './pages/Signup';
 import Navbar from './navbar/Navbar';
 import LoginCallback from './LoginCallback'
 import api from '../api';
+
 window.api = api
 
 class App extends Component {

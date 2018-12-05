@@ -15,16 +15,70 @@ body {
 .info.info-danger {
   background-color: #e73f3f; }
 
+.fixedbutton {
+  position: fixed;
+  bottom: 10px;
+  right: 10px; }
+
+/* nav {
+  background-color: $green;
+  padding: 20px 0;
+  color: white;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  z-index: 1001;
+} */
+.BelowNav {
+  overflow: scroll; }
+
+/* 
+
+
+@media only screen and (min-width: 375px) {
+  .BelowNav {
+    height: 70px !important;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 320px) {
+  .BelowNav {
+    margin-top: 19% !important;
+  }
+}
+
+@media only screen and (min-width: 411px) {
+  .BelowNav {
+    margin-top: 16% !important;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  .BelowNav {
+    margin-top: 8.7% !important;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .BelowNav {
+    margin-top: 8% !important;
+  }
+} */
 .App {
   text-align: center; }
-  .App .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px; }
   .App .App-header {
     background-color: #78bc61;
     padding: 20px 0;
     color: white;
-    width: 100%; }
+    width: 100%;
+    position: fixed;
+    margin-bottom: 100px;
+    z-index: 1001; }
+    .App .App-header .HomeButton {
+      margin-right: 10%; }
+      .App .App-header .HomeButton :hover {
+        background-color: #ece9e9; }
     .App .App-header a {
       color: white;
       padding: 0 5px;

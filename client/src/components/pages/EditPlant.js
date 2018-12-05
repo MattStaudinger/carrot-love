@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { TextArea, TextInput} from 'grommet';
+import { TextArea, TextInput, Box} from 'grommet';
 import api from '../../api';
 
 
@@ -77,7 +77,7 @@ fuckingloading(){
 
   render() {
     return (
-      <div>
+      <div className='BelowNav'>
       <form onSubmit={this.handleSubmit}>
       <img src={this.state.picture_url} style={{height: "200px"}}/>
       <br/>

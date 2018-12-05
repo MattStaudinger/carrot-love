@@ -33,6 +33,10 @@ class Collection extends Component {
     this.newText = [];
   }
 
+  /* handlePlantDetail(id){
+    this.props.history.push('/plant/'+id);
+  } */
+
   handleYes(id, index) {
     let plant = this.state.plants.filter(plant => plant._id === id);
 
@@ -207,9 +211,9 @@ console.log("STATE HANDLE", this.state.newPlantText)
     return (
       <div className="Collection">
       <Box margin='xsmall' pad='xsmall' />
-        <Box align="start" gap="small">
+        <Box align="start" gap="small" className='fixedbutton'>
           <Link to="/">
-            <AddCircle color="#78bc61" />
+            <AddCircle color="#78bc61" size='large' />
           </Link>
         </Box>
         <Box direction="row-responsive" wrap="true" flex="shrink">
@@ -220,6 +224,7 @@ console.log("STATE HANDLE", this.state.newPlantText)
               margin="xsmall"
               height="medium"
               border={{ side: "top", color: "#78bc61", size: "medium" }}
+              /* onClick={() => this.handlePlantDetail(p._id)} */              
             >
               <Image fit="contain" src={p.picture_url} margin="xsmall">
                 {/* <Link to={`/plant/${p._id}`}>1</Link> */}
