@@ -79,7 +79,8 @@ body {
   overflow: scroll; }
 
 .collection {
-  overflow: scroll; }
+  overflow: scroll;
+  height: 98vh; }
 
 .calender-card {
   display: flex;
@@ -104,18 +105,29 @@ body {
     color: #78bc61; }
 
 .landing-page {
-  background-color: #78bc61;
+  background: #78bc61;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 95vh; }
+  height: 95vh;
+  color: #f1f7ed; }
+  .landing-page img {
+    object-fit: cover; }
   .landing-page a {
     text-decoration: none;
-    color: #78bc61;
+    color: #424b54;
     background: white;
-    padding: 10px; }
+    padding: 20px;
+    border: 2px solid #78bc61;
+    border-radius: 20%; }
+  .landing-page .flex-row {
+    display: flex;
+    justify-content: center;
+    flex-direction: row; }
+    .landing-page .flex-row a {
+      margin: 10px; }
   .landing-page .block-white {
-    height: 10vh;
-    background-color: #f1f7ed;
-    width: 100vw; }
+    border: 2px solid #f1f7ed;
+    padding: 40px;
+    border-radius: 70%; }

@@ -17,11 +17,12 @@ handleSubmit = (component) => {
   </div>
   <br />
   <br />
+  <div className="flex-row">
         <Link  to="/login">Login</Link>
-        <br/>
         <Link to="/signup">
-        <Button primary color="white" pad>Signup</Button>
+        Signup
         </Link>
+        </div>
       </div>
     );
   }

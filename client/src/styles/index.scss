@@ -140,6 +140,7 @@ overflow: scroll;
 
 .collection {
 overflow: scroll;
+height: 98vh;
 }
 
 .calender-card {
@@ -170,24 +171,44 @@ overflow: scroll;
 }
 
 .landing-page{
-  background-color: $green;
+  background: $green;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height:95vh;
+  color: $white;
 
+  img{
+    object-fit: cover;
+  }
   a{
     text-decoration: none;
-    color: $green;
+    color: $black;
     background: white;
-    padding:10px;
+    padding:20px;
+    border:2px solid $green;
+    border-radius: 20%;
+
+  }
+
+  .flex-row{
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+
+    a{
+      margin: 10px;
+    }
   }
 
   .block-white{
-    height:10vh;
-    background-color: $white;
-    width: 100vw;
+    // height:10vh;
+    // background-color: $white;
+    // width: 100vw;
+    border:2px solid $white;
+    padding: 40px;
+    border-radius: 70%;
   }
 
 }

@@ -11,13 +11,13 @@ class Navigation extends Component {
   render() {
     return (
          <header className="App-header">
-          <NavLink to="/" exact>Add</NavLink>
+          <NavLink to="/add" exact>Add</NavLink>
           {api.isLoggedIn() && <NavLink to="/collection">Collection</NavLink>}
           {api.isLoggedIn() && <NavLink to="/home">Home</NavLink>}
           {api.isLoggedIn() && <NavLink to="/calender">Calender</NavLink>}
           {!api.isLoggedIn() && <NavLink to="/signup">Signup</NavLink>}
           {!api.isLoggedIn() && <NavLink to="/login">Login</NavLink>}
-          {api.isLoggedIn() && <Link to="/add" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
+          {api.isLoggedIn() && <Link to="/" onClick={(e) => this.handleLogoutClick(e)}>Logout</Link>}
         </header>
     );
   }

@@ -39,7 +39,7 @@ class Signup extends Component {
     api.signup(data)
       .then(result => {
         console.log('SUCCESS!')
-        this.props.history.push("/") // Redirect to the home page
+        this.props.history.push("/home") // Redirect to the home page
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
@@ -58,8 +58,8 @@ class Signup extends Component {
             placeholder="username"
             value={this.state.username}
             onChange={(e) => this.handleInputChange("username", e)}
-            gap="large"
-            size="large"
+            gap="medium"
+            size="medium"
           />
           </FormField>
           <br />
@@ -71,7 +71,7 @@ class Signup extends Component {
             value={this.state.email}
             onChange={(e) => this.handleInputChange("email", e)}
             gap="large"
-            size="large"
+            size="medium"
             type="email"
 
           />
@@ -84,7 +84,7 @@ class Signup extends Component {
             placeholder="password"
             value={this.state.password}
             onChange={(e) => this.handleInputChange("password", e)}
-            size="large"
+            size="medium"
             type="password"
           />
           </FormField>
@@ -92,15 +92,15 @@ class Signup extends Component {
           margin="medium">
           <Button >
           <a href={api.service.defaults.baseURL+"/auth/google"}> 
-          <img  style={{width:"240px"}} src="../../../btn_google_signin_light_normal_web@2x.png" />
+          <img  style={{width:"200px"}} src="../../../btn_google_signin_light_normal_web@2x.png" />
           </a>
           </Button>
-          </Box>
-          <p>Already signed up?<Link to="/login">Login</Link></p>
-          </Box>
-          <Box
-          margin={{"vertical": "medium"}}>
+          </Box >
           <Button color="rgba(120, 188, 97, 1)"  label="Login"  onClick={(e) => this.handleClick(e)} />
+          </Box>
+          <Box>
+          <p>Already signed up? <Link to="/login">Login</Link></p>
+
         {this.state.message && <div className="info info-danger">
         {this.state.message}
         </div>}

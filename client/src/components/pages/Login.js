@@ -35,7 +35,7 @@ class Login extends Component {
     api.login(this.state.email, this.state.password)
       .then(result => {
         console.log('SUCCESS!')
-        this.props.history.push("/") // Redirect to the home page
+        this.props.history.push("/home") // Redirect to the home page
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
@@ -54,7 +54,7 @@ class Login extends Component {
             value={this.state.email}
             onChange={(e) => this.handleInputChange("email", e)}
             gap="large"
-            size="large"
+            size="medium"
             type="email"
 
           />
@@ -67,7 +67,7 @@ class Login extends Component {
             placeholder="password"
             value={this.state.password}
             onChange={(e) => this.handleInputChange("password", e)}
-            size="large"
+            size="medium"
             type="password"
           />
           </FormField>
@@ -75,15 +75,14 @@ class Login extends Component {
           margin="medium">
           <Button >
           <a href={api.service.defaults.baseURL+"/auth/google"}> 
-          <img  style={{width:"240px"}} src="../../../btn_google_signin_light_normal_web@2x.png" />
+          <img  style={{width:"200px"}} src="../../../btn_google_signin_light_normal_web@2x.png" />
           </a>
           </Button>
           </Box>
-          <p>Not signed up yet? <Link to="/signup">Signup</Link></p>
-          </Box>
-          <Box
-          margin={{"vertical": "medium"}}>
           <Button color="rgba(120, 188, 97, 1)"  label="Login"  onClick={(e) => this.handleClick(e)} />
+          </Box>
+          <Box>
+          <p>Not signed up yet? <Link to="/signup">Signup</Link></p>
         {this.state.message && <div className="info info-danger">
         {this.state.message}
         </div>}
