@@ -10,7 +10,7 @@ import {
   Button,
   Collapsible
 } from "grommet";
-import { AddCircle } from "grommet-icons";
+import {Edit, Trash } from "grommet-icons";
 
 
 
@@ -35,23 +35,32 @@ class PlantDetail extends Component {
   
   render() {
     return (
-      <Box responsive='true' flex>
-      <div className="BelowNav">
-       <Heading levvel='1' alignSelf='center'>{this.state.plantdetails.name}</Heading>
-       <Box margin="xsmall" height="small">
+      <Box>
+      <Box responsive='true' direction="row-responsive" justify='between' background='#78bc61'>
+       <Box margin={{"top":"100px"}} height="medium" flex='true'>
          <Image fit='contain' src={this.state.plantdetails.picture_url} alt={this.state.plantdetails.name}/>
+         <Heading level='3' alignSelf='center'>{this.state.plantdetails.name}</Heading>
+         <Box width='small' alignSelf='center'>
+          <Link to={"/plant/"+this.state.plantdetails._id+"/edit"}><Button fill color='#f1f7ed' icon={<Edit color='#f1f7ed' />} label='Edit'/>
+          </Link>
+          <Button fill margin={{'top':'xsmall'}} color='#f1f7ed' onClick={this.handleClick}label={this.state.plantdetails.name+' died'} icon={<Trash color='#f1f7ed' />} />
+         </Box>
        </Box>
-       <Box alignSelf='center'>
-         <Paragraph alignSelf='center'>next water appointment: WIP</Paragraph>
-         <Paragraph alignSelf='center'>Watering interval: {this.state.plantdetails.watering_interval}</Paragraph>
-         <Paragraph alignSelf='center'>Description: {this.state.plantdetails.description}</Paragraph>
-         <Paragraph alignSelf='center'>Notes: {this.state.plantdetails.note}</Paragraph>
+       <Box basis='large' flex='true' margin={{"top":"75px"}}>
+         <Paragraph /* alignSelf='center' */>
+          <Heading level='4' margin='xsmall'>next water appointment:</Heading>
+            WIP</Paragraph>
+         <Paragraph /* alignSelf='center' */>
+         <Heading level='4' margin='xsmall'>Watering interval:</Heading>
+          {this.state.plantdetails.watering_interval}</Paragraph>
+         {this.state.plantdetails.description &&<Paragraph /* alignSelf='center' */><Heading level='4' margin='xsmall'>Description:</Heading>
+          {this.state.plantdetails.description}</Paragraph>}
+         {this.state.plantdetails.note &&<Paragraph /* alignSelf='center' */><Heading level='4' margin='xsmall'>Notes:</Heading>
+         {this.state.plantdetails.note}</Paragraph>}
        </Box>
        <Box>
-         <Link to={`/plant/${this.state.plantdetails._id}/edit`}><button>Edit</button></Link>
-         <button onClick={this.handleClick}>{this.state.plantdetails.name} Died</button>
        </Box>
-      </div>
+      </Box>
       </Box>
     );
   }

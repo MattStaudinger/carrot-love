@@ -7,21 +7,6 @@ import { grommet } from "grommet/themes";
 import { Add, Close, FormClose, StatusGood, Trash, Mail} from "grommet-icons";
 import { Box, Button, FormField, Grommet, Heading, Layer, Drop, Select, Text, TextArea, TextInput, InfiniteScroll}
 from "grommet";
-import AddToCalendar from 'react-add-to-calendar';
-
-
-
-
-let event = {
-  title: 'Sample Event',
-  description: 'This is the sample event provided as an example only',
-  location: 'Portland, OR',
-  startTime: '2016-09-16T20:15:00-04:00',
-  endTime: '2016-09-16T21:45:00-04:00'
-}
-
-let cals = [ { google: 'Google' }]
-
 
 
 class Calender extends Component {
@@ -46,58 +31,7 @@ class Calender extends Component {
     this.plantsForMail = []
   }
 
-  onOpenNotification = () => {
-    let plantDates = this.plantsForMail.map(plant => {
-    let startingDay = plant.starting_day;
-      let interval = plant.watering_interval * this.dayInMs;
-
-      //A loop to asses how many intervals are needed to "jump" to the present day
-      while (startingDay + this.amountOfIntervals * interval < this.today) {
-        this.amountOfIntervals++;
-      }
-
-      let date = startingDay + this.amountOfIntervals * interval;
-      let upcomingWateringDate = new Date(date).toLocaleString();
-      let repetions = Math.floor((this.amountOfDaysInList * this.dayInMs) / interval);
-      this.amountOfIntervals = 1; // reset
-      return {
-        _id: plant._id,
-        name: plant.name,
-        wateringTimeNumber: date,
-        wateringTimeString: upcomingWateringDate,
-        repetions: repetions,
-        interval: plant.watering_interval * this.dayInMs
-      };
-    });
-
-
-
-  let email = JSON.parse(localStorage.getItem("user")).email
-  api.mailNotification(email)
-  this.setState({ open: undefined, openNotification: true })
-
-  }
   
-
-  onCloseNotification = () => this.setState({ openNotification: undefined });
-
-  onCloseDrop = () => this.setState({ openDrop: false, openInnerDrop: false });
-
-  onOpenDrop = () => this.setState({ openDrop: true, openInnerDrop: false });
-
-  onOpen = () => this.setState({ open: true });
-
-
-
-  // The Google Calendar export should propably go in here:
-  onClose = () => this.setState({ open: undefined })
-  
-  
-
-  onOpen2 = () => this.setState({ open2: true });
-
-  onClose2 = () => this.setState({ open2: undefined });
-
   isToday(watering) {
     let wateringTime = new Date(watering)
     if (this.today.getFullYear() === wateringTime.getFullYear() && 
@@ -107,99 +41,16 @@ class Calender extends Component {
   }
 
   render() {
-    const { openNotification,open, openDrop, openInnerDrop } = this.state;
-
-
     return (
       <div className="calender">
-      <Grommet theme={grommet}>
-    <AddToCalendar event={event} listItems={cals} />      
+      <Grommet theme={grommet}> 
     <Box>
-    <h2>Upcoming watering:</h2>
-    <Button
-            icon={<Mail />}
-            label={
-              <Text>
-                <strong>Get notification</strong>
-              </Text>
-            }
-            onClick={this.onOpen}
-            gap="medium"
-            fill="false"
-            align="center"
-          />
+    <h2>Upcoming watering</h2>
+    {console.log(this.state.plants)}
         </Box>
-        {open && (
-          <Layer
-            position="center"
-            modal
-            onClickOutside={this.onClose}
-            onEsc={this.onClose}
-          >
-            <Box 
-            pad="medium" gap="small" width="medium" align="center" >
-              <Heading level={3} margin="none">
-                Choose your notification
-              </Heading>
-              <Box
-                ref={this.boxRef}
-                as="footer"
-                gap="small"
-                direction="row"
-                align="center"
-                justify="end"
-                pad={{ top: "medium", bottom: "small" }}
-              >
-                <AddToCalendar event={event} />
-                <Button label="Google Calender" onClick={this.onOpen2} color="dark-6" />
-                <Button
-                  label={
-                    <Text color="white">
-                      <strong>Mail</strong>
-                    </Text>
-                  }
-                  onClick={this.onOpenNotification}
-                  primary
-                  color="status-critical"
-                />
-              </Box>
-            </Box>
-          </Layer>
-        )}
-        {openNotification && (
-                  <Layer
-                    position="bottom"
-                    full="horizontal"
-                    modal={false}
-                    responsive={false}
-                    onEsc={this.onCloseNotification}
-                  >
-                    <Box
-                      align="start"
-                      pad={{ vertical: "medium", horizontal: "small" }}
-                    >
-                      <Box
-                        align="center"
-                        direction="row"
-                        gap="small"
-                        round="medium"
-                        elevation="medium"
-                        pad={{ vertical: "xsmall", horizontal: "small" }}
-                        background="status-ok"
-                      >
-                        <Box align="center" direction="row" gap="xsmall">
-                          <StatusGood />
-                          <Text>The notification is setup</Text>
-                        </Box>
-                        <Button icon={<FormClose />} onClick={this.onCloseNotification} plain />
-                      </Box>
-                    </Box>
-                  </Layer>
-                )}
-
-
-<Box>
-      <InfiniteScroll items={this.state.plants} step={10} onMore={()=> this.handleMore()} >
+        
+        <Box>
+      <InfiniteScroll step={10} items={this.state.plants}>
         {(plant, index) => (
            <Box
             key={index}

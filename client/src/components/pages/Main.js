@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
-import { FormDown, FormNext, Notification } from "grommet-icons";
+import { FormDown, FormNext, Notification, CaretPrevious
+} from "grommet-icons";
 
 import { Box, Button, Collapsible, Heading, Grommet, Text } from "grommet";
 import { grommet } from "grommet/themes";
@@ -17,34 +18,23 @@ export default class HorizontalCollapsible extends Component {
     return (
       <Grommet full theme={grommet}>
         <Box fill>
-          <Box
-            as="header"
-            direction="row"
-            align="center"
-            pad={{ vertical: "small", horizontal: "medium" }}
-            justify="between"
-            background="neutral-4"
-            elevation="large"
-            style={{ zIndex: "1000" }}
-          >
-            <Heading level={3} margin="none" color="white">
-              <strong>My App</strong>
-            </Heading>
-            <Button
+         
+          <Box flex direction="row">
+            <Box flex >
+           
+       <Button
               onClick={() =>
                 this.setState({ openNotification: !openNotification })
               }
-              icon={<Notification color="white" />}
+              icon={<CaretPrevious
+                color="green" />}
             />
-          </Box>
-          <Box flex direction="row">
-            <Box flex align="center" justify="center">
       <Collection />
+
             </Box>
             <Collapsible direction="horizontal" open={openNotification}>
               <Box
-                
-                width="large"
+                width="500px"
                 background="light-2"
                 pad="small"
                 elevation="small"

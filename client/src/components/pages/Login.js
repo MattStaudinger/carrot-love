@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import api from '../../api';
-import { Box, Grid, Heading, Paragraph, Image, Button, Collapsible } from 'grommet';
-import {Google} from 'grommet-icons';
+import { Link } from 'react-router-dom';
+
+import {
+  Grommet,
+  FormField,
+  TextInput,
+  Button,
+  Heading,
+  Box,
+  Image,
+} from "grommet";
+import { grommet } from "grommet/themes";
+
 
 class Login extends Component {
   constructor(props) {
@@ -9,7 +20,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      message: null
+      message: null,
     }
   }
 
@@ -24,41 +35,59 @@ class Login extends Component {
     api.login(this.state.email, this.state.password)
       .then(result => {
         console.log('SUCCESS!')
-        this.props.history.push("/") // Redirect to the home page
+        this.props.history.push("/home") // Redirect to the home page
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
 
   render() {
     return (
-      <div className="Login">
-        <h2>Login</h2>
-        <Box>
-        <form>
-          Email: <input type="text" value={this.state.email} onChange={(e) => this.handleInputChange("email", e)} /> <br />
-          Password: <input type="password" value={this.state.password} onChange={(e) => this.handleInputChange("password", e)} /> <br />
-          <button onClick={(e) => this.handleClick(e)}>Login</button>
-        </form>
-        {this.state.message && <div className="info info-danger">
-          {this.state.message}
-        </div>}
-        </Box>
-        <Box border={{
-          "side": "all",
-          "color": "#78bc61",
-          "size": "small",
-          
-          }}
-          round='medium'
-          width='small'
-          >
-          <a href={api.service.defaults.baseURL+"/auth/google"}>
-            <Google color='#78bc61'/>
-            <br />
-            Login with Google
+      <div className="form">
+      <h2>Login</h2>
+        <Box
+        margin="large">
+        <FormField align="center" htmlFor="text-input" {...this.props}>
+          <TextInput
+           flex
+            justify="center"
+            placeholder="email"
+            value={this.state.email}
+            onChange={(e) => this.handleInputChange("email", e)}
+            gap="large"
+            size="medium"
+            type="email"
+
+          />
+          </FormField>
+          <br />
+<         FormField align="center" htmlFor="text-input" {...this.props}>
+          <TextInput
+          flex
+            justify="center"
+            placeholder="password"
+            value={this.state.password}
+            onChange={(e) => this.handleInputChange("password", e)}
+            size="medium"
+            type="password"
+          />
+          </FormField>
+          <Box
+          margin="medium">
+          <Button >
+          <a href={api.service.defaults.baseURL+"/auth/google"}> 
+          <img  style={{width:"200px"}} src="../../../btn_google_signin_light_normal_web@2x.png" />
           </a>
-        </Box>
-      </div>
+          </Button>
+          </Box>
+          <Button color="rgba(120, 188, 97, 1)"  label="Login"  onClick={(e) => this.handleClick(e)} />
+          </Box>
+          <Box>
+          <p>Not signed up yet? <Link to="/signup">Signup</Link></p>
+        {this.state.message && <div className="info info-danger">
+        {this.state.message}
+        </div>}
+          </Box>
+          </div>
     );
   }
 }

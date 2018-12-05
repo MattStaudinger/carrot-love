@@ -51,7 +51,6 @@ console.log("STATE HANDLE", this.state.newPlantText)
           isWatered: "Yes"}
       } 
     }
-
     let lastWateringDatesSaved = [...plant[0].lastWateringDate]
     console.log("CLONE", lastWateringDatesSaved)
   
@@ -67,8 +66,6 @@ console.log("STATE HANDLE", this.state.newPlantText)
           }
 
         
-
-      
       console.log("new", lastWateringDatesSaved)
 
       
@@ -209,7 +206,7 @@ console.log("STATE HANDLE", this.state.newPlantText)
   
     
     return (
-      <div className="Collection">
+      <div className="collection">
       <Box margin='xsmall' pad='xsmall' />
         <Box align="start" gap="small" className='fixedbutton'>
           <Link to="/">

@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import Button from "../../button/Button";
 import Input from "../../input/Input";
+import { Box, Calendar, Button, Grommet, Heading, Text } from "grommet";
 
 class AddPlantView3 extends Component {
   constructor(props) {
@@ -11,32 +11,37 @@ class AddPlantView3 extends Component {
   }
 
   handleSubmit(startingDay) {
-    if (startingDay === "") {
+    if (startingDay === undefined) {
       alert("ENTER SOMETHING")
-    } else this.props.onSubmit(startingDay)
+    } else {
+      let startingDateInMs = new Date(startingDay).getTime()
+      console.log(startingDateInMs)
+      this.props.onSubmit(startingDay)
+    }
   }
 
   handleGoBack() {
    this.props.onBack("view3")
   }
 
-  handleChange(e) {
-        this.setState({ starting_day: e.target.value });
-    }
+  onSelect = nextDate => {
+      const { starting_day } = this.state;
+      this.setState({ starting_day: nextDate !== starting_day ? nextDate : undefined });
+    };
 
   render() {
     return (
       <div className="AddPlantView3">
             <h2>When do you want to start?</h2>
-            <Input
-              type="date"
-              onChange={e => this.handleChange(e)}
-              value={this.state.starting_day}
-            />
-            <Button className="btn-submit" onClick={() => this.handleSubmit(this.state.starting_day)}>
-              Add
-            </Button>
-            <Button className="btn-submit" onClick={() => this.handleGoBack()}>Back</Button>
+            <Calendar
+          date={this.state.starting_day}
+          onSelect={this.onSelect}
+          size="medium"
+          alignSelf="center"
+          bounds={["2018-01-08", "2019-12-13"]}
+        />
+            <Button label="Add" className="btn-submit" onClick={() => this.handleSubmit(this.state.starting_day)} />
+            <Button label="Back" className="btn-submit" onClick={() => this.handleGoBack()}/>
 
       </div>
     );

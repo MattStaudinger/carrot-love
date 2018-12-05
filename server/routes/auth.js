@@ -121,9 +121,10 @@ router.post('/login-with-passport-local-strategy', (req, res, next) => {
 router.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    res.redirect('http://localhost:3000/login/callback');
+    res.redirect('https://carrotlove.herokuapp.com/login/callback'); 
   });
 
+  
 router.get('/auth/google',
 passport.authenticate('google', {scope: ['https://www.googleapis.com/auth/plus.me','https://www.googleapis.com/auth/calendar']}));
 //https://www.googleapis.com/auth/plus.login

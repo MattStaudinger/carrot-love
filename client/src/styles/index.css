@@ -2,7 +2,8 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif; }
+  font-family: 'Josefin Sans', sans-serif;
+  color: #424b54; }
 
 .info {
   margin: 20px;
@@ -132,7 +133,8 @@ body {
   overflow: scroll; }
 
 .collection {
-  overflow: scroll; }
+  overflow: scroll;
+  height: 98vh; }
 
 .calender-card {
   display: flex;
@@ -144,3 +146,42 @@ body {
 
 .hidden {
   display: none; }
+
+.form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  font-family: 'Josefin Sans', sans-serif; }
+  .form a {
+    text-decoration: underline;
+    color: #78bc61; }
+
+.landing-page {
+  background: #78bc61;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 95vh;
+  color: #f1f7ed; }
+  .landing-page img {
+    object-fit: cover; }
+  .landing-page a {
+    text-decoration: none;
+    color: #424b54;
+    background: white;
+    padding: 20px;
+    border: 2px solid #78bc61;
+    border-radius: 20%; }
+  .landing-page .flex-row {
+    display: flex;
+    justify-content: center;
+    flex-direction: row; }
+    .landing-page .flex-row a {
+      margin: 10px; }
+  .landing-page .block-white {
+    border: 2px solid #f1f7ed;
+    padding: 40px;
+    border-radius: 70%; }
