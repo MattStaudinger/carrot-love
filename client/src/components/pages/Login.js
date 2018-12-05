@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import api from '../../api';
-import { Box, Grid, Heading, Paragraph, Image, Button, Collapsible } from 'grommet';
 import {Google} from 'grommet-icons';
+import {
+  Grommet,
+  Box,
+  CheckBox,
+  FormField,
+  Select,
+  TextArea,
+  TextInput,
+  Button
+} from "grommet";
+import { grommet } from "grommet/themes";
+
 
 class Login extends Component {
   constructor(props) {
@@ -9,7 +20,7 @@ class Login extends Component {
     this.state = {
       email: "",
       password: "",
-      message: null
+      message: null,
     }
   }
 
@@ -31,9 +42,34 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="Login">
-        <h2>Login</h2>
-        <Box>
+      <div className="form">
+        <FormField align="center" htmlFor="text-input" {...this.props}>
+          <TextInput
+          flex
+            justify="center"
+            id="text-input"
+            placeholder="email"
+            value={this.state.email}
+            onChange={(e) => this.handleInputChange("email", e)}
+            gap="medium"
+          />
+          </FormField>
+<         FormField align="center" htmlFor="text-input" {...this.props}>
+          <TextInput
+          flex
+            justify="center"
+            id="text-input"
+            placeholder="password"
+            value={this.state.password}
+            onChange={(e) => this.handleInputChange("password", e)}
+          />
+          </FormField>
+          <Button label="Login" onClick={() => {}} />
+
+          </div>
+
+
+        /* <Box>
         <form>
           Email: <input type="text" value={this.state.email} onChange={(e) => this.handleInputChange("email", e)} /> <br />
           Password: <input type="password" value={this.state.password} onChange={(e) => this.handleInputChange("password", e)} /> <br />
@@ -57,8 +93,7 @@ class Login extends Component {
             <br />
             Login with Google
           </a>
-        </Box>
-      </div>
+        </Box> */
     );
   }
 }

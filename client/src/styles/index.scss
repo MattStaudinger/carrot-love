@@ -153,3 +153,11 @@ overflow: scroll;
 .hidden {
   display: none;
 }
+
+.form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+}
