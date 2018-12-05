@@ -111,8 +111,8 @@ class Calender extends Component {
 
 
     return (
-
-      <Grommet theme={grommet} full>
+      <div className="calender">
+      <Grommet theme={grommet}>
     <AddToCalendar event={event} listItems={cals} />      
     <Box>
     <h2>Upcoming watering:</h2>
@@ -206,7 +206,8 @@ class Calender extends Component {
             pad="medium"
             border={{ side: "bottom" }}
             align="center"
-            background={this.isToday(plant.wateringTimeNumber) ? "green" : "white"}
+            background= "white"
+            // {this.isToday(plant.wateringTimeNumber) ? "green" : "white"}
           >
         
            <Link  to={`/plant/${plant._id}`}><Text color='black'>{plant.name}</Text></Link>
@@ -216,6 +217,7 @@ class Calender extends Component {
       </InfiniteScroll>
     </Box>
   </Grommet>
+  </div>
     );
   }
 
