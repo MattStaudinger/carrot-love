@@ -23,9 +23,7 @@ class Collection extends Component {
   render() {
     return (
       <div className="Collection">
-      <Box align='center' margin='xsmall' pad='xsmall'>
-      <Heading level={2}>Your collection of plants:</Heading>
-      </Box>
+      <Box margin='xsmall' pad='xsmall' />
         <Box align="start" gap="small">
           <Link to='/'><AddCircle color='#78bc61' /></Link>
         </Box> 

@@ -97,10 +97,25 @@ export default {
   },
 
   editPlant(plantData, id) {
+    console.log('api:', plantData)
     return service
     .put(`/plant/${id}`, plantData)
     .then (res => res.data)
     .catch(errHandler)
+  },
+
+  addPicture(file, id) {
+    const formData = new FormData();
+    formData.append("picture", file)
+    console.log('DEBUG formData', formData.get("picture"));
+    return service
+      .post(`/plant/picture/${id}`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      })
+      .then(res => res.data)
+      .catch(errHandler);
   },
 
   getFarmboxPlants(searchWord){
