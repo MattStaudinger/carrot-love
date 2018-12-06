@@ -42,7 +42,8 @@ class Collection extends Component {
         {!this.props.isToggled && (
           <Box align="start" gap="small" className="fixedbutton">
             <Link to="/add">
-              <AddCircle color="#78bc61" size="large" />
+              {/* <AddCircle color="#78bc61" size="xlarge" /> */}
+              <i style={{fontSize:"55px", color:"#78bc61"}} className="fas fa-plus-circle"></i>
             </Link>
           </Box>
         )}
