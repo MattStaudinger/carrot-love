@@ -216,9 +216,6 @@ body {
   font-size: 1.2em;
   color: #32c3ff; }
 
-.calender {
-  overflow: scroll; }
-
 .collection {
   overflow: scroll;
   height: 98vh; }
@@ -440,3 +437,55 @@ input[type="checkbox"] {
       width: 5px;
       background: #1790b5;
       transition: width 150ms ease 100ms; }
+
+.main {
+  margin-top: 50px; }
+  .main .btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50px;
+    left: -10px;
+    text-decoration: none;
+    background-color: #F4743B;
+    padding: 5px;
+    border-radius: 3%;
+    width: 270px;
+    color: #fff;
+    z-index: 2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 1.2em;
+    font-weight: 400; }
+    .main .btn i {
+      font-size: 1.5em;
+      padding: 10px; }
+  @media only screen and (min-width: 0px) and (max-width: 599px) {
+    .main .collapsible {
+      width: 100vw; } }
+  @media only screen and (min-width: 600px) {
+    .main .collapsible {
+      width: 30vw; } }
+
+.calender {
+  overflow: scroll;
+  background-color: white;
+  color: #fff; }
+  .calender .calender-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-bottom: 5px solid #fff;
+    background-color: #78bc61;
+    margin-bottom: 10px; }
+  .calender .name {
+    margin-right: 50px;
+    align-self: flex-start;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly; }
+    .calender .name a {
+      text-decoration: none;
+      color: #fff;
+      margin-right: 20px; }
