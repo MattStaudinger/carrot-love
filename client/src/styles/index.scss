@@ -129,10 +129,6 @@ footer {
 
 .fixedbutton {
   position: fixed;
-<<<<<<< HEAD
-  bottom: 10px;
-  right: 10px;
-=======
   bottom: 33px;
   right: 43px; 
 }
@@ -140,7 +136,6 @@ footer {
 
 .smallW {
   width: 40% !important;
->>>>>>> d6a5f305128bc243e6e5e9c2dd33f60378315b20
 }
 
 .smallWdesc {
@@ -405,7 +400,7 @@ footer {
   overflow: scroll;
   height: 98vh;
   // margin-left: 50px;
-  
+ 
   .collection-box:hover {
     cursor: pointer;
     // background-color: #e7e7e7;
@@ -811,7 +806,7 @@ input[type="checkbox"] {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
-    border-bottom: 1px solid rgb(196, 196, 196);
+    // border-bottom: 1px solid rgb(196, 196, 196);
     padding: 30px 0;
     background-color: $white;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
@@ -823,6 +818,7 @@ input[type="checkbox"] {
     font-weight: 200;
     width: 50%;
     display: flex;
+    margin-left: 15px;
     
   }
 

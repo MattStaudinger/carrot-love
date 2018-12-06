@@ -60,11 +60,12 @@ class Calender extends Component {
         <InfiniteScroll step={10} items={this.state.plants}>
           {(plant, index) => (
             <div
-              className="calender-box" style=
-              
-               {index > 0 && {borderBottom:"none"}}
+              className="calender-box" 
+              style={index > 0 &&
+                this.state.plants[index - 1].wateringTimeString !==
+                  plant.wateringTimeString ? {borderTop:"1px solid rgb(196, 196, 196)"} : null }
             >
-              {/* {this.isToday(plant.wateringTimeNumber) ? "green" : "white"} */}
+            
 
               {index === 0 && (
                 <span className="day">
