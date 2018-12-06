@@ -84,7 +84,7 @@ handleImgError = () => {
       <div className="addPlantView2">
       <img className="hidden" onError={this.handleImgError} src={this.props.img} />
       <div className="center">
-            <h2>How often you want to water your love?</h2>
+            <h2>How often you want to water your beloved one?</h2>
             <div className="radio-buttons">
 
             <div className="checkbox-container">
@@ -149,7 +149,7 @@ handleImgError = () => {
             <Button margin="20px" label="Next" className="btn-submit margin-btn" color="white" onClick={() => this.handleSubmit(this.state.watering_interval, this.state.watering_interval_input, this.state.isChecked)} />
             <Button icon={<Previous color="white" size='medium' />} className="btn-back" color="white" onClick={() => this.handleGoBack()} />
             <p className="margin">
-              You don't know? <a href="#">Get help</a>
+              You don't know? <a href={`https://www.google.de/search?q=how+often+to+water+a+${this.props.searchTerm}`} target="_blank" rel="noopener noreferrer">Get help</a>
             </p>
                       </div>
                       </div>
