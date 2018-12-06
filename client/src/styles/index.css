@@ -251,7 +251,8 @@ footer {
 
 .collection {
   overflow: scroll;
-  height: 98vh; }
+  height: 98vh;
+  margin-top: 50px; }
   .collection .collection-box:hover {
     cursor: pointer;
     box-shadow: 0 0 11px rgba(33, 33, 33, 0.2); }
