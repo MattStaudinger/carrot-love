@@ -29,11 +29,97 @@ body {
   position: fixed;
   top: 0;
   z-index: 1001;
-} */
-.BelowNav {
-  overflow: scroll; }
+} 
 
-/* 
+.BelowNav{
+  overflow: scroll;
+  }
+
+@media only screen and (min-width: 0px) {
+.detailPic{
+    max-width: 75% !important;
+    height: auto !important;
+    align-self: center !important;
+}
+}
+
+@media only screen and (min-width: 450px) and (max-width: 500px) {
+  .detailPic{
+      max-width: 68% !important;
+      height: auto !important;
+      align-self: center !important;
+  }
+  }
+
+  @media only screen and (min-width: 501px) and (max-width: 599px) {
+    .detailPic{
+        max-width: 60% !important;
+        height: auto !important;
+        align-self: center !important;
+    }
+    }
+
+  @media only screen and (min-width: 600px) and (max-width: 650px) {
+    .detailPic{
+        max-width: 58% !important;
+        height: auto !important;
+        align-self: center !important;
+    }
+    }
+
+  @media only screen and (min-width: 651px) and (max-width: 699px) {
+      .detailPic{
+          max-width: 53% !important;
+          height: auto !important;
+          align-self: center !important;
+      }
+      }
+
+  @media only screen and (min-width: 700px) and (max-width: 767px) {
+        .detailPic{
+            max-width: 48% !important;
+            height: auto !important;
+            align-self: center !important;
+        }
+        }
+
+@media only screen and (min-width: 768px) {
+  .detailPic{
+      max-width: 60% !important;
+      height: auto !important;
+      align-self: center !important;
+  }
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .detailPic{
+        max-width: 50% !important;
+        height: auto !important;
+        align-self: center !important;
+    }
+    }
+
+    @media only screen and (min-width: 1224px) {
+      .detailPic{
+          max-width: 45% !important;
+          height: auto !important;
+          align-self: center !important;
+      }
+      }
+
+      @media only screen and (max-width: 769px) {
+        .smallScreen{
+            margin-top: 300px !important;
+        }
+        }
+
+      @media only screen and (max-width: 769px) {
+          .smallScreenCenter{
+              margin-top: 350px !important;
+              align-self: center !important;
+          }
+          }
+   
 
 
 @media only screen and (min-width: 375px) {

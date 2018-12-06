@@ -57,7 +57,7 @@ class Calender extends Component {
             pad="medium"
             border={{ side: "bottom" }}
             align="center"
-            background= "white"
+            background= '#78bc61'
             // {this.isToday(plant.wateringTimeNumber) ? "green" : "white"}
           >
         

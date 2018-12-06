@@ -220,7 +220,7 @@ console.log("STATE HANDLE", this.state.newPlantText)
       <div className="collection">
       <Box margin='xsmall' pad='xsmall' />
         <Box align="start" gap="small" className='fixedbutton'>
-          <Link to="/">
+          <Link to="/add">
             <AddCircle color="#78bc61" size='large' />
           </Link>
         </Box>
@@ -232,11 +232,10 @@ console.log("STATE HANDLE", this.state.newPlantText)
               margin="xsmall"
               height="medium"
               border={{ side: "top", color: "#78bc61", size: "medium" }}
+              /* background='#f1f7ed' */
               /* onClick={() => this.handlePlantDetail(p._id)} */              
             >
-              <Image fit="contain" src={p.picture_url} margin="xsmall">
-                {/* <Link to={`/plant/${p._id}`}>1</Link> */}
-              </Image>
+              <Image fit="contain" src={p.picture_url} margin="xsmall" />
               <Button onClick={() => {this.props.onClick(p._id)}}>
                 <h3>{p.name}</h3>
               </Button>
