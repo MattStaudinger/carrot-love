@@ -7,6 +7,7 @@ $green: rgba(120, 188, 97, 1);
 $white: rgba(241, 247, 237, 1);
 $blue: rgba(126, 196, 211, 1);
 $black: rgba(66, 75, 84, 1);
+$orange: #fa9f42;
 
 ////////////////////
 /// Typhography ///
@@ -28,7 +29,7 @@ $fs-large: 18px;
 $fs-extra-large: 24px;
 //
 ////////////////////
-///    colors   /// 
+///    colors   ///
 //
 // Base Colors
 $white: #fff;
@@ -49,7 +50,7 @@ $background-white: $white;
 $background-black: $black;
 $background-gray: $gray;
 $background-puple: $puple;
-$background-pink: $pink; 
+$background-pink: $pink;
 //
 // Border Colors
 $border-white: $white;
@@ -59,39 +60,39 @@ $border-pink: $pink;
 
 // Create mixin for font-weight and font-size properties
 @mixin custom-font($fontsize, $fontweight) {
-    font-weight: $fontweight;
-    font-size: $fontsize;
+  font-weight: $fontweight;
+  font-size: $fontsize;
 }
 
 // Create mixin for transition property
 @mixin transition($time, $type, $property) {
-    transition: $time $type $property;
-    -moz-transition: $time $type $property;
-    -webkit-transition: $time $type $property;
+  transition: $time $type $property;
+  -moz-transition: $time $type $property;
+  -webkit-transition: $time $type $property;
 }
 
 // Create mixin for transition property with transition dela
 @mixin transition-with-delay($tim, $dela, $typ, $propert) {
-    transition: $tim $dela $typ $propert;
-    -moz-transition: $tim $dela $typ $propert;
-    -webkit-transition: $tim $dela $typ $propert;
+  transition: $tim $dela $typ $propert;
+  -moz-transition: $tim $dela $typ $propert;
+  -webkit-transition: $tim $dela $typ $propert;
 }
 
 // Create mixin for border-radius property
 @mixin border-radius($radius) {
-    border-radius: $radius;
-    -moz-border-radius: $radius;
-    -webkit-border-radius: $radius;
+  border-radius: $radius;
+  -moz-border-radius: $radius;
+  -webkit-border-radius: $radius;
 }
 
 // Create mixin for transition property
 @mixin box-shadow($shadow) {
-    box-shadow: $shadow;
-    -moz-box-shadow: $shadow;
-    -webkit-box-shadow: $shadow;
+  box-shadow: $shadow;
+  -moz-box-shadow: $shadow;
+  -webkit-box-shadow: $shadow;
 }
 
-@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700i,800,800i,900,900i');
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700i,800,800i,900,900i");
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
@@ -99,16 +100,14 @@ $border-pink: $pink;
 // @import 'bootstrap/scss/bootstrap';
 // ----------------------------------------
 
-
 // --------------------
 // Style reusable for all components
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   color: $black;
   // background-color: $green;
-
 }
 
 .info {
@@ -127,7 +126,7 @@ body {
 .fixedbutton {
   position: fixed;
   bottom: 10px;
-  right: 10px; 
+  right: 10px;
 }
 
 /*
@@ -290,23 +289,21 @@ body {
 .App {
   text-align: center;
 
-
   .App-header {
-      background-color: $green;
-      padding: 15px 0;
-      color: white;
-      width: 100%;
-      position: fixed;
-      z-index: 1001;
-      top:0;
+    background-color: $green;
+    padding: 15px 0;
+    color: white;
+    width: 100%;
+    position: fixed;
+    z-index: 1001;
+    top: 0;
 
-    .HomeButton{
+    .HomeButton {
       margin-right: 10%;
       :hover {
         background-color: rgb(236, 233, 233);
       }
     }
-    
 
     a {
       color: white;
@@ -344,7 +341,7 @@ body {
   background-color: $green;
   height: 95vh;
   width: 100vw;
-  color:$white;
+  color: $white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -359,7 +356,7 @@ body {
     color: $black;
   }
 
-  .radio-buttons{
+  .radio-buttons {
     width: 400px;
   }
 
@@ -370,29 +367,53 @@ body {
     background-color: $white;
     border-radius: 20px;
   }
-
-
 }
 
 #root {
   height: 98vh;
 }
 
-// --------------------
-// Style for Secret component
-.Secret {
-  .result {
-    font-size: 1.2em;
-    color: $primary;
-  }
-}
-
 
 
 .collection {
-overflow: scroll;
-height: 98vh;
+  overflow: scroll;
+  height: 98vh;
+  // margin-left: 50px;
+  
+  .collection-box:hover {
+    cursor: pointer;
+    // background-color: #e7e7e7;
+    box-shadow: 0 0 11px rgba(33,33,33,.2); 
+  
+  }
+  .collection-box {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    transition: box-shadow .3s;
+  }
+ 
+  .next-watering{
+    background-color: $green;
+    padding: 15px;
+    color: white;
+  }
+  .last-watering{
+    background-color: white;
+    padding: 15px;
+  }
+
+  .light{
+    // font-size: 0.8em;
+    font-weight: 200;
+  }
+
+  .bold{
+    font-weight: 800;
+  }
+
 }
+
+
 
 .calender-card {
   display: flex;
@@ -403,7 +424,7 @@ height: 98vh;
   margin: 5px;
 }
 
-.edit-plant{
+.edit-plant {
   margin-top: 100px;
 }
 
@@ -411,46 +432,43 @@ height: 98vh;
   display: none;
 }
 
-.form{
+.form {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   height: 85vh;
-  font-family: 'Josefin Sans', sans-serif;
-  a{
+  font-family: "Josefin Sans", sans-serif;
+  a {
     text-decoration: underline;
     color: $green;
   }
-  
 }
 
-.landing-page{
+.landing-page {
   background: $green;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height:100vh;
+  height: 100vh;
   color: $white;
   z-index: 2;
 
-  h1{
+  h1 {
     font-size: 4em;
-    margin-bottom: 0;  
+    margin-bottom: 0;
     z-index: 2;
-
-
   }
 
-  img{
-height:100vh;
-display: flex;
-justify-content: center;
-align-items: center;
+  img {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
-  .img1{
+  .img1 {
     object-fit: contain;
     width: 300px;
     position: absolute;
@@ -458,71 +476,65 @@ align-items: center;
     top: 0;
     z-index: 1;
     left: 5%;
-
   }
-  a{
+  a {
     text-decoration: none;
-    background-color: #F4743B;
+    background-color: #f4743b;
     padding: 20px;
     border-radius: 10%;
     margin: 30px;
     color: $white;
     z-index: 2;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   }
 
-  .flex-row{
+  .flex-row {
     display: flex;
     justify-content: center;
     flex-direction: row;
-
   }
 
-  .block-white{
-  //   // height:10vh;
-  //   // background-color: $white;
-  //   padding: 30px;
-  //   border-radius: 10%;
-  //   z-index: 2;
-  //   background-color: #F4743B;
-  //   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  z-index: 2;
-  
-}
-    p{
-      margin-bottom: 40px;  
-      font-weight: 50;
-      z-index: 2;
-      border-bottom: 1px solid $white;
-    }
+  .block-white {
+    //   // height:10vh;
+    //   // background-color: $white;
+    //   padding: 30px;
+    //   border-radius: 10%;
+    //   z-index: 2;
+    //   background-color: #F4743B;
+    //   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    z-index: 2;
   }
-
-
-.input{
-  font-family: 'Josefin Sans', sans-serif;
-font-size: 1.4em;
+  p {
+    margin-bottom: 40px;
+    font-weight: 50;
+    z-index: 2;
+    border-bottom: 1px solid $white;
+  }
 }
 
+.input {
+  font-family: "Josefin Sans", sans-serif;
+  font-size: 1.4em;
+}
 
-.addPlantView2{
-  .user-input{
+.addPlantView2 {
+  .user-input {
     border: none;
     border-bottom: 1px solid $white;
     background: transparent;
     color: white;
-    font-family: 'Josefin Sans', sans-serif;
-font-size: 1.4em;
+    font-family: "Josefin Sans", sans-serif;
+    font-size: 1.4em;
   }
-  .margin{
-    margin-top:30px;
+  .margin {
+    margin-top: 30px;
   }
-  .margin-btn{
+  .margin-btn {
     margin-top: 60px;
   }
 }
 
-.addPlantView{
+.addPlantView {
   background-color: $green;
   height: 98vh;
   display: flex;
@@ -538,71 +550,69 @@ font-size: 1.4em;
   //   position: absolute;
   //   top: -9999px;
   //   left: -9999px;
-  
+
   // }
 
-  .checkbox{
+  .checkbox {
     background: green;
-   width: 400px;
-   height: 100px;
-   line-height: 100px;
-   color: white;
-   text-align: center;
+    width: 400px;
+    height: 100px;
+    line-height: 100px;
+    color: white;
+    text-align: center;
   }
 
-  input[type=checkbox]:checked ~ div {
+  input[type="checkbox"]:checked ~ div {
     background: red;
- }
+  }
 
-  .radio-buttons{
+  .radio-buttons {
     display: flex;
     flex-direction: row;
-  justify-content: center;
-  align-items: flex-start;
-  margin: 20px 0;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px 0;
   }
-  .checkbox-container{
+  .checkbox-container {
     display: flex;
     flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  margin: 0 20px;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px;
   }
-  
-  .center{
+
+  .center {
     // width:600px;
     border-top: 1px solid $white;
     padding: 10px 0;
     display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  max-width: 60vw;
-
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 60vw;
   }
-    h2{
-      margin-bottom: 20px;
-      color: $white;
-    }
+  h2 {
+    margin-bottom: 20px;
+    color: $white;
+  }
 
-    .btn-submit{
-      margin-top:20px;
-      width: 100px;
-      height: 60px;
-      border-radius: 10%;
-      font-size: 1.8em;
-      color: $black
-    }
+  .btn-submit {
+    margin-top: 20px;
+    width: 100px;
+    height: 60px;
+    border-radius: 10%;
+    font-size: 1.8em;
+    color: $black;
+  }
 
-    .btn-back{
-      position: absolute;
-      top:10px;
-      left: 10px;
-      z-index: 1002;
-      // border-radius: 50%;
-      // border: 1.5px solid $white;
-
-    }
+  .btn-back {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1002;
+    // border-radius: 50%;
+    // border: 1.5px solid $white;
+  }
 }
 
 label {
@@ -624,80 +634,63 @@ label {
     border-radius: 50%;
     vertical-align: -6px;
     margin-right: 10px;
-    transition: background-color 150ms 200ms, transform 350ms cubic-bezier(.78,-1.22,.17,1.89); // custom ease effect for bouncy animation
+    transition: background-color 150ms 200ms,
+      transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89); // custom ease effect for bouncy animation
 
-// Now we'll create the "tick" using pseudo elements - those will be basically two lines that will be rotated to form the "tick"
+    // Now we'll create the "tick" using pseudo elements - those will be basically two lines that will be rotated to form the "tick"
 
-  &:before {
-    content: "";
-    width: 0px;
-    height: 2px;
-    border-radius: 2px; // so that the tick has nice rounded look
-    background: #fff;
-    position: absolute;
-    transform: rotate(45deg);
-    top: 13px; // you'll need to experiment with placement depending on the dimensions you've chosen
-    left: 9px; // you'll need to experiment with placement depending on the dimensions you've chosen
-    transition: width 50ms ease 50ms;
-    transform-origin: 0% 0%;
-  }
-
-  &:after {
-    content: "";
-    width: 0;
-    height: 2px;
-    border-radius: 2px; // so that the tick has nice rounded look
-    background: #fff;
-    position: absolute;
-    transform: rotate(305deg);
-    top: 16px; // you'll need to experiment with placement depending on the dimensions you've chosen
-    left: 10px; // you'll need to experiment with placement depending on the dimensions you've chosen
-    transition: width 50ms ease;
-    transform-origin: 0% 0%;
-  }
-}
-// Time to add some life to it
-
-&:hover {
-  div {
     &:before {
-      width: 5px;
-      transition: width 100ms ease;
+      content: "";
+      width: 0px;
+      height: 2px;
+      border-radius: 2px; // so that the tick has nice rounded look
+      background: #fff;
+      position: absolute;
+      transform: rotate(45deg);
+      top: 13px; // you'll need to experiment with placement depending on the dimensions you've chosen
+      left: 9px; // you'll need to experiment with placement depending on the dimensions you've chosen
+      transition: width 50ms ease 50ms;
+      transform-origin: 0% 0%;
     }
-    
+
     &:after {
-      width: 10px;
-      transition: width 150ms ease 100ms;
+      content: "";
+      width: 0;
+      height: 2px;
+      border-radius: 2px; // so that the tick has nice rounded look
+      background: #fff;
+      position: absolute;
+      transform: rotate(305deg);
+      top: 16px; // you'll need to experiment with placement depending on the dimensions you've chosen
+      left: 10px; // you'll need to experiment with placement depending on the dimensions you've chosen
+      transition: width 50ms ease;
+      transform-origin: 0% 0%;
     }
   }
-}
+  // Time to add some life to it
+
+  &:hover {
+    div {
+      &:before {
+        width: 5px;
+        transition: width 100ms ease;
+      }
+
+      &:after {
+        width: 10px;
+        transition: width 150ms ease 100ms;
+      }
+    }
+  }
 }
 
 input[type="checkbox"] {
   display: none; // hide the system checkbox
 
-// Let's add some effects after the checkbox is checked
+  // Let's add some effects after the checkbox is checked
 
-&:checked {
-  + label {
-    div {
-      background-color: #fff;
-      transform: scale(1.25); // enlarge the box
-      
-      &:after {
-        width: 10px;
-        background: #1790b5;
-        transition: width 150ms ease 100ms; // enlarge the tick
-      }
-      
-      &:before {
-        width: 5px;
-        background: #1790b5;
-        transition: width 150ms ease 100ms; // enlarge the tick
-      }
-    }
-    
-    &:hover { // copy the states for onMouseOver to avoid flickering
+  &:checked {
+    + label {
       div {
         background-color: #fff;
         transform: scale(1.25); // enlarge the box
@@ -713,18 +706,38 @@ input[type="checkbox"] {
           background: #1790b5;
           transition: width 150ms ease 100ms; // enlarge the tick
         }
-      }  
+      }
+
+      &:hover {
+        // copy the states for onMouseOver to avoid flickering
+        div {
+          background-color: #fff;
+          transform: scale(1.25); // enlarge the box
+
+          &:after {
+            width: 10px;
+            background: #1790b5;
+            transition: width 150ms ease 100ms; // enlarge the tick
+          }
+
+          &:before {
+            width: 5px;
+            background: #1790b5;
+            transition: width 150ms ease 100ms; // enlarge the tick
+          }
+        }
+      }
     }
   }
 }
-}
 
-
-
-.main{
+.main {
   margin-top: 50px;
 
-  .btn{
+  .btn:hover {
+    cursor: pointer;
+  }
+  .btn {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -732,69 +745,85 @@ input[type="checkbox"] {
     top: 50px;
     left: -10px;
     text-decoration: none;
-    background-color: #F4743B;
+    background-color: #f4743b;
     padding: 5px;
     border-radius: 3%;
     // margin: 20px;
     width: 270px;
     color: $white;
     z-index: 2;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  font-size: 1.2em;
-  font-weight: 400;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    font-size: 1.2em;
+    font-weight: 400;
 
-
-    i{
+    i {
       font-size: 1.5em;
       padding: 10px;
     }
   }
 
-  @media only screen and (min-width: 0px) and (max-width: 599px)  {
-    .collapsible{
-       width: 100vw;
+  @media only screen and (min-width: 0px) and (max-width: 599px) {
+    .collapsible {
+      width: 100vw;
     }
+  }
+  @media only screen and (min-width: 600px) {
+    .collapsible {
+      width: 30vw;
     }
-   @media only screen and (min-width: 600px)  {
-      .collapsible{
-         width: 30vw;
-      }
-      }
-
+  }
 }
 
 .calender {
   overflow: scroll;
   background-color: white;
-  color: $white;
-  
-  
+  color: rgb(107, 107, 107);
+  font-size: 1.2em;
+  // border-left: 6px solid $orange;
+
   .calender-box {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    border-bottom: 5px solid $white;
-    background-color: $green;
-    margin-bottom: 10px;
-  
+    justify-content: flex-start;
+    border-bottom: 1px solid rgb(196, 196, 196);
+    padding: 30px 0;
+    background-color: $white;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    // margin-bottom:5px;
   }
-  
-  .name {
-    margin-right: 50px; 
-    align-self: flex-start;
+
+  .day {
+    font-size: 0.8em;
+    font-weight: 200;
+    width: 50%;
     display: flex;
-    flex-direction: row;
-  align-items: center;
-  justify-content: space-evenly;
-  
-    a{
-      text-decoration: none;
-      color: $white;
-      margin-right: 20px;
-    }
     
   }
-  
-  
-  
+
+  .name {
+    width: 50%;
+    // margin-left: 50px;
+    font-size: 0.8em;
+    font-weight: 600;
+    display: flex;
+
   }
+}
+
+
+.detail-view{
+
+  .back-container{
+     margin-top: 30px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    
+  }
+  .back{
+    position: absolute;
+    top: 60px;
+    left: 10px;
+  }
+}

@@ -1,7 +1,9 @@
-import React, { Component } from "react";
+import React, { Component, createRef } from "react";
 import api from "../../api";
 import { Route, Link, Switch } from "react-router-dom";
 import PlantDetail from "./PlantDetail";
+import Moment from 'react-moment';
+
 import {
   Box,
   Grid,
@@ -29,11 +31,13 @@ class Collection extends Component {
     this.today.setSeconds(0);
     this.today.setMilliseconds(0);
     this.newText = [];
+    this.boxRef = createRef();
+
   }
 
   render() {
     return (
-      <div className="collection">
+      <div  className="collection">
         <Box margin="xsmall" pad="xsmall" />
         {!this.props.isToggled && (
           <Box align="start" gap="small" className="fixedbutton">
@@ -46,23 +50,30 @@ class Collection extends Component {
         <Box direction="row-responsive" wrap="true" flex="shrink">
           {this.state.plants.map((p, i) => (
             <Box
+            ref={this.boxRef}
+            onClick={() => {this.props.onClick(p._id)}}
+            // onMouseOver={()=> {this.boxRef.style.cursor="progress"}}
               key={p._id}
               basis="medium"
               margin="xsmall"
               height="medium"
               border={{ side: "top", color: "#78bc61", size: "medium" }}
-              background='#f1f7ed'
-              /* onClick={() => this.handlePlantDetail(p._id)} */              
+              // background='#f1f7ed'
+              /* onClick={() => this.handlePlantDetail(p._id)} */  
+              className="collection-box"            
             >
               <Image fit="contain" src={p.picture_url} margin="xsmall" />
               <Button onClick={() => {this.props.onClick(p._id)}}>
                 <h3>{p.name}</h3>
               </Button>
-              <Paragraph alignSelf="center">{`upcoming appointment: ${
+              <div className="watering-container">
+              <p className="next-watering"><span className="light">next watering: </span><span className="bold">{
                 p.upcomingWatering
-              }`}</Paragraph>
-              {/* <Paragraph alignSelf='center'>{`Did you water him  ${p.lastWatering}`}  */}
-
+              }</span></p>
+              <p className="last-watering"><span className="light">last watering: </span><span>{
+                p.lastWatering
+              }</span></p>
+</div>
               {/* </Paragraph> */}
             </Box>
           ))}
@@ -103,7 +114,8 @@ class Collection extends Component {
             description: plant.description,
             _owner: plant._owner,
             note: plant.note,
-            picture_url: plant.picture_url
+            picture_url: plant.picture_url,
+            lastWatering: lastWatering
           };
         });
 
@@ -147,7 +159,8 @@ class Collection extends Component {
           description: plant.description,
           _owner: plant._owner,
           note: plant.note,
-          picture_url: plant.picture_url
+          picture_url: plant.picture_url,
+          lastWatering: lastWatering
         };
       });
 

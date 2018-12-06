@@ -3,7 +3,7 @@
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   color: #000; }
 
 .info {
@@ -235,13 +235,27 @@ body {
 #root {
   height: 98vh; }
 
-.Secret .result {
-  font-size: 1.2em;
-  color: #32c3ff; }
-
 .collection {
   overflow: scroll;
   height: 98vh; }
+  .collection .collection-box:hover {
+    cursor: pointer;
+    box-shadow: 0 0 11px rgba(33, 33, 33, 0.2); }
+  .collection .collection-box {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: white;
+    transition: box-shadow .3s; }
+  .collection .next-watering {
+    background-color: #78bc61;
+    padding: 15px;
+    color: white; }
+  .collection .last-watering {
+    background-color: white;
+    padding: 15px; }
+  .collection .light {
+    font-weight: 200; }
+  .collection .bold {
+    font-weight: 800; }
 
 .calender-card {
   display: flex;
@@ -263,7 +277,7 @@ body {
   justify-content: center;
   align-items: center;
   height: 85vh;
-  font-family: 'Josefin Sans', sans-serif; }
+  font-family: "Josefin Sans", sans-serif; }
   .form a {
     text-decoration: underline;
     color: #78bc61; }
@@ -296,7 +310,7 @@ body {
     left: 5%; }
   .landing-page a {
     text-decoration: none;
-    background-color: #F4743B;
+    background-color: #f4743b;
     padding: 20px;
     border-radius: 10%;
     margin: 30px;
@@ -316,7 +330,7 @@ body {
     border-bottom: 1px solid #fff; }
 
 .input {
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   font-size: 1.4em; }
 
 .addPlantView2 .user-input {
@@ -324,7 +338,7 @@ body {
   border-bottom: 1px solid #fff;
   background: transparent;
   color: white;
-  font-family: 'Josefin Sans', sans-serif;
+  font-family: "Josefin Sans", sans-serif;
   font-size: 1.4em; }
 
 .addPlantView2 .margin {
@@ -349,7 +363,7 @@ body {
     line-height: 100px;
     color: white;
     text-align: center; }
-  .addPlantView input[type=checkbox]:checked ~ div {
+  .addPlantView input[type="checkbox"]:checked ~ div {
     background: red; }
   .addPlantView .radio-buttons {
     display: flex;
@@ -462,6 +476,8 @@ input[type="checkbox"] {
 
 .main {
   margin-top: 50px; }
+  .main .btn:hover {
+    cursor: pointer; }
   .main .btn {
     display: flex;
     justify-content: center;
@@ -470,7 +486,7 @@ input[type="checkbox"] {
     top: 50px;
     left: -10px;
     text-decoration: none;
-    background-color: #F4743B;
+    background-color: #f4743b;
     padding: 5px;
     border-radius: 3%;
     width: 270px;
@@ -492,22 +508,35 @@ input[type="checkbox"] {
 .calender {
   overflow: scroll;
   background-color: white;
-  color: #fff; }
+  color: #6b6b6b;
+  font-size: 1.2em; }
   .calender .calender-box {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
-    border-bottom: 5px solid #fff;
-    background-color: #78bc61;
-    margin-bottom: 10px; }
+    justify-content: flex-start;
+    border-bottom: 1px solid #c4c4c4;
+    padding: 30px 0;
+    background-color: #fff;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2); }
+  .calender .day {
+    font-size: 0.8em;
+    font-weight: 200;
+    width: 50%;
+    display: flex; }
   .calender .name {
-    margin-right: 50px;
-    align-self: flex-start;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-evenly; }
-    .calender .name a {
-      text-decoration: none;
-      color: #fff;
-      margin-right: 20px; }
+    width: 50%;
+    font-size: 0.8em;
+    font-weight: 600;
+    display: flex; }
+
+.detail-view .back-container {
+  margin-top: 30px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row; }
+
+.detail-view .back {
+  position: absolute;
+  top: 60px;
+  left: 10px; }
