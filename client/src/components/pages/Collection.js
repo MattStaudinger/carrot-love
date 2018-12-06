@@ -51,7 +51,7 @@ class Collection extends Component {
               margin="xsmall"
               height="medium"
               border={{ side: "top", color: "#78bc61", size: "medium" }}
-              /* background='#f1f7ed' */
+              background='#f1f7ed'
               /* onClick={() => this.handlePlantDetail(p._id)} */              
             >
               <Image fit="contain" src={p.picture_url} margin="xsmall" />

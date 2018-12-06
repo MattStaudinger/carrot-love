@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import api from '../../api';
 import { TextArea, TextInput, Box, Calendar, Button, Grommet, Heading, Text } from "grommet";
+import { grommet } from "grommet/themes";
+import { Send, Edit } from 'grommet-icons';
 
 
 class EditPlant extends Component {
@@ -70,11 +72,9 @@ fuckingloading(){
 
    api.editPlant(plantData, this.props.match.params.name)
     .then(res => {
-      console.log("res heeeeellllllooooo", res)
       if (this.state.file) {
         api.addPicture(this.state.file, this.state._id)
         .then(res => {
-          console.log('res is outside if!', res)
           this.props.history.push('/home')
         })
       }
@@ -93,12 +93,12 @@ onSelect = nextDate => {
 
   render() {
     return (
+      <Grommet full theme={grommet}>
       <div className="edit-plant">
-        {console.log(this.state.starting_date)}
       <form onSubmit={this.handleSubmit}>
       <img src={this.state.picture_url} style={{height: "200px"}}/>
       <br/>
-      <input type="file" onChange={(e)=>this.handleChangePicture(e, "image")} />
+      <input type="file" onChange={(e)=>this.handleChangePicture(e, "image")} icon={<Edit color='#78bc61' />}/>
       <br/>
         <label>
           Name:
@@ -119,6 +119,7 @@ onSelect = nextDate => {
             onChange={(e)=> this.handleChange(e, "watering_interval")} />
         </label>
         <br />
+        <Box>
         <Calendar
           date={this.state.starting_date}
           onSelect={this.onSelect}
@@ -126,6 +127,7 @@ onSelect = nextDate => {
           alignSelf="center"
           bounds={["2018-01-08", "2019-12-13"]}
         />
+        </Box>
         <br />
         <label>
           Note:
@@ -145,9 +147,10 @@ onSelect = nextDate => {
             onChange={(e)=> this.handleChange(e, "description")} />
         </label>
         <br />
-        <input type="submit" value="Submit" />
+        <Button color='$green' label='Submit changes' type="submit" value="Submit" icon={<Send color='#78bc61' />}/>
       </form>
     </div>
+    </Grommet>
     );
   }
   componentDidMount() {

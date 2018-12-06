@@ -3,7 +3,6 @@ import api from '../../api';
 import { Link } from 'react-router-dom';
 import {
   Box,
-  Grid,
   Heading,
   Paragraph,
   Image,
@@ -11,7 +10,6 @@ import {
   Collapsible
 } from "grommet";
 import {Edit, Trash, CaretPrevious } from "grommet-icons";
-import EditPlant from './EditPlant';
 
 
 

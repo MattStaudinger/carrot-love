@@ -135,8 +135,8 @@ body {
 .DetailImg{
   max-width: 70% !important;
   height: auto !important;
-  /* position: relative !important;
-  left: 200px !important; */
+  position: relative !important;
+  left: 200px !important; 
 }
 }
 
@@ -405,9 +405,8 @@ height: 98vh;
   margin: 5px;
 }
 
-edit-plant{
-  overflow: scroll;
-  height: 98vh;
+.edit-plant{
+  margin-top: 100px;
 }
 
 .hidden {
