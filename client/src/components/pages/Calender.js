@@ -42,32 +42,20 @@ class Calender extends Component {
 
   render() {
     return (
-      <div className="calender">
-      <Grommet theme={grommet}> 
-    <Box>
-    <h2>Upcoming watering</h2>
-    {console.log(this.state.plants)}
-        </Box>
-        
-        <Box>
+      <div className="calender">       
       <InfiniteScroll step={10} items={this.state.plants}>
         {(plant, index) => (
-           <Box
-            key={index}
-            pad="medium"
-            border={{ side: "bottom" }}
-            align="center"
-            background= '#78bc61'
-            // {this.isToday(plant.wateringTimeNumber) ? "green" : "white"}
-          >
-        
-           <Link  to={`/plant/${plant._id}`}><Text color='black'>{plant.name}</Text></Link>
-            <Text color='black'>{plant.wateringTimeString}</Text>
-          </Box>
+           <div className="calender-box">
+             {/* {this.isToday(plant.wateringTimeNumber) ? "green" : "white"} */}
+             <span className="day">
+             <p>{plant.wateringTimeString}</p>
+             </span>
+             <span className="name">
+              <Link  to={`/plant/${plant._id}`}><p>{plant.name}</p></Link>             
+             </span>
+          </div>
         )}
       </InfiniteScroll>
-    </Box>
-  </Grommet>
   </div>
     );
   }
@@ -97,7 +85,10 @@ class Calender extends Component {
             wateringTimeNumber: date,
             wateringTimeString: upcomingWateringDate,
             repetions: repetions,
-            interval: plant.watering_interval * this.dayInMs
+            interval: plant.watering_interval * this.dayInMs,
+            starting_day: plant.startingDay,
+            picture_url: plant.picture_url
+
           };
         });
         this.allPlants = plantDates;
@@ -113,7 +104,9 @@ class Calender extends Component {
               wateringTimeNumber: date,
               wateringTimeString: plantTimeSortedString,
               repetions: plant.repetions,
-              interval: plant.interval
+              interval: plant.interval,
+              starting_day: plant.startingDay,
+            picture_url: plant.picture_url
             });
           }
         });

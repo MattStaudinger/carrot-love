@@ -387,9 +387,7 @@ body {
   }
 }
 
-.calender {
-overflow: scroll;
-}
+
 
 .collection {
 overflow: scroll;
@@ -720,3 +718,83 @@ input[type="checkbox"] {
   }
 }
 }
+
+
+
+.main{
+  margin-top: 50px;
+
+  .btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 50px;
+    left: -10px;
+    text-decoration: none;
+    background-color: #F4743B;
+    padding: 5px;
+    border-radius: 3%;
+    // margin: 20px;
+    width: 270px;
+    color: $white;
+    z-index: 2;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  font-size: 1.2em;
+  font-weight: 400;
+
+
+    i{
+      font-size: 1.5em;
+      padding: 10px;
+    }
+  }
+
+  @media only screen and (min-width: 0px) and (max-width: 599px)  {
+    .collapsible{
+       width: 100vw;
+    }
+    }
+   @media only screen and (min-width: 600px)  {
+      .collapsible{
+         width: 30vw;
+      }
+      }
+
+}
+
+.calender {
+  overflow: scroll;
+  background-color: white;
+  color: $white;
+  
+  
+  .calender-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-bottom: 5px solid $white;
+    background-color: $green;
+    margin-bottom: 10px;
+  
+  }
+  
+  .name {
+    margin-right: 50px; 
+    align-self: flex-start;
+    display: flex;
+    flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  
+    a{
+      text-decoration: none;
+      color: $white;
+      margin-right: 20px;
+    }
+    
+  }
+  
+  
+  
+  }

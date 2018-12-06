@@ -16,7 +16,8 @@ export default class Home extends Component {
     this.state = {
       openNotification: false,
       plantId : "",
-      isDeleted: false
+      isDeleted: false,
+      openCalender: false
     };
     this.handleDetail = this.handleDetail.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -26,7 +27,8 @@ export default class Home extends Component {
   handleDetail(id){
     this.setState({
       openNotification:true,
-      plantId: id
+      plantId: id,
+      openCalender: false,
     })
   }
   handleClose(){
@@ -40,21 +42,22 @@ export default class Home extends Component {
 
 
   render() {
-    const { openNotification } = this.state;
+    const { openNotification, openCalender } = this.state;
     return (
+      <div className="main">
+     
+     
+     {!this.state.openNotification && ( <button onClick={()=> {this.setState({openCalender:!openCalender})}} className="btn">
+      <i class="far fa-calendar-alt"></i>
+            <span>Upcoming watering</span>
+      </button>)}
       <Grommet full theme={grommet}>
         <Box fill>
          
           <Box flex direction="row">
             <Box flex >
            
-       <Button
-              onClick={() =>
-                this.setState({ openNotification: !openNotification, isDeleted:false })
-              }
-              icon={<CaretPrevious
-                color="green" />}
-            />
+      
       <Collection isToggled={this.state.openNotification} onClick={this.handleDetail}/>
             </Box>
             <Collapsible direction="horizontal" open={openNotification}>
@@ -67,9 +70,19 @@ export default class Home extends Component {
               <PlantDetail onClick={this.handleClose} id={this.state.plantId} />
               </Box>
             </Collapsible>
+          <Collapsible direction="horizontal" open={openCalender}>
+              <Box
+className="collapsible"                /* background="light-2" */
+                /* pad="small" */
+                /* elevation="small" */
+              >
+                      <CalenderView onClick={this.handleClose} />
+              </Box>
+            </Collapsible>
           </Box>
         </Box>
       </Grommet>
+      </div>
     );
   }
 }
