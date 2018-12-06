@@ -17,12 +17,18 @@ export default class Home extends Component {
       openNotification: false,
       plantId : "",
       isDeleted: false,
-      openCalender: false
+      openCalender: false,
+      isUpdated:false
     };
     this.handleDetail = this.handleDetail.bind(this)
     this.handleClose = this.handleClose.bind(this)
   }
 
+  hasBeenUpdated() {
+    this.setState({
+      isDeleted:false
+    })
+  }
 
   handleDetail(id){
     this.setState({
@@ -34,12 +40,10 @@ export default class Home extends Component {
   handleClose(){
     this.setState({
       openNotification:false,
-      isDeleted : true
+      isDeleted : true,
+      isUpdated:true
     })
   }
-
-  
-
 
   render() {
     const { openNotification, openCalender } = this.state;
@@ -48,7 +52,7 @@ export default class Home extends Component {
      
      
      {!this.state.openNotification && ( <button onClick={()=> {this.setState({openCalender:!openCalender})}} className="btn">
-      <i class="far fa-calendar-alt"></i>
+      <i className="far fa-calendar-alt"></i>
             <span>Upcoming watering</span>
       </button>)}
       <Grommet full theme={grommet}>
@@ -76,7 +80,7 @@ className="collapsible"                /* background="light-2" */
                 /* pad="small" */
                 /* elevation="small" */
               >
-                      <CalenderView onClick={this.handleClose} />
+                      <CalenderView isUpdated={this.state.isDeleted} hasBeenUpdated={() => {this.hasBeenUpdated()}}  onClick={this.handleClose} />
               </Box>
             </Collapsible>
           </Box>
