@@ -61,11 +61,11 @@ export default class Home extends Component {
             <Collapsible direction="horizontal" open={openNotification}>
               <Box
                 width="100vw"
-                background="light-2"
-                pad="small"
-                elevation="small"
+                /* background="light-2" */
+                /* pad="small" */
+                /* elevation="small" */
               >
-                      <PlantDetail onClick={this.handleClose} id={this.state.plantId}/>
+                      <PlantDetail onClick={this.handleClose} id={this.state.plantId} />
               </Box>
             </Collapsible>
           </Box>

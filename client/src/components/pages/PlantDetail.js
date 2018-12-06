@@ -43,32 +43,36 @@ class PlantDetail extends Component {
   
   render() {
     return (
-      <Box>
-        <Button onClick={() => {this.props.onClick()}} icon={<CaretPrevious color="white" />}></Button>
-      <Box responsive='true' direction="row-responsive" justify='between' background='#78bc61'>
-       <Box margin={{"top":"100px"}} height="medium" flex='true'>
+      <Box background='white'>
+        <Box>
+        <Button onClick={() => {this.props.onClick()}} icon={<CaretPrevious />}/>
+        </Box>
+      <Box responsive='true' /*  direction="row-responsive" justify='between' */>
+       <Box margin={{"top":"100px"}}  flex='true'>
+       <Box>
          <Image fit='contain' src={this.state.plantdetails.picture_url} alt={this.state.plantdetails.name}/>
-         <Heading level='3' alignSelf='center'>{this.state.plantdetails.name}</Heading>
-         <Box width='small' alignSelf='center'>
-          <Link to={"/plant/"+this.state.plantdetails._id+"/edit"}><Button fill color='#f1f7ed' icon={<Edit color='#f1f7ed' />} label='Edit'/>
+         <Heading level='3'  alignSelf='center'>{this.state.plantdetails.name}</Heading>
+         </Box>
+         <Box width='small' alignSelf='center' className='smallScreen'>
+          <Link to={"/plant/"+this.state.plantdetails._id+"/edit"}><Button fill color='#78bc61' icon={<Edit color='#78bc61' />} label='Edit'/>
           </Link>
-          <Button fill margin={{'top':'xsmall'}} color='#f1f7ed' onClick={this.handleClick}label={this.state.plantdetails.name+' died'} icon={<Trash color='#f1f7ed' />} />
+          <Button fill margin={{'top':'xsmall'}} color='#78bc61' onClick={this.handleClick}label={this.state.plantdetails.name+' died'} icon={<Trash color='#78bc61' />} />
          </Box>
        </Box>
-       <Box basis='large' flex='true' margin={{"top":"75px"}}>
-         <Paragraph /* alignSelf='center' */>
+       <Box basis='large' flex='true' margin={{"top":"75px"}} alignSelf='center'>
+         <Paragraph>
           <Heading level='4' margin='xsmall'>next water appointment:</Heading>
             WIP</Paragraph>
-         <Paragraph /* alignSelf='center' */>
+         <Paragraph>
          <Heading level='4' margin='xsmall'>Watering interval:</Heading>
           {this.state.plantdetails.watering_interval}</Paragraph>
-         {this.state.plantdetails.description &&<Paragraph /* alignSelf='center' */><Heading level='4' margin='xsmall'>Description:</Heading>
+         {this.state.plantdetails.description &&<Paragraph><Heading level='4' margin='xsmall'>Description:</Heading>
           {this.state.plantdetails.description}</Paragraph>}
-         {this.state.plantdetails.note &&<Paragraph /* alignSelf='center' */><Heading level='4' margin='xsmall'>Notes:</Heading>
+         {this.state.plantdetails.note &&<Paragraph><Heading level='4' margin='xsmall'>Notes:</Heading>
          {this.state.plantdetails.note}</Paragraph>}
        </Box>
        <Box>
-       </Box>
+      </Box>
       </Box>
       </Box>
     );

@@ -51,16 +51,11 @@ class Collection extends Component {
               margin="xsmall"
               height="medium"
               border={{ side: "top", color: "#78bc61", size: "medium" }}
-              /* onClick={() => this.handlePlantDetail(p._id)} */
+              /* background='#f1f7ed' */
+              /* onClick={() => this.handlePlantDetail(p._id)} */              
             >
-              <Image fit="contain" src={p.picture_url} margin="xsmall">
-                {/* <Link to={`/plant/${p._id}`}>1</Link> */}
-              </Image>
-              <Button
-                onClick={() => {
-                  this.props.onClick(p._id);
-                }}
-              >
+              <Image fit="contain" src={p.picture_url} margin="xsmall" />
+              <Button onClick={() => {this.props.onClick(p._id)}}>
                 <h3>{p.name}</h3>
               </Button>
               <Paragraph alignSelf="center">{`upcoming appointment: ${
