@@ -126,7 +126,7 @@ router.get('/auth/google/callback',
 
   
 router.get('/auth/google',
-passport.authenticate('google', {scope: ['https://www.googleapis.com/auth/plus.me','https://www.googleapis.com/auth/calendar']}));
+passport.authenticate('google', {scope: ['https://www.googleapis.com/auth/plus.me', 'https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/plus.profile.emails.read']})); //'https://www.googleapis.com/auth/calendar'
 //https://www.googleapis.com/auth/plus.login
 // router.get("/auth/google/callback", passport.authenticate("google", {
 //   failureRedirect: "/",
