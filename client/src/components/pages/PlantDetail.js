@@ -30,8 +30,7 @@ class PlantDetail extends Component {
     console.log("deleted!")
     api.deletePlant(this.state.plantdetails._id)
     .then(res => {
-      console.log(this.props.history)
-      this.props.onClick()
+      this.props.history.push('/collection')
     })
     .catch(err => console.log(err)) 
     }
@@ -49,7 +48,7 @@ class PlantDetail extends Component {
         </Box>
       <Box responsive='true' /*  direction="row-responsive" justify='between' */>
        <Box margin={{"top":"100px"}}  flex='true'>
-       <Box>
+       <Box basis='xlarge'>
          <Image fit='contain' src={this.state.plantdetails.picture_url} alt={this.state.plantdetails.name}/>
          <Heading level='3'  alignSelf='center'>{this.state.plantdetails.name}</Heading>
          </Box>
