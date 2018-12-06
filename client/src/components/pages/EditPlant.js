@@ -98,7 +98,13 @@ onSelect = nextDate => {
       <form onSubmit={this.handleSubmit}>
       <img src={this.state.picture_url} style={{height: "200px"}}/>
       <br/>
-      <input type="file" onChange={(e)=>this.handleChangePicture(e, "image")} icon={<Edit color='#78bc61' />}/>
+      {/* <input type="file" onChange={(e)=>this.handleChangePicture(e, "image")} icon={<Edit color='#78bc61' />}/> */}
+      
+      <div className="input">
+      <input type="file" name="photo" id="photo_upload" className="inputfile" onChange={(e)=>this.handleChangePicture(e, "image")} />
+      <label className="profile-btns" for="photo_upload">Upload a picture</label>
+      </div>
+      
       <br/>
       <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center'}}>
           <h3>Name:</h3>

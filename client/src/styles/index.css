@@ -36,6 +36,35 @@ footer {
   width: 620px !important;
   height: 100px !important; }
 
+.input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  padding: 15px; }
+
+.inputfile {
+  width: 0.1px;
+  height: 0.1px;
+  opacity: 0;
+  overflow: hidden;
+  position: absolute;
+  z-index: -1; }
+
+.profile-btns {
+  text-align: center;
+  background-color: #78bc61;
+  color: white;
+  border-radius: 25px;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.459);
+  cursor: pointer;
+  /* / "hand" cursor / */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding: 5px;
+  font-size: 0.55em;
+  font-weight: 300; }
+
 /*
 @media only screen and (min-width: 320px) {
 .DetailImg{

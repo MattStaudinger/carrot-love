@@ -157,7 +157,7 @@ today.getMilliseconds(0);
           <AddPlantView1 onClick={this.handleNameSubmit} />
         )}
         {this.state.view2Clicked && (
-          <AddPlantView2 onError={() => this.addDefaultSrc()} img={this.state.picture_url} onBack={this.handleGoBack} onSubmit={this.handleWateringSubmit} />
+          <AddPlantView2 searchTerm={this.state.name} onError={() => this.addDefaultSrc()} img={this.state.picture_url} onBack={this.handleGoBack} onSubmit={this.handleWateringSubmit} />
         )}
         {this.state.view3Clicked && (
           <AddPlantView3 onBack={this.handleGoBack} onSubmit={this.handleStartingDaySubmit} />
