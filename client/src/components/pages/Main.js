@@ -56,7 +56,6 @@ export default class Home extends Component {
                 color="green" />}
             />
       <Collection isToggled={this.state.openNotification} onClick={this.handleDetail}/>
-
             </Box>
             <Collapsible direction="horizontal" open={openNotification}>
               <Box
@@ -65,7 +64,7 @@ export default class Home extends Component {
                 /* pad="small" */
                 /* elevation="small" */
               >
-                      <PlantDetail onClick={this.handleClose} id={this.state.plantId} />
+              <PlantDetail onClick={this.handleClose} id={this.state.plantId} />
               </Box>
             </Collapsible>
           </Box>
