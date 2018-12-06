@@ -19,7 +19,6 @@ import {
   TextInput,
   InfiniteScroll
 } from "grommet";
-import Moment from "react-moment";
 
 class Calender extends Component {
   constructor(props) {

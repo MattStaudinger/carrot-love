@@ -2,7 +2,6 @@ import React, { Component, createRef } from "react";
 import api from "../../api";
 import { Route, Link, Switch } from "react-router-dom";
 import PlantDetail from "./PlantDetail";
-import Moment from 'react-moment';
 
 import {
   Box,
