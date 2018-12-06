@@ -11,18 +11,15 @@ handleSubmit = (component) => {
   render() {
     return (
       <div className="landing-page">
-      <div className="block-white">
         <h1>Carrot Love</h1>
-        <p>Take care of yours plants!</p>
+        <p>The site which takes care of your plants!</p>
+      <div className="block-white">
+        <Link  to="/login">Get started</Link>
   </div>
-  <br />
-  <br />
-  <div className="flex-row">
-        <Link  to="/login">Login</Link>
-        <Link to="/signup">
-        Signup
-        </Link>
-        </div>
+  <div className="img">
+      <img className="img1" src="../../../carrot-1.png" />
+  </div>
+       
       </div>
     );
   }

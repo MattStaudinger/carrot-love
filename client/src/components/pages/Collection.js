@@ -14,16 +14,12 @@ import {
 import { AddCircle } from "grommet-icons";
 import Axios from "axios";
 
-
 class Collection extends Component {
   constructor(props) {
     super(props);
     this.state = {
       plants: [],
-      pastWateringClick: false,
-      newPlantText: [],
-      openNotification: false,
-      plantId : ""
+      plantId: ""
     };
     this.today = new Date();
     this.amountOfIntervals = 1;
@@ -35,195 +31,18 @@ class Collection extends Component {
     this.newText = [];
   }
 
-  /* handlePlantDetail(id){
-    this.props.history.push('/plant/'+id);
-  } */
-
-  handleYes(id, index) {
-    let plant = this.state.plants.filter(plant => plant._id === id);
-
-    console.log("PLANT", plant)
-console.log("STATE HANDLE", this.state.newPlantText)
-    let lastWateringDatesUpdate = [...this.state.newPlantText]
-    for (let i = 0; i<lastWateringDatesUpdate.length; i++ ) {
-      if (i === index) {
-        console.log("Length", lastWateringDatesUpdate[i])
-        lastWateringDatesUpdate[i][lastWateringDatesUpdate[i].length-1] = {
-          date: lastWateringDatesUpdate[i][lastWateringDatesUpdate[i].length-1].date, 
-          isWatered: "Yes"}
-      } 
-    }
-    let lastWateringDatesSaved = [...plant.lastWateringDate]
-    console.log("CLONE", lastWateringDatesSaved)
-  
-        for (let x=lastWateringDatesSaved.length-1; x>=0; x--){
-          if (lastWateringDatesSaved[x].isWatered === "") {
-            console.log("x",x,lastWateringDatesSaved[x].isWatered )
-          lastWateringDatesSaved[x] = {
-            date: lastWateringDatesSaved[x].date, 
-            isWatered: "Yes"}
-            }
-            break;
-
-          }
-
-        
-      console.log("new", lastWateringDatesSaved)
-
-      
-      
-   
-
-
-    // // let wateringDateArray = [];
-    // //     this.plants.forEach(plant => {
-    // //       let last = plant.lastWateringDates.length - 1;
-    // //       wateringDateArray.push(plant.lastWateringDates[last]);
-    // //     });
-
-        
-    // let plantData = {
-    //   name: plant.name,
-    //   description: plant.description,
-    //   _owner: plant._owner,
-    //   note: plant.note,
-    //   picture_url: plant.picture_url,
-    //   lastWateringDate: lastWateringDatesSaved,
-    //   watering_interval: plant.watering_interval,
-    //   starting_day: plant.startingDay
-    // };
-    // console.log("PLantData", plantData);
-
-    // api.editPlant(plantData, plant._id).then(res => console.log(res));
-
-    let plantTimeArr = this.state.newPlantText[index];
-    plantTimeArr.pop();
-
-    let newPlantTextUpdated = this.state.newPlantText.map((item, i) =>
-      i === index ? plantTimeArr : item
-    );
-    // let newPlantTextUpdated = this.state.newPlantText.filter((item, i) =>
-    //   (i === index && plant ? plantTimeArr[plantTimeArr.length - 1] : item
-    // );
-
-   
-    this.setState({
-      newPlantText: newPlantTextUpdated
-    });
-  }
-
-
-
-  handleNo(id, index) {
-    console.log("No", id);
-    let plant = this.state.plants.find(plant => plant._id === id);
-
-    console.log("PLANT", plant)
-    console.log("STATE HANDLE", this.state.newPlantText)
-    let lastWateringDatesUpdate = [...this.state.newPlantText]
-    for (let i = 0; i < lastWateringDatesUpdate.length; i++) {
-      if (i === index) {
-        console.log("Length", lastWateringDatesUpdate[i])
-        lastWateringDatesUpdate[i][lastWateringDatesUpdate[i].length - 1] = {
-          date: lastWateringDatesUpdate[i][lastWateringDatesUpdate[i].length - 1].date,
-          isWatered: "No"
-        }
-      }
-    }
-
-    let lastWateringDatesSaved = [...plant.lastWateringDate]
-    console.log("CLONE", lastWateringDatesSaved)
-
-    for (let x = lastWateringDatesSaved.length - 1; x >= 0; x--) {
-      if (lastWateringDatesSaved[x].isWatered === "") {
-        console.log("x", x, lastWateringDatesSaved[x].isWatered)
-        lastWateringDatesSaved[x] = {
-          date: lastWateringDatesSaved[x].date,
-          isWatered: "No"
-        }
-      }
-      break;
-
-    }
-
-
-
-
-    console.log("new", lastWateringDatesSaved)
-
-
-
-
-
-
-    // // let wateringDateArray = [];
-    // //     this.plants.forEach(plant => {
-    // //       let last = plant.lastWateringDates.length - 1;
-    // //       wateringDateArray.push(plant.lastWateringDates[last]);
-    // //     });
-
-
-    // let plantData = {
-    //   name: plant.name,
-    //   description: plant.description,
-    //   _owner: plant._owner,
-    //   note: plant.note,
-    //   picture_url: plant.picture_url,
-    //   lastWateringDate: lastWateringDatesSaved,
-    //   watering_interval: plant.watering_interval,
-    //   starting_day: plant.startingDay
-    // };
-    // console.log("PLantData", plantData);
-
-    // api.editPlant(plantData, plant._id).then(res => console.log(res));
-
-    let plantTimeArr = this.state.newPlantText[index];
-    plantTimeArr.pop();
-
-    let newPlantTextUpdated = this.state.newPlantText.map((item, i) =>
-      i === index ? plantTimeArr : item
-    );
-    // let newPlantTextUpdated = this.state.newPlantText.filter((item, i) =>
-    //   (i === index && plant ? plantTimeArr[plantTimeArr.length - 1] : item
-    // );
-
-
-    this.setState({
-      newPlantText: newPlantTextUpdated
-    });
-  }
-
-  handleNewDate = date => {
-    console.log(date);
-    return <div>{date}</div>;
-  };
-
-  handleDetail(id){
-    this.setState({
-      openNotification:true,
-      plantId: id
-    })
-  }
-
   render() {
-    console.log("State", this.state.newPlantText)
-    let date = this.state.newPlantText.map(item => {
-      return item.map(date => {
-        let dateConversion = new Date(date.date).toLocaleDateString()
-        return dateConversion
-      })
-    })
-    console.log("StateNEW", date)
-  
-    
     return (
       <div className="collection">
-      <Box margin='xsmall' pad='xsmall' />
-        <Box align="start" gap="small" className='fixedbutton'>
-          <Link to="/">
-            <AddCircle color="#78bc61" size='large' />
-          </Link>
-        </Box>
+        <Box margin="xsmall" pad="xsmall" />
+        {!this.props.isToggled && (
+          <Box align="start" gap="small" className="fixedbutton">
+            <Link to="/add">
+              <AddCircle color="#78bc61" size="large" />
+            </Link>
+          </Box>
+        )}
+
         <Box direction="row-responsive" wrap="true" flex="shrink">
           {this.state.plants.map((p, i) => (
             <Box
@@ -232,40 +51,26 @@ console.log("STATE HANDLE", this.state.newPlantText)
               margin="xsmall"
               height="medium"
               border={{ side: "top", color: "#78bc61", size: "medium" }}
-              /* onClick={() => this.handlePlantDetail(p._id)} */              
+              /* onClick={() => this.handlePlantDetail(p._id)} */
             >
               <Image fit="contain" src={p.picture_url} margin="xsmall">
                 {/* <Link to={`/plant/${p._id}`}>1</Link> */}
               </Image>
-              <Button onClick={() => {this.props.onClick(p._id)}}>
+              <Button
+                onClick={() => {
+                  this.props.onClick(p._id);
+                }}
+              >
                 <h3>{p.name}</h3>
               </Button>
               <Paragraph alignSelf="center">{`upcoming appointment: ${
                 p.upcomingWatering
               }`}</Paragraph>
               {/* <Paragraph alignSelf='center'>{`Did you water him  ${p.lastWatering}`}  */}
-              {console.log("p", date[i].length)}
-              {p.lastWateringDatesNumber && date[i].length > 0 && (<div>
-              <Button
-                label={date[i][date[i].length-1]}
-                color="green"
-                onClick={() => this.handleYes(p._id, i)}
-              />
-              <Button
-                label="No"
-                color="red"
-                onClick={() => this.handleNo(p._id, i)}
-              />
-              </div>
-              )}
+
               {/* </Paragraph> */}
             </Box>
           ))}
-
-                
-          <Switch>
-            <Route path="/plant/:id" component={PlantDetail} />
-          </Switch>
         </Box>
       </div>
     );
@@ -278,8 +83,6 @@ console.log("STATE HANDLE", this.state.newPlantText)
         let plantDates = plants.map(plant => {
           let startingDay = plant.starting_day;
           let interval = plant.watering_interval * this.dayInMs;
-
-
 
           //A loop to asses how many intervals are needed to "jump" to the present day
           while (startingDay + this.amountOfIntervals * interval < this.today) {
@@ -295,87 +98,72 @@ console.log("STATE HANDLE", this.state.newPlantText)
           console.log("UPcoming", upcomingWatering);
           this.amountOfIntervals = 1; // reset
           // ----------------------------------
-          
 
-          //Add new past watering dates to DB, in case it was updated since the last time the user logged in
-          // - -- - - - - - - - - - -  - - - - -
-          let i = 0;
-          let newWaterTimesInPast = [];
-          let allWaterTimesInPast = [];
-          while (startingDay + i * interval < this.today - interval) {
-            if (plant.lastWateringDate[i]) // wenn interval kleiner als heute ist und solange Element nicht schon in DB existiert
-              newWaterTimesInPast.push({
-              date: startingDay + i * interval,
-              isWatered: ""
-            });
-            i++;
-          }          
-          if (newWaterTimesInPast.length > 0) {
-            allWaterTimesInPast = [
-              ...plant.lastWateringDate,
-              ...allWaterTimesInPast
-            ];
-
-            let plantData = {
-              name: plant.name,
-              watering_interval: plant.watering_interval,
-              starting_day: plant.starting_day,
-              description: plant.description,
-              note: plant.note,
-              picture_url: plant.picture_url,
-              lastWateringDate: allWaterTimesInPast
-            };
-            api.editPlant(plantData, plant._id);
-          } else allWaterTimesInPast = plant.lastWateringDate;
-
-          //- - - - - - - - - - 
-
-         
-
-          //get all wateringDates, that haven't been answered yet by the user
-          let notAnsweredWateredTimesinPastNumber = allWaterTimesInPast.filter(
-            el => !el.isWatered
-          );
-          
-          
-
-          // //convert to string
-          // let notAsweredWateredTimesinPast = notAsweredWateredTimesinPastNumber.map(
-          //   el => new Date(el.date).toLocaleDateString()
-          // );
-
-          //the returned object that will be stored in the state
           return {
             _id: plant._id,
             name: plant.name,
             watering_interval: plant.watering_interval,
             starting_day: plant.startingDay,
             upcomingWatering: upcomingWatering,
-            lastWatering: lastWatering,
             description: plant.description,
             _owner: plant._owner,
             note: plant.note,
-            picture_url: plant.picture_url,
-            lastWateringDatesNumber: notAnsweredWateredTimesinPastNumber,
-            // lastWateringDates: notAnsweredWateredTimesinPast,
-            lastWateringDate: allWaterTimesInPast
+            picture_url: plant.picture_url
           };
         });
-        console.log("allWaterTimesInPast", plantDates)
 
-        //initalize first value to be shown as the last Watering on the website - stored in the state
-        let wateringDateArray = [];
-        plantDates.forEach(plant => { 
-          wateringDateArray.push(
-            plant.lastWateringDatesNumber
-        )});
-
-
-        this.setState({ plants: plantDates, newPlantText: wateringDateArray });
-        console.log("TEST",plantDates, "Only watering:", wateringDateArray )
+        this.setState({ plants: plantDates });
       })
       .catch(err => console.log(err));
   }
+
+  componentDidUpdate() {
+
+  
+    api
+    .getPlants()
+    .then(plants => {
+      console.log("Plants", plants);
+      let plantDates = plants.map(plant => {
+        let startingDay = plant.starting_day;
+        let interval = plant.watering_interval * this.dayInMs;
+
+        //A loop to asses how many intervals are needed to "jump" to the present day
+        while (startingDay + this.amountOfIntervals * interval < this.today) {
+          this.amountOfIntervals++;
+        }
+        //for displaying-purposes only -------------
+        let wateringTimeNumber =
+          startingDay + this.amountOfIntervals * interval;
+        let date = wateringTimeNumber + interval * -1;
+        let lastWatering = new Date(date).toLocaleDateString();
+        date = wateringTimeNumber;
+        let upcomingWatering = new Date(date).toLocaleDateString();
+        console.log("UPcoming", upcomingWatering);
+        this.amountOfIntervals = 1; // reset
+        // ----------------------------------
+
+        return {
+          _id: plant._id,
+          name: plant.name,
+          watering_interval: plant.watering_interval,
+          starting_day: plant.startingDay,
+          upcomingWatering: upcomingWatering,
+          description: plant.description,
+          _owner: plant._owner,
+          note: plant.note,
+          picture_url: plant.picture_url
+        };
+      });
+
+      //check if something has been updated  otherwise there will be an infinite loop
+      if(this.state.plants.length !== plantDates.length) {
+      this.setState({ plants: plantDates });
+      }
+    })
+    .catch(err => console.log(err));
+  }
+
 }
 
 export default Collection;

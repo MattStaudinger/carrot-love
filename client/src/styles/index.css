@@ -1,9 +1,10 @@
 /* RGB */
+@import url("https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700i,800,800i,900,900i");
 body {
   margin: 0;
   padding: 0;
   font-family: 'Josefin Sans', sans-serif;
-  color: #424b54; }
+  color: #000; }
 
 .info {
   margin: 20px;
@@ -70,12 +71,12 @@ body {
   text-align: center; }
   .App .App-header {
     background-color: #78bc61;
-    padding: 20px 0;
+    padding: 15px 0;
     color: white;
     width: 100%;
     position: fixed;
-    margin-bottom: 100px;
-    z-index: 1001; }
+    z-index: 1001;
+    top: 0; }
     .App .App-header .HomeButton {
       margin-right: 10%; }
       .App .App-header .HomeButton :hover {
@@ -101,7 +102,7 @@ body {
   background-color: #78bc61;
   height: 95vh;
   width: 100vw;
-  color: #f1f7ed;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -112,14 +113,14 @@ body {
     width: 300px;
     height: 50px;
     font-size: 20px;
-    color: #424b54; }
+    color: #000; }
   .Home .radio-buttons {
     width: 400px; }
   .Home .btn-submit {
     width: 150px;
     height: 30px;
     margin-top: 20px;
-    background-color: #f1f7ed;
+    background-color: #fff;
     border-radius: 20px; }
 
 #root {
@@ -168,24 +169,188 @@ edit-plant {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 95vh;
-  color: #f1f7ed; }
+  height: 100vh;
+  color: #fff;
+  z-index: 2; }
+  .landing-page h1 {
+    font-size: 4em;
+    margin-bottom: 0;
+    z-index: 2; }
   .landing-page img {
-    object-fit: cover; }
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center; }
+  .landing-page .img1 {
+    object-fit: contain;
+    width: 300px;
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    z-index: 1;
+    left: 5%; }
   .landing-page a {
     text-decoration: none;
-    color: #424b54;
-    background: white;
+    background-color: #F4743B;
     padding: 20px;
-    border: 2px solid #78bc61;
-    border-radius: 20%; }
+    border-radius: 10%;
+    margin: 30px;
+    color: #fff;
+    z-index: 2;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
   .landing-page .flex-row {
     display: flex;
     justify-content: center;
     flex-direction: row; }
-    .landing-page .flex-row a {
-      margin: 10px; }
   .landing-page .block-white {
-    border: 2px solid #f1f7ed;
-    padding: 40px;
-    border-radius: 70%; }
+    z-index: 2; }
+  .landing-page p {
+    margin-bottom: 40px;
+    font-weight: 50;
+    z-index: 2;
+    border-bottom: 1px solid #fff; }
+
+.input {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.4em; }
+
+.addPlantView2 .user-input {
+  border: none;
+  border-bottom: 1px solid #fff;
+  background: transparent;
+  color: white;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.4em; }
+
+.addPlantView2 .margin {
+  margin-top: 30px; }
+
+.addPlantView2 .margin-btn {
+  margin-top: 60px; }
+
+.addPlantView {
+  background-color: #78bc61;
+  height: 98vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  color: #fff; }
+  .addPlantView .checkbox {
+    background: green;
+    width: 400px;
+    height: 100px;
+    line-height: 100px;
+    color: white;
+    text-align: center; }
+  .addPlantView input[type=checkbox]:checked ~ div {
+    background: red; }
+  .addPlantView .radio-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    margin: 20px 0; }
+  .addPlantView .checkbox-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0 20px; }
+  .addPlantView .center {
+    border-top: 1px solid #fff;
+    padding: 10px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 60vw; }
+  .addPlantView h2 {
+    margin-bottom: 20px;
+    color: #fff; }
+  .addPlantView .btn-submit {
+    margin-top: 20px;
+    width: 100px;
+    height: 60px;
+    border-radius: 10%;
+    font-size: 1.8em;
+    color: #000; }
+  .addPlantView .btn-back {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1002; }
+
+label {
+  display: inline-block;
+  color: #fff;
+  cursor: pointer;
+  position: relative; }
+  label div {
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+    transform-origin: center;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    vertical-align: -6px;
+    margin-right: 10px;
+    transition: background-color 150ms 200ms, transform 350ms cubic-bezier(0.78, -1.22, 0.17, 1.89); }
+    label div:before {
+      content: "";
+      width: 0px;
+      height: 2px;
+      border-radius: 2px;
+      background: #fff;
+      position: absolute;
+      transform: rotate(45deg);
+      top: 13px;
+      left: 9px;
+      transition: width 50ms ease 50ms;
+      transform-origin: 0% 0%; }
+    label div:after {
+      content: "";
+      width: 0;
+      height: 2px;
+      border-radius: 2px;
+      background: #fff;
+      position: absolute;
+      transform: rotate(305deg);
+      top: 16px;
+      left: 10px;
+      transition: width 50ms ease;
+      transform-origin: 0% 0%; }
+  label:hover div:before {
+    width: 5px;
+    transition: width 100ms ease; }
+  label:hover div:after {
+    width: 10px;
+    transition: width 150ms ease 100ms; }
+
+input[type="checkbox"] {
+  display: none; }
+  input[type="checkbox"]:checked + label div {
+    background-color: #fff;
+    transform: scale(1.25); }
+    input[type="checkbox"]:checked + label div:after {
+      width: 10px;
+      background: #1790b5;
+      transition: width 150ms ease 100ms; }
+    input[type="checkbox"]:checked + label div:before {
+      width: 5px;
+      background: #1790b5;
+      transition: width 150ms ease 100ms; }
+  input[type="checkbox"]:checked + label:hover div {
+    background-color: #fff;
+    transform: scale(1.25); }
+    input[type="checkbox"]:checked + label:hover div:after {
+      width: 10px;
+      background: #1790b5;
+      transition: width 150ms ease 100ms; }
+    input[type="checkbox"]:checked + label:hover div:before {
+      width: 5px;
+      background: #1790b5;
+      transition: width 150ms ease 100ms; }

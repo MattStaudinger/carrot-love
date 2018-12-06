@@ -39,7 +39,7 @@ handleChangePicture (e, inputName) {
 }
 
 fuckingloading(){
-  this.props.history.push('/collection')
+  this.props.history.push('/home')
 }
 
   handleSubmit(event) {
@@ -54,13 +54,13 @@ fuckingloading(){
     }
 
 
-    console.log("STATE", startingDateInMs)
+    console.log("STATE", startingDateInMs, typeof(startingDateInMs))
 
     let plantData = {
         _id: this.state._id,
         name: this.state.name,
         watering_interval: this.state.watering_interval,
-        starting_date: startingDateInMs,
+        starting_day: startingDateInMs,
         _owner: this.state._owner,
         description: this.state.description,
         note: this.state.note,

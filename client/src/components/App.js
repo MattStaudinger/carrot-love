@@ -31,7 +31,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-          <Navbar />
+          <Navbar onClick={() => this.handleHome()}/>
         <Switch>
         <Route path="/" exact component={LandingPage} />}
         {api.isLoggedIn() && <Route path="/add" exact component={AddPlant} />}

@@ -30,7 +30,8 @@ class PlantDetail extends Component {
     console.log("deleted!")
     api.deletePlant(this.state.plantdetails._id)
     .then(res => {
-      this.props.history.push('/collection')
+      console.log(this.props.history)
+      this.props.onClick()
     })
     .catch(err => console.log(err)) 
     }
@@ -43,7 +44,7 @@ class PlantDetail extends Component {
   render() {
     return (
       <Box>
-        <Button onClick={() => {this.props.onClick()}} icon={<CaretPrevious color="green" />}></Button>
+        <Button onClick={() => {this.props.onClick()}} icon={<CaretPrevious color="white" />}></Button>
       <Box responsive='true' direction="row-responsive" justify='between' background='#78bc61'>
        <Box margin={{"top":"100px"}} height="medium" flex='true'>
          <Image fit='contain' src={this.state.plantdetails.picture_url} alt={this.state.plantdetails.name}/>

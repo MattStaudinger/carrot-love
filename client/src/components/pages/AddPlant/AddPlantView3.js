@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import Input from "../../input/Input";
 import { Box, Calendar, Button, Grommet, Heading, Text } from "grommet";
 
+import { Previous } from "grommet-icons";
+
+
+
 class AddPlantView3 extends Component {
   constructor(props) {
     super(props);
@@ -31,17 +35,19 @@ class AddPlantView3 extends Component {
 
   render() {
     return (
-      <div className="AddPlantView3">
-            <h2>When do you want to start?</h2>
+      <div className="addPlantView3">
+      <div className="center">
+            <h2>What day do you want to start watering?</h2>
             <Calendar
           date={this.state.starting_day}
           onSelect={this.onSelect}
           size="medium"
-          alignSelf="center"
           bounds={["2018-01-08", "2019-12-13"]}
         />
-            <Button label="Add" className="btn-submit" onClick={() => this.handleSubmit(this.state.starting_day)} />
-            <Button label="Back" className="btn-submit" onClick={() => this.handleGoBack()}/>
+
+            <Button margin="5px" label="Add" color="white" className="btn-submit" onClick={() => this.handleSubmit(this.state.starting_day)} />
+</div>
+            <Button className="btn-back" icon={<Previous color="white" size='medium' />} onClick={() => this.handleGoBack()}/>
 
       </div>
     );

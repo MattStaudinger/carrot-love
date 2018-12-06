@@ -75,12 +75,6 @@ export default {
     .catch(errHandler)
   },
 
-  postPlants(data) {
-    return service
-      .post('/countries', data)
-      .then(res => res.data)
-      .catch(errHandler)
-  },
 
   deletePlant(id) {
     return service

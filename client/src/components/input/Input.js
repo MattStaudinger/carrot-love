@@ -3,8 +3,8 @@ import React, { Component } from 'react';
 class Input extends Component {
   render() {                
     return (
-      <div className="button">
-      <input type={this.props.type} value={this.props.value} className={this.props.className} onChange={this.props.onChange} />
+      <div className="input">
+      <input type={this.props.type} value={this.props.value} onChange={this.props.onChange} />
       </div>
     );
   }

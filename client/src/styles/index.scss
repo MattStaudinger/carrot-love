@@ -8,6 +8,90 @@ $white: rgba(241, 247, 237, 1);
 $blue: rgba(126, 196, 211, 1);
 $black: rgba(66, 75, 84, 1);
 
+////////////////////
+/// Typhography ///
+//
+// Font Family
+$font-family: Montserrat;
+//
+// Font Weights
+$fw-300: 300;
+$fw-400: 400;
+$fw-500: 500;
+$fw-600: 600;
+//
+// Font Size
+$fs-small: 12px;
+$fs-medium: 14px;
+$fs-default: 16px;
+$fs-large: 18px;
+$fs-extra-large: 24px;
+//
+////////////////////
+///    colors   /// 
+//
+// Base Colors
+$white: #fff;
+$black: #000;
+$gray: #333;
+$puple: #b95ed5;
+$pink: #f79494;
+//
+// Text Colors
+$font-white: $white;
+$font-black: $black;
+$font-gray: $gray;
+$font-puple: $puple;
+$font-pink: $pink;
+//
+// Background Colors
+$background-white: $white;
+$background-black: $black;
+$background-gray: $gray;
+$background-puple: $puple;
+$background-pink: $pink; 
+//
+// Border Colors
+$border-white: $white;
+$border-black: $black;
+$border-gray: $gray;
+$border-pink: $pink;
+
+// Create mixin for font-weight and font-size properties
+@mixin custom-font($fontsize, $fontweight) {
+    font-weight: $fontweight;
+    font-size: $fontsize;
+}
+
+// Create mixin for transition property
+@mixin transition($time, $type, $property) {
+    transition: $time $type $property;
+    -moz-transition: $time $type $property;
+    -webkit-transition: $time $type $property;
+}
+
+// Create mixin for transition property with transition dela
+@mixin transition-with-delay($tim, $dela, $typ, $propert) {
+    transition: $tim $dela $typ $propert;
+    -moz-transition: $tim $dela $typ $propert;
+    -webkit-transition: $tim $dela $typ $propert;
+}
+
+// Create mixin for border-radius property
+@mixin border-radius($radius) {
+    border-radius: $radius;
+    -moz-border-radius: $radius;
+    -webkit-border-radius: $radius;
+}
+
+// Create mixin for transition property
+@mixin box-shadow($shadow) {
+    box-shadow: $shadow;
+    -moz-box-shadow: $shadow;
+    -webkit-box-shadow: $shadow;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Montserrat:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700i,800,800i,900,900i');
 // ----------------------------------------
 // To install Boostrap:
 // 1) Run in the client folder: $ npm i bootstrap
@@ -101,12 +185,12 @@ body {
 
   .App-header {
       background-color: $green;
-      padding: 20px 0;
+      padding: 15px 0;
       color: white;
       width: 100%;
       position: fixed;
-      margin-bottom: 100px;
       z-index: 1001;
+      top:0;
 
     .HomeButton{
       margin-right: 10%;
@@ -242,19 +326,44 @@ edit-plant{
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height:95vh;
+  height:100vh;
   color: $white;
+  z-index: 2;
+
+  h1{
+    font-size: 4em;
+    margin-bottom: 0;  
+    z-index: 2;
+
+
+  }
 
   img{
-    object-fit: cover;
+height:100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+  }
+
+  .img1{
+    object-fit: contain;
+    width: 300px;
+    position: absolute;
+    padding: 20px;
+    top: 0;
+    z-index: 1;
+    left: 5%;
+
   }
   a{
     text-decoration: none;
-    color: $black;
-    background: white;
-    padding:20px;
-    border:2px solid $green;
-    border-radius: 20%;
+    background-color: #F4743B;
+    padding: 20px;
+    border-radius: 10%;
+    margin: 30px;
+    color: $white;
+    z-index: 2;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 
   }
 
@@ -263,18 +372,244 @@ edit-plant{
     justify-content: center;
     flex-direction: row;
 
-    a{
-      margin: 10px;
-    }
   }
 
   .block-white{
-    // height:10vh;
-    // background-color: $white;
-    // width: 100vw;
-    border:2px solid $white;
-    padding: 40px;
-    border-radius: 70%;
+  //   // height:10vh;
+  //   // background-color: $white;
+  //   padding: 30px;
+  //   border-radius: 10%;
+  //   z-index: 2;
+  //   background-color: #F4743B;
+  //   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 2;
+  
+}
+    p{
+      margin-bottom: 40px;  
+      font-weight: 50;
+      z-index: 2;
+      border-bottom: 1px solid $white;
+    }
   }
 
+
+.input{
+  font-family: 'Josefin Sans', sans-serif;
+font-size: 1.4em;
+}
+
+
+.addPlantView2{
+  .user-input{
+    border: none;
+    border-bottom: 1px solid $white;
+    background: transparent;
+    color: white;
+    font-family: 'Josefin Sans', sans-serif;
+font-size: 1.4em;
+  }
+  .margin{
+    margin-top:30px;
+  }
+  .margin-btn{
+    margin-top: 60px;
+  }
+}
+
+.addPlantView{
+  background-color: $green;
+  height: 98vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 20px;
+  color: $white;
+
+  // input[type=checkbox] {
+  //   width: 30px;
+  //   height: 30px;
+  //   position: absolute;
+  //   top: -9999px;
+  //   left: -9999px;
+  
+  // }
+
+  .checkbox{
+    background: green;
+   width: 400px;
+   height: 100px;
+   line-height: 100px;
+   color: white;
+   text-align: center;
+  }
+
+  input[type=checkbox]:checked ~ div {
+    background: red;
+ }
+
+  .radio-buttons{
+    display: flex;
+    flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  margin: 20px 0;
+  }
+  .checkbox-container{
+    display: flex;
+    flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 20px;
+  }
+  
+  .center{
+    // width:600px;
+    border-top: 1px solid $white;
+    padding: 10px 0;
+    display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  max-width: 60vw;
+
+  }
+    h2{
+      margin-bottom: 20px;
+      color: $white;
+    }
+
+    .btn-submit{
+      margin-top:20px;
+      width: 100px;
+      height: 60px;
+      border-radius: 10%;
+      font-size: 1.8em;
+      color: $black
+    }
+
+    .btn-back{
+      position: absolute;
+      top:10px;
+      left: 10px;
+      z-index: 1002;
+      // border-radius: 50%;
+      // border: 1.5px solid $white;
+
+    }
+}
+
+label {
+  display: inline-block; // to make it easier to click
+  color: #fff;
+  cursor: pointer;
+  position: relative; // important
+
+  // Now we'll create the checkbox object
+
+  div {
+    display: inline-block;
+    position: relative;
+    background-color: transparent;
+    width: 25px;
+    height: 25px;
+    transform-origin: center;
+    border: 2px solid #fff;
+    border-radius: 50%;
+    vertical-align: -6px;
+    margin-right: 10px;
+    transition: background-color 150ms 200ms, transform 350ms cubic-bezier(.78,-1.22,.17,1.89); // custom ease effect for bouncy animation
+
+// Now we'll create the "tick" using pseudo elements - those will be basically two lines that will be rotated to form the "tick"
+
+  &:before {
+    content: "";
+    width: 0px;
+    height: 2px;
+    border-radius: 2px; // so that the tick has nice rounded look
+    background: #fff;
+    position: absolute;
+    transform: rotate(45deg);
+    top: 13px; // you'll need to experiment with placement depending on the dimensions you've chosen
+    left: 9px; // you'll need to experiment with placement depending on the dimensions you've chosen
+    transition: width 50ms ease 50ms;
+    transform-origin: 0% 0%;
+  }
+
+  &:after {
+    content: "";
+    width: 0;
+    height: 2px;
+    border-radius: 2px; // so that the tick has nice rounded look
+    background: #fff;
+    position: absolute;
+    transform: rotate(305deg);
+    top: 16px; // you'll need to experiment with placement depending on the dimensions you've chosen
+    left: 10px; // you'll need to experiment with placement depending on the dimensions you've chosen
+    transition: width 50ms ease;
+    transform-origin: 0% 0%;
+  }
+}
+// Time to add some life to it
+
+&:hover {
+  div {
+    &:before {
+      width: 5px;
+      transition: width 100ms ease;
+    }
+    
+    &:after {
+      width: 10px;
+      transition: width 150ms ease 100ms;
+    }
+  }
+}
+}
+
+input[type="checkbox"] {
+  display: none; // hide the system checkbox
+
+// Let's add some effects after the checkbox is checked
+
+&:checked {
+  + label {
+    div {
+      background-color: #fff;
+      transform: scale(1.25); // enlarge the box
+      
+      &:after {
+        width: 10px;
+        background: #1790b5;
+        transition: width 150ms ease 100ms; // enlarge the tick
+      }
+      
+      &:before {
+        width: 5px;
+        background: #1790b5;
+        transition: width 150ms ease 100ms; // enlarge the tick
+      }
+    }
+    
+    &:hover { // copy the states for onMouseOver to avoid flickering
+      div {
+        background-color: #fff;
+        transform: scale(1.25); // enlarge the box
+
+        &:after {
+          width: 10px;
+          background: #1790b5;
+          transition: width 150ms ease 100ms; // enlarge the tick
+        }
+
+        &:before {
+          width: 5px;
+          background: #1790b5;
+          transition: width 150ms ease 100ms; // enlarge the tick
+        }
+      }  
+    }
+  }
+}
 }

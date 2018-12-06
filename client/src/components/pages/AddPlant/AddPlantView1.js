@@ -1,7 +1,6 @@
-import Button from "../../button/Button";
 import axios from "axios";
 import { Search } from "grommet-icons";
-import { Box, Grommet, Text, TextInput } from "grommet";
+import { Box, Grommet, Text, TextInput, Button } from "grommet";
 import React, { createRef, Component } from "react";
 import { grommet } from "grommet/themes";
 import { deepMerge } from "grommet/utils";
@@ -129,9 +128,9 @@ class AddPlantView1 extends Component {
     const { suggestionOpen } = this.state;
 
     return (
-      <div className="AddPlantView1 Home">
-        <h1>Carrot Love</h1>
-        <p>What plants do you want to water?</p>
+      <div className="AddPlantView1">
+      <div className="center">
+        <h2>Write your name of the plant you want to water</h2>
 
         <Grommet theme={myCustomTheme} auto>
           <Box fill align="center" pad='small' flex-shrink="true" background='#78bc61'>
@@ -177,12 +176,11 @@ class AddPlantView1 extends Component {
         </Grommet>
 
         <Button
-          className="btn-submit"
-          name="view1"
+          label="Add" color="white" className="btn-submit"
           onClick={() => this.handleSubmit(this.state.name)}
-        >
-          Go
-        </Button>
+        />
+        
+      </div>
       </div>
     );
   }

@@ -10,12 +10,13 @@ import CalenderView from './Calender';
 import PlantDetail from './PlantDetail';
 import EditPlant from './EditPlant';
 
-export default class HorizontalCollapsible extends Component {
+export default class Home extends Component {
   constructor(props){
     super(props);
     this.state = {
       openNotification: false,
-      plantId : ""
+      plantId : "",
+      isDeleted: false
     };
     this.handleDetail = this.handleDetail.bind(this)
     this.handleClose = this.handleClose.bind(this)
@@ -31,6 +32,7 @@ export default class HorizontalCollapsible extends Component {
   handleClose(){
     this.setState({
       openNotification:false,
+      isDeleted : true
     })
   }
 
@@ -48,12 +50,12 @@ export default class HorizontalCollapsible extends Component {
            
        <Button
               onClick={() =>
-                this.setState({ openNotification: !openNotification })
+                this.setState({ openNotification: !openNotification, isDeleted:false })
               }
               icon={<CaretPrevious
                 color="green" />}
             />
-      <Collection onClick={this.handleDetail}/>
+      <Collection isToggled={this.state.openNotification} onClick={this.handleDetail}/>
 
             </Box>
             <Collapsible direction="horizontal" open={openNotification}>

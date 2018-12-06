@@ -151,7 +151,7 @@ today.getMilliseconds(0);
 
   render() {
     return (
-      <div className="AddPlantView">
+      <div className="addPlantView">
       
         {!this.state.view1Clicked && (
           <AddPlantView1 onClick={this.handleNameSubmit} />
