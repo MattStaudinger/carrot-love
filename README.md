@@ -6,14 +6,13 @@ A website the user can check the upcoming watering times for their plants.
 Adding plants to his collection, he can make notes for each of them and get the latest watering times and reminder.
 ## Technologies used
 * React
-* Node.js
-* HTML & CSS
-* Sass
-* Express.js
+* HTML & Sass
+* Grommet.io
 * Google API & Farmbox API
+* Node.js
+* Express.js
 * passport.js
 * MongoDB
-* Grommet.io
 
 
 
