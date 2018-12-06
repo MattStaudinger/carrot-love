@@ -40,7 +40,7 @@ class PlantDetail extends Component {
   
   render() {
     return (
-      <Box background='white'>
+      <Box background='white' >
         <Box>
         <Button onClick={() => {this.props.onClick()}} icon={<CaretPrevious />}/>
         </Box>
@@ -56,7 +56,7 @@ class PlantDetail extends Component {
           <Button fill margin={{'top':'xsmall'}} color='#78bc61' onClick={this.handleClick}label={this.state.plantdetails.name+' died'} icon={<Trash color='#78bc61' />} />
          </Box>
        </Box>
-       <Box basis='large' flex='true' margin={{"top":"75px"}} alignSelf='center'>
+       <Box basis='large' flex='true' margin={{"top":"75px", "bottom":"75px"}} alignSelf='center'>
          <Paragraph>
           <Heading level='4' margin='xsmall'>next water appointment:</Heading>
             WIP</Paragraph>
@@ -68,8 +68,6 @@ class PlantDetail extends Component {
          {this.state.plantdetails.note &&<Paragraph><Heading level='4' margin='xsmall'>Notes:</Heading>
          {this.state.plantdetails.note}</Paragraph>}
        </Box>
-       <Box>
-      </Box>
       </Box>
       </Box>
     );

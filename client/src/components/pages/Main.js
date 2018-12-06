@@ -82,6 +82,7 @@ className="collapsible"                /* background="light-2" */
           </Box>
         </Box>
       </Grommet>
+      <footer></footer>
       </div>
     );
   }

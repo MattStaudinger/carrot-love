@@ -100,56 +100,63 @@ onSelect = nextDate => {
       <br/>
       <input type="file" onChange={(e)=>this.handleChangePicture(e, "image")} icon={<Edit color='#78bc61' />}/>
       <br/>
-        <label>
-          Name:
+      <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center'}}>
+          <h3>Name:</h3>
           <TextInput
             name="name"
             type="string"
             value={this.state.name}
-            onChange={(e)=> this.handleChange(e, "name")} />
-        </label>
+            onChange={(e)=> this.handleChange(e, "name")}
+            className='smallW'
+            />
+      </div>
         <br />
-        <label>
-          Watering Interval:
-          <input
+      <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center'}}>
+          <h3>Watering Interval:</h3>
+          <TextInput
             name="watering_interval"
             type="number"
             placeholder={this.state.watering_interval}
             value={this.state.watering_interval}
-            onChange={(e)=> this.handleChange(e, "watering_interval")} />
-        </label>
+            onChange={(e)=> this.handleChange(e, "watering_interval")}
+            className='smallW' />
+      </div>
         <br />
         <Box>
+          <h3>Starting date:</h3>
         <Calendar
           date={this.state.starting_date}
           onSelect={this.onSelect}
-          size="medium"
+          size="small"
           alignSelf="center"
           bounds={["2018-01-08", "2019-12-13"]}
         />
         </Box>
         <br />
-        <label>
-          Note:
+        <h3>Note:</h3>
+      <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center'}}>
           <TextArea
             name="note"
             type="string"
             value={this.state.note}
-            onChange={(e)=> this.handleChange(e, "note")} />
-        </label>
+            onChange={(e)=> this.handleChange(e, "note")}
+            className='smallWnote' />
+            </div>
         <br />
-        <label>
-          Description:
-          <TextArea
+        <h3>Description:</h3>
+      <div style={{display:'flex', flexWrap:'wrap', justifyContent:'center'}}>
+        <TextArea
             name="description"
             type="string"
             value={this.state.description}
-            onChange={(e)=> this.handleChange(e, "description")} />
-        </label>
+            onChange={(e)=> this.handleChange(e, "description")} 
+            className='smallWdesc'/>
+        </div>
         <br />
         <Button color='$green' label='Submit changes' type="submit" value="Submit" icon={<Send color='#78bc61' />}/>
       </form>
     </div>
+    <footer></footer>
     </Grommet>
     );
   }
