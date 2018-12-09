@@ -130,7 +130,7 @@ class AddPlantView1 extends Component {
     return (
       <div className="AddPlantView1">
       <div className="center">
-        <h2>Write your name of the plant you want to water</h2>
+        <h2>Write the name of the plant you want to water</h2>
 
         <Grommet theme={myCustomTheme} auto>
           <Box fill align="center" pad='small' flex-shrink="true" background='#78bc61'>
