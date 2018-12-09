@@ -30,6 +30,7 @@ class Signup extends Component {
   }
 
   handleClick(e) {
+    console.log("CLICK")
     e.preventDefault()
     let data = {
       username: this.state.username,
@@ -39,7 +40,7 @@ class Signup extends Component {
     api.signup(data)
       .then(result => {
         console.log('SUCCESS!')
-        this.props.history.push("/home") // Redirect to the home page
+        this.props.history.push("/add") // Redirect to the home page
       })
       .catch(err => this.setState({ message: err.toString() }))
   }
@@ -96,7 +97,7 @@ class Signup extends Component {
           </a>
           </Button>
           </Box >
-          <Button color="rgba(120, 188, 97, 1)"  label="Login"  onClick={(e) => this.handleClick(e)} />
+          <Button color="rgba(120, 188, 97, 1)"  label="Signup"  onClick={(e) => this.handleClick(e)} />
           </Box>
           <Box>
           <p>Already signed up? <Link to="/login">Login</Link></p>
