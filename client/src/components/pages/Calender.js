@@ -1,24 +1,7 @@
 import React, { Component, createRef } from "react";
 import api from "../../api";
-import { Route, Link, Switch } from "react-router-dom";
-import PlantDetail from "./PlantDetail";
-import Waypoint from "react-waypoint";
-import { grommet } from "grommet/themes";
-import { Add, Close, FormClose, StatusGood, Trash, Mail } from "grommet-icons";
-import {
-  Box,
-  Button,
-  FormField,
-  Grommet,
-  Heading,
-  Layer,
-  Drop,
-  Select,
-  Text,
-  TextArea,
-  TextInput,
-  InfiniteScroll
-} from "grommet";
+
+import { InfiniteScroll } from "grommet";
 
 class Calender extends Component {
   constructor(props) {
@@ -59,13 +42,15 @@ class Calender extends Component {
         <InfiniteScroll step={10} items={this.state.plants}>
           {(plant, index) => (
             <div
-              className="calender-box" 
-              style={index > 0 &&
+              className="calender-box"
+              style={
+                index > 0 &&
                 this.state.plants[index - 1].wateringTimeString !==
-                  plant.wateringTimeString ? {borderTop:"1px solid rgb(196, 196, 196)"} : null }
+                  plant.wateringTimeString
+                  ? { borderTop: "1px solid rgb(196, 196, 196)" }
+                  : null
+              }
             >
-            
-
               {index === 0 && (
                 <span className="day">
                   <p>{plant.wateringTimeString}</p>
@@ -97,7 +82,6 @@ class Calender extends Component {
   }
 
   componentDidMount() {
-    console.log("DIDMOUNT");
     api
       .getPlants()
       .then(plants => {
@@ -148,14 +132,12 @@ class Calender extends Component {
         });
 
         plantSorted.sort((a, b) => a.wateringTimeNumber - b.wateringTimeNumber);
-        console.log("Sorted? ", plantSorted);
         this.setState({ plants: plantSorted });
       })
       .catch(err => console.log(err));
   }
   componentDidUpdate() {
     if (this.props.isUpdated) {
-      console.log("DIDMOUNT");
       api
         .getPlants()
         .then(plants => {

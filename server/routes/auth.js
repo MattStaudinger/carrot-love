@@ -9,12 +9,6 @@ const nodemailer = require('nodemailer');
 var cron = require('cron');
 const webpush = require("web-push")
 
-// new CronJob('* * * * * *', function() {
-//   console.log('You will see this message every second');
-// }, null, true, 'America/Los_Angeles');
-
-
-
 router.post("/signup", (req, res, next) => {
   const { username, password, email } = req.body
 
@@ -141,7 +135,6 @@ router.get("/logout", (req, res) => {
 
 router.post('/mail-notification', (req, res, next) => {
   let { email, dates } = req.body;
-  console.log(email)
   let message="Hi"
   let subject="Greeting"
   let transporter = nodemailer.createTransport({
@@ -167,7 +160,6 @@ router.post('/mail-notification', (req, res, next) => {
 let time = new Date()
 //starting of Job at the time the user has entered
 new cron.CronJob(time, function() {
-  console.log("Test")
 x.start()}, null, true, 'Europe/London')
 
 })

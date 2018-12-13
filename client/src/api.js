@@ -84,14 +84,12 @@ export default {
   },
 
   addPlant(plantData) {
-    console.log("Api", plantData)
     return service
     .post("/plant", plantData)
     .then (res => res.data) 
   },
 
   editPlant(plantData, id) {
-    console.log("Api",id )
     return service
     .put(`/plant/${id}`, plantData)
     .then (res => res.data)
@@ -101,7 +99,6 @@ export default {
   addPicture(file, id) {
     const formData = new FormData();
     formData.append("picture", file)
-    console.log('DEBUG formData', formData.get("picture"));
     return service
       .post(`/plant/picture/${id}`, formData, {
         headers: {
@@ -113,7 +110,6 @@ export default {
   },
 
   getFarmboxPlants(searchWord){
-    console.log("API")
     axios.get(`https://openfarm.cc/api/v1/crops?filter=${searchWord}`)
     .then(plant => plant.data)
   },

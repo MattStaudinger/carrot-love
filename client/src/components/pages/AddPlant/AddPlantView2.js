@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import Input from "../../input/Input";
-import { Box, Grommet, Text, TextInput, FormField, Button, CheckBox } from "grommet";
+import { Button } from "grommet";
 import { Previous } from "grommet-icons";
 
 
@@ -34,7 +33,6 @@ class Home extends Component {
       for (let i = 0; i < 3; i++) {
         checkBox[i] = this.checkBox[i].current;
       }
-      let inputUser = Math.round(e.target.value)
         this.setState({
           watering_interval_input: e.target.value,
           checkedBoxes: false,
@@ -74,7 +72,6 @@ class Home extends Component {
 }
 
 handleImgError = () => {
-  console.log("ERROR IMG", this.props.img)
   this.props.onError();
 }
 
@@ -82,7 +79,7 @@ handleImgError = () => {
   render() {
     return (
       <div className="addPlantView2">
-      <img className="hidden" onError={this.handleImgError} src={this.props.img} />
+      <img className="hidden" onError={this.handleImgError} alt="hidden from user" src={this.props.img} />
       <div className="center">
             <h2>How often you want to water your beloved one?</h2>
             <div className="radio-buttons">
@@ -92,7 +89,6 @@ handleImgError = () => {
                 ref={this.checkBox1}
                 onChange={e => this.handleCheckbox(e,0)}
                 type="checkbox"
-                name="watering_interval"
                 value="1"
                 id="check-1"
                 name="check"
@@ -112,7 +108,6 @@ handleImgError = () => {
                 name="watering_interval"
                 value="2"
                 id="check-2"
-                name="check"
               />
               <label  for="check-2">
           <div></div>every 2nd day
@@ -125,7 +120,6 @@ handleImgError = () => {
               <input ref={this.checkBox3}
                 onChange={e => this.handleCheckbox(e,2)}
                 type="checkbox"
-                name="watering_interval"
                 value="7"
                 id="check-3"
 

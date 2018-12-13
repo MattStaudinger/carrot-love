@@ -3,14 +3,11 @@ import api from '../../api';
 import { Link } from 'react-router-dom';
 
 import {
-  Grommet,
   FormField,
   TextInput,
   Button,
-  Heading,
   Box,
-  Image,
-} from "grommet";
+  } from "grommet";
 
 class Signup extends Component {
   constructor(props) {
@@ -30,7 +27,6 @@ class Signup extends Component {
   }
 
   handleClick(e) {
-    console.log("CLICK")
     e.preventDefault()
     let data = {
       username: this.state.username,
@@ -39,7 +35,6 @@ class Signup extends Component {
     }
     api.signup(data)
       .then(result => {
-        console.log('SUCCESS!')
         this.props.history.push("/add") // Redirect to the home page
       })
       .catch(err => this.setState({ message: err.toString() }))
@@ -93,7 +88,7 @@ class Signup extends Component {
           margin="medium">
           <Button >
           <a href={api.service.defaults.baseURL+"/auth/google"}> 
-          <img  style={{width:"200px"}} src="../../../btn_google_signin_light_normal_web@2x.png" />
+          <img  style={{width:"200px"}} src="../../../btn_google_signin_light_normal_web@2x.png" alt="google-login"/>
           </a>
           </Button>
           </Box >

@@ -1,5 +1,4 @@
-import { Box, Grommet, Button, Text, TextInput } from "grommet";
-import React, { createRef, Component } from "react";
+import React, { Component } from "react";
 import { Link } from 'react-router-dom';
 import api from '../../api';
 
@@ -18,7 +17,7 @@ handleSubmit = (component) => {
         <Link  to={api.isLoggedIn() ? "/home" : "/login"}>Get started</Link>
   </div>
   <div className="img">
-      <img className="img1" src="../../../carrot-1.png" />
+      <img className="img1" src="../../../carrot-1.png" alt="plant"/>
   </div>
        
       </div>

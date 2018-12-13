@@ -56,7 +56,6 @@ class AddPlantView1 extends Component {
     } else {
       for (let plantNo = 0; plantNo < this.plantData.length; plantNo++) {
         if (this.plantData[plantNo].name.toLowerCase() === name.toLowerCase()) {
-          console.log("inside loop", this.plantData);
           plant = this.plantData[plantNo];
           break;
         }
@@ -79,7 +78,6 @@ class AddPlantView1 extends Component {
     this.setState({ name: inputUser });
 
     axios.get(url).then(plants => {
-      console.log(plants);
       this.plantData = plants.data.data.map(plant => ({
         name: plant.attributes.name,
         description: plant.attributes.description,

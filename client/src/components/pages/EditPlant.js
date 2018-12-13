@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import api from '../../api';
-import { TextArea, TextInput, Box, Calendar, Button, Grommet, Heading, Text } from "grommet";
+import { TextArea, TextInput, Box, Calendar, Button, Grommet } from "grommet";
 import { grommet } from "grommet/themes";
-import { Send, Edit } from 'grommet-icons';
+import { Send } from 'grommet-icons';
 
 
 class EditPlant extends Component {
@@ -56,7 +56,6 @@ fuckingloading(){
     }
 
 
-    console.log("STATE", startingDateInMs, typeof(startingDateInMs))
 
     let plantData = {
         _id: this.state._id,
@@ -96,7 +95,7 @@ onSelect = nextDate => {
       <Grommet full theme={grommet}>
       <div className="edit-plant">
       <form onSubmit={this.handleSubmit}>
-      <img src={this.state.picture_url} style={{height: "200px"}}/>
+      <img src={this.state.picture_url} style={{height: "200px"}} alt={this.state.name}/>
       <br/>
       {/* <input type="file" onChange={(e)=>this.handleChangePicture(e, "image")} icon={<Edit color='#78bc61' />}/> */}
       
@@ -169,9 +168,7 @@ onSelect = nextDate => {
   componentDidMount() {
     api.getPlantDetail(this.props.match.params.name)
       .then(plant => {
-        console.log(plant)
         let startingDayConverted = new Date(plant.starting_day).toISOString()
-        console.log("DIDMOUNT", startingDayConverted, plant)
         this.setState({
           _id: plant._id,
           name: plant.name,

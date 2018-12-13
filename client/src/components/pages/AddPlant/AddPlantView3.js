@@ -1,10 +1,6 @@
 import React, { Component } from "react";
-import Input from "../../input/Input";
-import { Box, Calendar, Button, Grommet, Heading, Text } from "grommet";
-
+import { Calendar, Button } from "grommet";
 import { Previous } from "grommet-icons";
-
-
 
 class AddPlantView3 extends Component {
   constructor(props) {
@@ -16,10 +12,8 @@ class AddPlantView3 extends Component {
 
   handleSubmit(startingDay) {
     if (startingDay === undefined) {
-      alert("ENTER SOMETHING")
+      alert("Please enter your starting day")
     } else {
-      let startingDateInMs = new Date(startingDay).getTime()
-      console.log(startingDateInMs)
       this.props.onSubmit(startingDay)
     }
   }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import api from '../../api';
-import { Home, Power, Logout } from "grommet-icons";
+import { Home, Power } from "grommet-icons";
 
 
 class Navigation extends Component {

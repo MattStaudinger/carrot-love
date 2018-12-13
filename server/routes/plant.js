@@ -76,8 +76,7 @@ router.get('/:id', (req, res, next) => {
 
 // Route to edit a specific plant of the user
   router.put('/:id', (req, res, next) => {
-   
-
+  
     let user = req.user._id
     let { name, watering_interval, starting_day, description, note, picture_url, lastWateringDate } = req.body
     console.log("Server",req.params.id )

@@ -3,7 +3,6 @@ import AddPlantView1 from "./AddPlant/AddPlantView1";
 import AddPlantView2 from "./AddPlant/AddPlantView2";
 import AddPlantView3 from "./AddPlant/AddPlantView3";
 import api from "../../api";
-import { type } from "os";
 
 
 
@@ -64,7 +63,6 @@ class AddPlant extends Component {
         view1Clicked: true,
           view2Clicked: true
     })
-    console.log("Data", plantData)
 }
 
 
@@ -109,7 +107,6 @@ today.getMilliseconds(0);
 
    //Adjusts the starting day to midnight, so it will always be the same day when later calculated in the
 
-
    let startingDayAdjusted = startingDayConverted.setHours(0);
    startingDayAdjusted = startingDayConverted.setMinutes(0);
    startingDayAdjusted = startingDayConverted.setSeconds(0);
@@ -126,8 +123,6 @@ today.getMilliseconds(0);
         date: startingDayAdjusted + amountOfIntervals * interval,
         isWatered: ""
       })
-      console.log(lastWateringDate, "Last Watering Add")
-
     }
     // let lastWatering = startingDay + (this.amountOfIntervals-1) * interval;
       

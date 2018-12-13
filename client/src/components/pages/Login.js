@@ -3,15 +3,11 @@ import api from '../../api';
 import { Link } from 'react-router-dom';
 
 import {
-  Grommet,
   FormField,
   TextInput,
   Button,
-  Heading,
   Box,
-  Image,
 } from "grommet";
-import { grommet } from "grommet/themes";
 
 
 class Login extends Component {
@@ -75,7 +71,7 @@ class Login extends Component {
           margin="medium">
           <Button >
           <a href={api.service.defaults.baseURL+"/auth/google"}> 
-          <img  style={{width:"200px"}} src="../../../btn_google_signin_light_normal_web@2x.png" />
+          <img  style={{width:"200px"}} src="../../../btn_google_signin_light_normal_web@2x.png" alt="google-login"/>
           </a>
           </Button>
           </Box>

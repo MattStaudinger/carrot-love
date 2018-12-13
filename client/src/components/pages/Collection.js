@@ -1,19 +1,12 @@
 import React, { Component, createRef } from "react";
 import api from "../../api";
-import { Route, Link, Switch } from "react-router-dom";
-import PlantDetail from "./PlantDetail";
+import { Link } from "react-router-dom";
 
 import {
   Box,
-  Grid,
-  Heading,
-  Paragraph,
   Image,
-  Button,
-  Collapsible
+  Button
 } from "grommet";
-import { AddCircle } from "grommet-icons";
-import Axios from "axios";
 
 class Collection extends Component {
   constructor(props) {
@@ -59,8 +52,8 @@ class Collection extends Component {
               height="medium"
               border={{ side: "top", color: "#78bc61", size: "medium" }}
               // background='#f1f7ed'
-              /* onClick={() => this.handlePlantDetail(p._id)} */  
-              className="collection-box"            
+              /* onClick={() => this.handlePlantDetail(p._id)} */
+              className="collection-box"
             >
               <Image fit="contain" src={p.picture_url} margin="xsmall" />
               <Button onClick={() => {this.props.onClick(p._id)}}>
@@ -85,7 +78,6 @@ class Collection extends Component {
     api
       .getPlants()
       .then(plants => {
-        console.log("Plants", plants);
         let plantDates = plants.map(plant => {
           let startingDay = plant.starting_day;
           let interval = plant.watering_interval * this.dayInMs;
@@ -101,7 +93,6 @@ class Collection extends Component {
           let lastWatering = new Date(date).toLocaleDateString();
           date = wateringTimeNumber;
           let upcomingWatering = new Date(date).toLocaleDateString();
-          console.log("UPcoming", upcomingWatering);
           this.amountOfIntervals = 1; // reset
           // ----------------------------------
 
@@ -125,12 +116,9 @@ class Collection extends Component {
   }
 
   componentDidUpdate() {
-
-  
     api
     .getPlants()
     .then(plants => {
-      console.log("Plants", plants);
       let plantDates = plants.map(plant => {
         let startingDay = plant.starting_day;
         let interval = plant.watering_interval * this.dayInMs;
@@ -146,7 +134,6 @@ class Collection extends Component {
         let lastWatering = new Date(date).toLocaleDateString();
         date = wateringTimeNumber;
         let upcomingWatering = new Date(date).toLocaleDateString();
-        console.log("UPcoming", upcomingWatering);
         this.amountOfIntervals = 1; // reset
         // ----------------------------------
 
