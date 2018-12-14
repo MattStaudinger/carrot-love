@@ -14,9 +14,8 @@ Adding plants to his collection, he can make notes for each of them and get the 
 * passport.js
 * MongoDB
 
-
-
-
-
+Demo-Login:
+* email: new@new.com
+* Password: new
 
 The website: [Carrot Love](https://carrotlove.herokuapp.com/)
