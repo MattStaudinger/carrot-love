@@ -36,7 +36,6 @@ class AddPlantView3 extends Component {
           date={this.state.starting_day}
           onSelect={this.onSelect}
           size="medium"
-          bounds={["2018-01-08", "2019-12-13"]}
         />
 
             <Button margin="5px" label="Add" color="white" className="btn-submit" onClick={() => this.handleSubmit(this.state.starting_day)} />

@@ -67,14 +67,14 @@ class Login extends Component {
             type="password"
           />
           </FormField>
-          <Box
+          {/* <Box
           margin="medium">
           <Button >
           <a href={api.service.defaults.baseURL+"/auth/google"}> 
           <img  style={{width:"200px"}} src="../../../btn_google_signin_light_normal_web@2x.png" alt="google-login"/>
           </a>
           </Button>
-          </Box>
+          </Box> */}
           <Button color="rgba(120, 188, 97, 1)"  label="Login"  onClick={(e) => this.handleClick(e)} />
           </Box>
           <Box>
